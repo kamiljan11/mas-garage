@@ -97,6 +97,66 @@
     .bottom a { color: var(--orange); text-decoration: none; }
     .bottom a:hover { text-decoration: underline; }
 
+    /* Mountain Lejdis Section */
+    .lejdis {
+      background: linear-gradient(180deg, #0a0d18 0%, #111827 100%);
+      border-top: 1px solid rgba(212,175,55,0.18);
+      border-bottom: 1px solid rgba(212,175,55,0.18);
+      padding: 5rem 1.5rem;
+      text-align: center;
+    }
+    .lejdis-inner { max-width: 860px; margin: 0 auto; }
+    .lejdis-tag {
+      display: inline-block; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: #D4AF37; font-weight: 700; border: 1px solid rgba(212,175,55,0.4);
+      padding: 0.35rem 1rem; border-radius: 999px; margin-bottom: 1.25rem;
+    }
+    .lejdis-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 900; line-height: 1.05; margin-bottom: 1rem; letter-spacing: -0.01em;
+    }
+    .gold { color: #D4AF37; }
+    .lejdis-sub {
+      color: rgba(255,255,255,0.6); font-size: 1rem;
+      max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.65;
+    }
+    .lejdis-cards {
+      display: flex; gap: 1.5rem; justify-content: center; align-items: center;
+      margin-bottom: 3rem; flex-wrap: wrap;
+    }
+    .card-img {
+      border-radius: 12px; max-width: 340px; width: 100%;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,175,55,0.15);
+    }
+    .card-img.front { transform: rotate(-2deg); }
+    .card-img.back { transform: rotate(1.5deg); }
+    .lejdis-steps {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .lstep {
+      background: rgba(212,175,55,0.05); border: 1px solid rgba(212,175,55,0.18);
+      border-radius: 16px; padding: 1.4rem 1.5rem; max-width: 230px; text-align: center;
+      font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.55; flex: 1; min-width: 180px;
+    }
+    .lstep-num {
+      font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900;
+      color: #D4AF37; margin-bottom: 0.5rem; line-height: 1;
+    }
+    .lejdis-ref {
+      font-size: 0.88rem; color: rgba(255,255,255,0.5);
+      max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.65;
+    }
+    .lejdis-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #D4AF37; color: #0a0a0a;
+      font-weight: 800; font-size: 0.92rem; text-decoration: none;
+      padding: 0.8rem 2rem; border-radius: 999px; transition: all 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .lejdis-cta:hover { background: #c49d28; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,175,55,0.3); }
+
     [data-lang] { display: none; }
     [data-lang].active { display: contents; }
     .svc-content[data-lang] { display: none; }
@@ -206,6 +266,57 @@
         <div class="svc-desc" id="s6d-pl" style="display:none">Wymiana oleju, przepłukanie układu chłodzenia, płyn hamulcowy, wspomaganie — szybka obsługa bez rezerwacji.</div>
         <div class="svc-desc" id="s6d-is" style="display:none">Olíuskipti, kælivökvaþvottur, hemlarvökvi, stýrisvökvi — hröð þjónusta, ekki þarf að panta fyrirfram.</div>
       </div>
+
+    </div>
+  </section>
+
+  <!-- Mountain Lejdis Club Section -->
+  <section class="lejdis">
+    <div class="lejdis-inner">
+
+      <span class="lejdis-tag" id="ltag-en">For Our Female Clients</span>
+      <span class="lejdis-tag" id="ltag-pl" style="display:none">Dla Naszych Klientek</span>
+      <span class="lejdis-tag" id="ltag-is" style="display:none">Fyrir Kvenlegar Viðskiptavinir</span>
+
+      <h2 class="lejdis-title">Mountain <span class="gold">Lejdis</span> Club</h2>
+
+      <p class="lejdis-sub" id="lsub-en">A loyalty program exclusively for the women who trust us with their cars. Get your card, collect stamps, earn rewards.</p>
+      <p class="lejdis-sub" id="lsub-pl" style="display:none">Program lojalnościowy wyłącznie dla kobiet, które powierzają nam swoje auta. Odbierz kartę, zbieraj pieczątki, zyskuj nagrody.</p>
+      <p class="lejdis-sub" id="lsub-is" style="display:none">Hollustukerfi eingöngu fyrir konur sem treysta okkur með bílana sína. Fáðu kortið þitt, safnaðu stimplum, vinndu verðlaun.</p>
+
+      <div class="lejdis-cards">
+        <img src="./mountain_lejdis_side_A.png" alt="Mountain Lejdis Card Front" class="card-img front">
+        <img src="./mountain_lejdis_side_B.png" alt="Mountain Lejdis Loyalty Card Back" class="card-img back">
+      </div>
+
+      <div class="lejdis-steps">
+        <div class="lstep">
+          <div class="lstep-num">1</div>
+          <span id="ls1-en">Come in for a service — ask for your personalised Lejdis card</span>
+          <span id="ls1-pl" style="display:none">Przyjedź na serwis — poproś o swoją imienną kartę Lejdis</span>
+          <span id="ls1-is" style="display:none">Komdu í þjónustu — biddu um persónulega Lejdis kortið þitt</span>
+        </div>
+        <div class="lstep">
+          <div class="lstep-num">2</div>
+          <span id="ls2-en">Get a stamp with every visit — oil change, tires, repair, anything counts</span>
+          <span id="ls2-pl" style="display:none">Zbieraj pieczątkę przy każdej wizycie — wymiana oleju, opony, naprawa — każda liczy się</span>
+          <span id="ls2-is" style="display:none">Fáðu stimpil við hverja heimsókn — olíuskipti, dekk, viðgerð — allt telur</span>
+        </div>
+        <div class="lstep">
+          <div class="lstep-num">10</div>
+          <span id="ls3-en"><strong style="color:#D4AF37">Free vehicle inspection</strong> — your 10th stamp earns you a full check on the house</span>
+          <span id="ls3-pl" style="display:none"><strong style="color:#D4AF37">Darmowy przegląd auta</strong> — 10. pieczątka to pełny przegląd gratis od nas</span>
+          <span id="ls3-is" style="display:none"><strong style="color:#D4AF37">Ókeypis skoðun bíls</strong> — 10. stimplið þýðir fulla skoðun að gjöf frá okkur</span>
+        </div>
+      </div>
+
+      <p class="lejdis-ref" id="lref-en">💛 Refer a friend — her card will carry your name in the "referred by" field. The more ladies you bring in, the bigger your Lejdis status.</p>
+      <p class="lejdis-ref" id="lref-pl" style="display:none">💛 Poleć koleżankę — na jej karcie znajdzie się Twoje imię w polu "Poleciła". Im więcej kobiet przyciągniesz, tym wyższy Twój status Lejdis.</p>
+      <p class="lejdis-ref" id="lref-is" style="display:none">💛 Mæl með vinkonu — nafn þitt mun vera á korti hennar í "mælt með" reitnum. Því fleiri konur sem þú færð inn, því hærri Lejdis staða þín.</p>
+
+      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="lejdis-cta" id="lcta-en">💬 Join the Club — WhatsApp Us</a>
+      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="lejdis-cta" id="lcta-pl" style="display:none">💬 Dołącz do Klubu — WhatsApp</a>
+      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="lejdis-cta" id="lcta-is" style="display:none">💬 Gakktu í Klubbinn — WhatsApp</a>
 
     </div>
   </section>
