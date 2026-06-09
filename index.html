@@ -10,229 +10,214 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --orange: #F58220; --dark: #111827; --muted: rgba(255,255,255,0.5); }
+    html, body { font-family: 'Open Sans', sans-serif; background: var(--dark); color: white; min-height: 100%; }
 
-    :root {
-      --orange: #F58220;
-      --dark:   #111827;
-      --gray:   #1F2937;
-      --light:  rgba(255,255,255,0.85);
-      --muted:  rgba(255,255,255,0.5);
+    /* Lang switcher */
+    .lang-bar {
+      position: fixed; top: 1rem; right: 1rem; z-index: 100;
+      display: flex; gap: 0.4rem;
     }
-
-    html, body {
-      font-family: 'Open Sans', sans-serif;
-      background: var(--dark);
-      color: white;
-      min-height: 100%;
+    .lang-bar button {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.6); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; padding: 0.3rem 0.7rem; border-radius: 999px;
+      cursor: pointer; transition: all 0.15s; font-family: inherit;
+    }
+    .lang-bar button.active, .lang-bar button:hover {
+      background: var(--orange); border-color: var(--orange); color: white;
     }
 
     /* Hero */
     .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 3rem 1.5rem 2rem;
-      text-align: center;
-      overflow: hidden;
+      position: relative; min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 4rem 1.5rem 2rem; text-align: center; overflow: hidden;
     }
-
     .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at top, rgba(245,130,32,0.12) 0%, transparent 60%),
-        repeating-linear-gradient(
-          45deg,
-          transparent,
-          transparent 40px,
-          rgba(255,255,255,0.015) 40px,
-          rgba(255,255,255,0.015) 41px
-        );
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at top, rgba(245,130,32,0.12) 0%, transparent 60%),
+        repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 41px);
       pointer-events: none;
     }
-
     .logo-wrap { margin-bottom: 2rem; position: relative; }
     .logo-wrap img { height: 130px; width: auto; mix-blend-mode: multiply; filter: drop-shadow(0 4px 24px rgba(245,130,32,0.35)); }
-
     .badge {
-      display: inline-block;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--orange);
-      font-weight: 700;
-      border: 1px solid rgba(245,130,32,0.4);
-      padding: 0.35rem 1rem;
-      border-radius: 999px;
-      margin-bottom: 1.25rem;
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--orange); font-weight: 700; border: 1px solid rgba(245,130,32,0.4);
+      padding: 0.35rem 1rem; border-radius: 999px; margin-bottom: 1.25rem;
     }
-
-    h1 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(1.9rem, 5vw, 3.2rem);
-      font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-      max-width: 640px;
-    }
+    h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.9rem, 5vw, 3.2rem); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; max-width: 640px; }
     h1 span { color: var(--orange); }
-
-    .sub {
-      color: var(--muted);
-      font-size: 1.05rem;
-      max-width: 480px;
-      margin-bottom: 2.5rem;
-      line-height: 1.65;
-    }
+    .sub { color: var(--muted); font-size: 1.05rem; max-width: 480px; margin-bottom: 2.5rem; line-height: 1.65; }
 
     /* Contact bar */
-    .contact-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      margin-bottom: 3rem;
-    }
-
+    .contact-bar { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 3rem; }
     .contact-bar a {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      padding: 0.6rem 1.2rem;
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 999px;
-      transition: border-color 0.2s, background 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem; color: white;
+      text-decoration: none; font-weight: 600; font-size: 0.9rem;
+      padding: 0.6rem 1.2rem; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; transition: all 0.2s;
     }
     .contact-bar a:hover { border-color: var(--orange); background: rgba(245,130,32,0.1); }
     .contact-bar a.cta { background: var(--orange); border-color: var(--orange); }
-    .contact-bar a.cta:hover { background: #d96e10; border-color: #d96e10; }
+    .contact-bar a.cta:hover { background: #d96e10; }
 
-
-    /* Services grid */
-    .services {
-      width: 100%;
-      max-width: 900px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-    }
-
-    @media (max-width: 700px) {
-      .services { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 460px) {
-      .services { grid-template-columns: 1fr; }
-    }
-
+    /* Services */
+    .services { width: 100%; max-width: 900px; display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    @media(max-width:700px){ .services { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:460px){ .services { grid-template-columns: 1fr; } }
     .service-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 14px;
-      padding: 1.4rem 1.2rem;
-      text-align: left;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px; padding: 1.4rem 1.2rem; text-align: left;
       transition: border-color 0.2s, background 0.2s, transform 0.2s;
     }
-    .service-card:hover {
-      border-color: rgba(245,130,32,0.5);
-      background: rgba(245,130,32,0.06);
-      transform: translateY(-2px);
-    }
-
+    .service-card:hover { border-color: rgba(245,130,32,0.5); background: rgba(245,130,32,0.06); transform: translateY(-2px); }
     .svc-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
-    .svc-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 800;
-      color: white;
-      margin-bottom: 0.4rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
+    .svc-title { font-family: 'Montserrat',sans-serif; font-size: 0.9rem; font-weight: 800; color: white; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.04em; }
     .svc-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
 
-    /* Bottom strip */
-    .bottom {
-      background: rgba(255,255,255,0.03);
-      border-top: 1px solid rgba(255,255,255,0.07);
-      padding: 1.5rem;
-      text-align: center;
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
+    /* Bottom */
+    .bottom { background: rgba(255,255,255,0.03); border-top: 1px solid rgba(255,255,255,0.07); padding: 1.5rem; text-align: center; font-size: 0.78rem; color: var(--muted); }
     .bottom a { color: var(--orange); text-decoration: none; }
     .bottom a:hover { text-decoration: underline; }
 
+    [data-lang] { display: none; }
+    [data-lang].active { display: contents; }
+    .svc-content[data-lang] { display: none; }
+    .svc-content[data-lang].active { display: block; }
   </style>
 </head>
 <body>
+
+  <!-- Language switcher -->
+  <div class="lang-bar">
+    <button onclick="setLang('en')" id="btn-en" class="active">EN</button>
+    <button onclick="setLang('pl')" id="btn-pl">PL</button>
+    <button onclick="setLang('is')" id="btn-is">IS</button>
+  </div>
 
   <section class="hero">
     <div class="logo-wrap">
       <img src="./logo.jpg" alt="Mountain Car Garage">
     </div>
 
-    <span class="badge">Njarðarbraut 3i — 5 min from KEF Airport</span>
+    <!-- Badge -->
+    <span class="badge" id="badge-en">Njarðarbraut 3i — 5 min from KEF Airport</span>
+    <span class="badge" id="badge-pl" style="display:none">Njarðarbraut 3i — 5 minut od lotniska KEF</span>
+    <span class="badge" id="badge-is" style="display:none">Njarðarbraut 3i — 5 mín frá KEF flugvelli</span>
 
-    <h1>Iceland's <span>Highland-Ready</span><br>Garage & Repair Shop</h1>
+    <!-- H1 -->
+    <h1 id="h1-en">Iceland's <span>Highland-Ready</span><br>Garage & Repair Shop</h1>
+    <h1 id="h1-pl" style="display:none">Islandzki Warsztat<br><span>Gotowy na Każdą Drogę</span></h1>
+    <h1 id="h1-is" style="display:none">Íslands <span>Fjallahæfasta</span><br>Bílverkstæði</h1>
 
-    <p class="sub">
-      From routine oil changes to F-road damage repair — we keep your vehicle running on Iceland's toughest roads. Fast, honest, professional.
-    </p>
+    <!-- Subtitle -->
+    <p class="sub" id="sub-en">From routine oil changes to F-road damage repair — we keep your vehicle running on Iceland's toughest roads. Fast, honest, professional.</p>
+    <p class="sub" id="sub-pl" style="display:none">Od zwykłych wymian oleju po naprawy szkód z dróg F — dbamy o Twój pojazd na najtrudniejszych islandzkich trasach. Szybko, uczciwie, profesjonalnie.</p>
+    <p class="sub" id="sub-is" style="display:none">Frá venjulegum olíuskiptum yfir í viðgerðir á F-vegaskemmdum — við höldum bílnum þínum gangandi á erfiðustu vegum Íslands. Hratt, heiðarlega, fagmannlega.</p>
 
+    <!-- Contacts -->
     <div class="contact-bar">
       <a href="tel:+3548888005">📞 +354 888 8005</a>
-      <a href="mailto:garage@mountaincar.is">✉️ garage@mountaincar.is</a>
-      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="cta">💬 WhatsApp Us</a>
+      <a href="mailto:mountainallservice@gmail.com">✉️ mountainallservice@gmail.com</a>
+      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="cta" id="cta-wa-en">💬 WhatsApp Us</a>
+      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="cta" id="cta-wa-pl" style="display:none">💬 WhatsApp</a>
+      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="cta" id="cta-wa-is" style="display:none">💬 WhatsApp</a>
     </div>
 
+    <!-- Services -->
     <div class="services">
+
       <div class="service-card">
         <div class="svc-icon">🔧</div>
-        <div class="svc-title">Mechanical Repair</div>
-        <div class="svc-desc">Engine, brakes, suspension, transmission — full diagnostic and repair for all vehicle types.</div>
+        <div class="svc-title" id="s1t-en">Mechanical Repair</div>
+        <div class="svc-title" id="s1t-pl" style="display:none">Naprawa Mechaniczna</div>
+        <div class="svc-title" id="s1t-is" style="display:none">Vélrænar Viðgerðir</div>
+        <div class="svc-desc" id="s1d-en">Engine, brakes, suspension, transmission — full diagnostic and repair for all vehicle types.</div>
+        <div class="svc-desc" id="s1d-pl" style="display:none">Silnik, hamulce, zawieszenie, skrzynia biegów — pełna diagnostyka i naprawa wszystkich typów pojazdów.</div>
+        <div class="svc-desc" id="s1d-is" style="display:none">Vélar, hemlar, fjöðrun, gírkassar — full greining og viðgerð á öllum tegundum farartækja.</div>
       </div>
+
       <div class="service-card">
         <div class="svc-icon">🛞</div>
-        <div class="svc-title">Tire Service</div>
-        <div class="svc-desc">Winter/summer tire swap, balancing, and storage. Ready for Iceland's Nov 1 winter tire deadline.</div>
+        <div class="svc-title" id="s2t-en">Tire Service</div>
+        <div class="svc-title" id="s2t-pl" style="display:none">Serwis Opon</div>
+        <div class="svc-title" id="s2t-is" style="display:none">Dekkjaþjónusta</div>
+        <div class="svc-desc" id="s2d-en">Winter/summer tire swap, balancing, and storage. Ready for Iceland's Nov 1 winter tire deadline.</div>
+        <div class="svc-desc" id="s2d-pl" style="display:none">Wymiana opon zima/lato, wyważanie i przechowywanie. Gotowi na islandzki obowiązek opon zimowych od 1 listopada.</div>
+        <div class="svc-desc" id="s2d-is" style="display:none">Vetrar-/sumardekkjaskipti, jöfnun og geymsla. Tilbúnir fyrir vetrardekkskylduna 1. nóvember.</div>
       </div>
+
       <div class="service-card">
         <div class="svc-icon">🛣️</div>
-        <div class="svc-title">F-Road Damage</div>
-        <div class="svc-desc">Windscreen chips, gravel damage, undercarriage and suspension repairs after Highland drives.</div>
+        <div class="svc-title" id="s3t-en">F-Road Damage</div>
+        <div class="svc-title" id="s3t-pl" style="display:none">Szkody z Dróg F</div>
+        <div class="svc-title" id="s3t-is" style="display:none">F-vegaskemmdir</div>
+        <div class="svc-desc" id="s3d-en">Windscreen chips, gravel damage, undercarriage and suspension repairs after Highland drives.</div>
+        <div class="svc-desc" id="s3d-pl" style="display:none">Odpryski szyb, uszkodzenia od żwiru, naprawa podwozia i zawieszenia po jeździe po Highlands.</div>
+        <div class="svc-desc" id="s3d-is" style="display:none">Vindaugabrot, malarskemmdir, viðgerðir á undirjörð og fjöðrun eftir ferðir um hálendið.</div>
       </div>
+
       <div class="service-card">
         <div class="svc-icon">🚗</div>
-        <div class="svc-title">Rental Car Repairs</div>
-        <div class="svc-desc">Fast turnaround for rental fleet damage. Trusted partner for car rental operators across Iceland.</div>
+        <div class="svc-title" id="s4t-en">Rental Car Repairs</div>
+        <div class="svc-title" id="s4t-pl" style="display:none">Naprawy Aut na Wynajem</div>
+        <div class="svc-title" id="s4t-is" style="display:none">Leigubílsviðgerðir</div>
+        <div class="svc-desc" id="s4d-en">Fast turnaround for rental fleet damage. Trusted partner for car rental operators across Iceland.</div>
+        <div class="svc-desc" id="s4d-pl" style="display:none">Szybka obsługa szkód floty wypożyczalni. Zaufany partner wypożyczalni samochodów na Islandii.</div>
+        <div class="svc-desc" id="s4d-is" style="display:none">Hraður afgreiðslutími fyrir leigubílsflotaskemmdir. Treystur félagi leigubílafyrirtækja um allt land.</div>
       </div>
+
       <div class="service-card">
         <div class="svc-icon">⚡</div>
-        <div class="svc-title">Electrical & Diagnostics</div>
-        <div class="svc-desc">OBD fault codes, battery testing, alternator, starter, and full electrical system diagnostics.</div>
+        <div class="svc-title" id="s5t-en">Electrical & Diagnostics</div>
+        <div class="svc-title" id="s5t-pl" style="display:none">Elektryka i Diagnostyka</div>
+        <div class="svc-title" id="s5t-is" style="display:none">Rafmagn og Greining</div>
+        <div class="svc-desc" id="s5d-en">OBD fault codes, battery testing, alternator, starter, and full electrical system diagnostics.</div>
+        <div class="svc-desc" id="s5d-pl" style="display:none">Kody błędów OBD, testowanie akumulatora, alternator, rozrusznik i pełna diagnostyka układu elektrycznego.</div>
+        <div class="svc-desc" id="s5d-is" style="display:none">OBD villukóðar, rafhlöðuprófun, riðill, kynningartæki og full rafkerfisgreining.</div>
       </div>
+
       <div class="service-card">
         <div class="svc-icon">🛢️</div>
-        <div class="svc-title">Oil & Fluid Service</div>
-        <div class="svc-desc">Oil change, coolant flush, brake fluid, power steering — quick service, no appointment needed.</div>
+        <div class="svc-title" id="s6t-en">Oil & Fluid Service</div>
+        <div class="svc-title" id="s6t-pl" style="display:none">Wymiana Oleju i Płynów</div>
+        <div class="svc-title" id="s6t-is" style="display:none">Olía og Vökvþjónusta</div>
+        <div class="svc-desc" id="s6d-en">Oil change, coolant flush, brake fluid, power steering — quick service, no appointment needed.</div>
+        <div class="svc-desc" id="s6d-pl" style="display:none">Wymiana oleju, przepłukanie układu chłodzenia, płyn hamulcowy, wspomaganie — szybka obsługa bez rezerwacji.</div>
+        <div class="svc-desc" id="s6d-is" style="display:none">Olíuskipti, kælivökvaþvottur, hemlarvökvi, stýrisvökvi — hröð þjónusta, ekki þarf að panta fyrirfram.</div>
       </div>
+
     </div>
   </section>
 
   <div class="bottom">
-    📍 Njarðarbraut 3i, 260 Reykjanesbær, Iceland &nbsp;·&nbsp;
-    Mon–Sat 10:00–18:00 &nbsp;·&nbsp;
-    <a href="https://rental.mountaincar.is">Also need a rental car? →</a>
+    📍 <a href="https://maps.app.goo.gl/RQWYELUjJMnYNHbM8" target="_blank" rel="noopener">Njarðarbraut 3i, 260 Reykjanesbær</a>
+    &nbsp;·&nbsp;
+    <span id="hours-en">Mon–Sat 10:00–18:00</span>
+    <span id="hours-pl" style="display:none">Pon–Sob 10:00–18:00</span>
+    <span id="hours-is" style="display:none">Mán–Lau 10:00–18:00</span>
+    &nbsp;·&nbsp;
+    <a href="https://rental.mountaincar.is" id="rental-link-en">Also need a rental car? →</a>
+    <a href="https://rental.mountaincar.is" id="rental-link-pl" style="display:none">Potrzebujesz wynajmu auta? →</a>
+    <a href="https://rental.mountaincar.is" id="rental-link-is" style="display:none">Þarftu leigubíl? →</a>
     &nbsp;·&nbsp; © 2025 Mountain All Service ehf
   </div>
+
+  <script>
+    function setLang(lang) {
+      const langs = ['en','pl','is'];
+      langs.forEach(l => {
+        document.getElementById('btn-'+l).classList.toggle('active', l===lang);
+      });
+      // All elements with id ending in -en/-pl/-is
+      document.querySelectorAll('[id$="-en"],[id$="-pl"],[id$="-is"]').forEach(el => {
+        const suffix = el.id.slice(-2);
+        el.style.display = suffix === lang ? '' : 'none';
+      });
+    }
+    // Default: EN already shown
+  </script>
 
 </body>
 </html>
