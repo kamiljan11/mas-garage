@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mountain Car Garage — Iceland</title>
+  <meta name="description" content="Professional car repair & maintenance near Keflavik Airport. Mechanical repairs, tire service, F-road damage, rental car repairs.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #F58220;
+      --dark:   #111827;
+      --gray:   #1F2937;
+      --light:  rgba(255,255,255,0.85);
+      --muted:  rgba(255,255,255,0.5);
+    }
+
+    html, body {
+      font-family: 'Open Sans', sans-serif;
+      background: var(--dark);
+      color: white;
+      min-height: 100%;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at top, rgba(245,130,32,0.12) 0%, transparent 60%),
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 40px,
+          rgba(255,255,255,0.015) 40px,
+          rgba(255,255,255,0.015) 41px
+        );
+      pointer-events: none;
+    }
+
+    .logo-wrap { margin-bottom: 2rem; position: relative; }
+    .logo-wrap img { height: 130px; width: auto; filter: drop-shadow(0 4px 24px rgba(245,130,32,0.35)); }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      font-weight: 700;
+      border: 1px solid rgba(245,130,32,0.4);
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.9rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      max-width: 640px;
+    }
+    h1 span { color: var(--orange); }
+
+    .sub {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      line-height: 1.65;
+    }
+
+    /* Contact bar */
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .contact-bar a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 999px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .contact-bar a:hover { border-color: var(--orange); background: rgba(245,130,32,0.1); }
+    .contact-bar a.cta { background: var(--orange); border-color: var(--orange); }
+    .contact-bar a.cta:hover { background: #d96e10; border-color: #d96e10; }
+
+
+    /* Services grid */
+    .services {
+      width: 100%;
+      max-width: 900px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    @media (max-width: 700px) {
+      .services { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 460px) {
+      .services { grid-template-columns: 1fr; }
+    }
+
+    .service-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 1.4rem 1.2rem;
+      text-align: left;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .service-card:hover {
+      border-color: rgba(245,130,32,0.5);
+      background: rgba(245,130,32,0.06);
+      transform: translateY(-2px);
+    }
+
+    .svc-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+    .svc-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .svc-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+
+    /* Bottom strip */
+    .bottom {
+      background: rgba(255,255,255,0.03);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .bottom a { color: var(--orange); text-decoration: none; }
+    .bottom a:hover { text-decoration: underline; }
+
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="logo-wrap">
+      <img src="./logo.jpg" alt="Mountain Car Garage">
+    </div>
+
+    <span class="badge">Njarðarbraut 3i — 5 min from KEF Airport</span>
+
+    <h1>Iceland's <span>Highland-Ready</span><br>Garage & Repair Shop</h1>
+
+    <p class="sub">
+      From routine oil changes to F-road damage repair — we keep your vehicle running on Iceland's toughest roads. Fast, honest, professional.
+    </p>
+
+    <div class="contact-bar">
+      <a href="tel:+3548888005">📞 +354 888 8005</a>
+      <a href="mailto:garage@mountaincar.is">✉️ garage@mountaincar.is</a>
+      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="cta">💬 WhatsApp Us</a>
+    </div>
+
+    <div class="services">
+      <div class="service-card">
+        <div class="svc-icon">🔧</div>
+        <div class="svc-title">Mechanical Repair</div>
+        <div class="svc-desc">Engine, brakes, suspension, transmission — full diagnostic and repair for all vehicle types.</div>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">🛞</div>
+        <div class="svc-title">Tire Service</div>
+        <div class="svc-desc">Winter/summer tire swap, balancing, and storage. Ready for Iceland's Nov 1 winter tire deadline.</div>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">🛣️</div>
+        <div class="svc-title">F-Road Damage</div>
+        <div class="svc-desc">Windscreen chips, gravel damage, undercarriage and suspension repairs after Highland drives.</div>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">🚗</div>
+        <div class="svc-title">Rental Car Repairs</div>
+        <div class="svc-desc">Fast turnaround for rental fleet damage. Trusted partner for car rental operators across Iceland.</div>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">⚡</div>
+        <div class="svc-title">Electrical & Diagnostics</div>
+        <div class="svc-desc">OBD fault codes, battery testing, alternator, starter, and full electrical system diagnostics.</div>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">🛢️</div>
+        <div class="svc-title">Oil & Fluid Service</div>
+        <div class="svc-desc">Oil change, coolant flush, brake fluid, power steering — quick service, no appointment needed.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bottom">
+    📍 Njarðarbraut 3i, 260 Reykjanesbær, Iceland &nbsp;·&nbsp;
+    Mon–Sat 10:00–18:00 &nbsp;·&nbsp;
+    <a href="https://rental.mountaincar.is">Also need a rental car? →</a>
+    &nbsp;·&nbsp; © 2025 Mountain All Service ehf
+  </div>
+
+</body>
+</html>
