@@ -163,6 +163,34 @@
     }
     .lejdis-cta:hover { background: #c49d28; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,175,55,0.3); }
 
+    /* Gosia founder block */
+    .lejdis-founder {
+      display: flex; gap: 2rem; align-items: flex-start;
+      background: rgba(212,175,55,0.05); border: 1px solid rgba(212,175,55,0.15);
+      border-radius: 20px; padding: 2rem; margin-bottom: 2.5rem; text-align: left;
+    }
+    .founder-img {
+      width: 120px; height: 120px; border-radius: 50%; object-fit: cover; object-position: top;
+      flex-shrink: 0; border: 3px solid rgba(212,175,55,0.4);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    .founder-name {
+      font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 800;
+      color: #D4AF37; margin-bottom: 0.15rem;
+    }
+    .founder-role {
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.38); margin-bottom: 0.8rem;
+    }
+    .founder-quote {
+      font-size: 0.88rem; color: rgba(255,255,255,0.72); line-height: 1.75;
+      font-style: italic; margin: 0; border-left: 2px solid rgba(212,175,55,0.35); padding-left: 0.9rem;
+    }
+    @media(max-width:580px){
+      .lejdis-founder { flex-direction: column; align-items: center; text-align: center; padding: 1.5rem; }
+      .founder-quote { border-left: none; padding-left: 0; border-top: 2px solid rgba(212,175,55,0.3); padding-top: 0.75rem; }
+    }
+
     [data-lang] { display: none; }
     [data-lang].active { display: contents; }
     .svc-content[data-lang] { display: none; }
@@ -313,6 +341,20 @@
           <span id="ls3-en"><strong style="color:#D4AF37">Free vehicle inspection</strong> — your 10th stamp earns you a full check on the house</span>
           <span id="ls3-pl" style="display:none"><strong style="color:#D4AF37">Darmowy przegląd auta</strong> — 10. pieczątka to pełny przegląd gratis od nas</span>
           <span id="ls3-is" style="display:none"><strong style="color:#D4AF37">Ókeypis skoðun bíls</strong> — 10. stimplið þýðir fulla skoðun að gjöf frá okkur</span>
+        </div>
+      </div>
+
+      <!-- Gosia founder block -->
+      <div class="lejdis-founder">
+        <img src="./gosia.jpg" alt="Gosia — Mountain Car Garage" class="founder-img">
+        <div>
+          <div class="founder-name">Gosia</div>
+          <div class="founder-role" id="frole-en">Owner &amp; Workshop Manager</div>
+          <div class="founder-role" id="frole-pl" style="display:none">Właścicielka i Kierownik Warsztatu</div>
+          <div class="founder-role" id="frole-is" style="display:none">Eigandi og Verkstæðisstjóri</div>
+          <blockquote class="founder-quote" id="fq-en">"Hey, I'm Gosia — I run this workshop with my team. Mountain Lejdis Club started with a simple idea: every woman who walks through our door should feel completely at ease. I know how intimidating garages can be — the jargon, the pressure, that nagging feeling someone might take advantage. That's not how we work here. You bring your car, we fix it honestly, you leave knowing exactly what was done and why. The Lejdis card is my way of saying thank you — for trusting us, and for coming back."</blockquote>
+          <blockquote class="founder-quote" id="fq-pl" style="display:none">"Hej, jestem Gosia — prowadzę ten warsztat razem z moją ekipą. Mountain Lejdis Club powstał z prostego pomysłu: każda kobieta, która tu trafia, powinna czuć się w 100% swobodnie. Wiem, jak onieśmielające mogą być warsztaty — branżowy żargon, presja, to nieprzyjemne poczucie że ktoś może próbować coś ukryć. U nas tak nie działa. Przynosisz auto, naprawiamy je uczciwie, a Ty wychodzisz z pełną wiedzą co zostało zrobione i dlaczego. Karta Lejdis to mój sposób na podziękowanie — za Twoje zaufanie i za to, że wracasz."</blockquote>
+          <blockquote class="founder-quote" id="fq-is" style="display:none">"Hæ, ég heiti Gosia og ég reki þennan verkstæð með liðinu mínu. Mountain Lejdis Club fæddist úr einfaldri hugmynd: sérhver kona sem kemur hingað ætti að líða alveg þægilega. Ég veit hversu ógnvænleg verkstæði geta verið — fagmálið, þrýstingurinn, tilfinningin um að vera beitt. Hér er þetta ekki svona. Þú kemur með bílinn, við lögum hann heiðarlega, og þú ferð með nákvæma þekkingu á því sem var gert og af hverju. Lejdis kortið er þakklæti mitt — fyrir traust þitt og fyrir að koma aftur."</blockquote>
         </div>
       </div>
 
