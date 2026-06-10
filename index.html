@@ -3,15 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mountain Car Garage — Iceland</title>
-  <meta name="description" content="Professional car repair & maintenance near Keflavik Airport. Mechanical repairs, tire service, F-road damage, rental car repairs.">
+  <title>Mountain Car Garage — Car Repair 5 min from KEF Airport, Iceland</title>
+  <meta name="description" content="Professional car repair & maintenance in Reykjanesbær, 5 min from KEF Airport. Mechanical repairs, wheel balancing & alignment, F-road damage, oil & fluid service. Message us on WhatsApp.">
+  <link rel="canonical" href="https://garage.masgroup.is/">
+
+  <!-- Open Graph (WhatsApp / Facebook / LinkedIn previews) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mountain Car Garage">
+  <meta property="og:title" content="Mountain Car Garage — Car Repair 5 min from KEF Airport">
+  <meta property="og:description" content="Car repair & maintenance in Reykjanesbær, Iceland. Mechanical repairs, wheel balancing & alignment, F-road damage & oil service. Message us on WhatsApp.">
+  <meta property="og:url" content="https://garage.masgroup.is/">
+  <meta property="og:image" content="https://garage.masgroup.is/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mountain Car Garage — Car Repair 5 min from KEF Airport">
+  <meta name="twitter:description" content="Car repair & maintenance in Reykjanesbær, Iceland. Mechanical, wheel alignment, F-road damage & oil service.">
+  <meta name="twitter:image" content="https://garage.masgroup.is/og-image.jpg">
+
+  <link rel="icon" href="./logo.jpg">
+  <link rel="apple-touch-icon" href="./logo.jpg">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --orange: #F58220; --dark: #111827; --muted: rgba(255,255,255,0.5); }
+    :root { --orange: #F58220; --orange-dark: #B85C00; --dark: #111827; --muted: rgba(255,255,255,0.62); }
     html, body { font-family: 'Open Sans', sans-serif; background: var(--dark); color: white; min-height: 100%; }
+
+    /* Accessibility: skip link + focus */
+    .skip {
+      position: absolute; left: -9999px; top: 0; z-index: 999;
+      background: #fff; color: #111827; padding: 0.6rem 1rem; border-radius: 0 0 8px 0; font-weight: 700;
+    }
+    .skip:focus { left: 0; }
+    :where(a, button):focus-visible {
+      outline: 3px solid #fff; outline-offset: 2px; border-radius: 6px;
+    }
 
     /* Top nav */
     .top-nav {
@@ -23,27 +55,28 @@
     }
     .back-btn {
       display: inline-flex; align-items: center; gap: 0.4rem;
-      color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.78rem; font-weight: 600;
+      color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 600;
       padding: 0.3rem 0.8rem; border: 1px solid rgba(255,255,255,0.12); border-radius: 999px;
       transition: all 0.15s;
     }
     .back-btn:hover { color: white; border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.06); }
     .lang-bar { display: flex; gap: 0.4rem; }
     .lang-bar button {
+      display: inline-flex; align-items: center; justify-content: center;
       background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.6); font-size: 0.72rem; font-weight: 700;
+      color: rgba(255,255,255,0.75); font-size: 0.72rem; font-weight: 700;
       letter-spacing: 0.08em; padding: 0.3rem 0.7rem; border-radius: 999px;
       cursor: pointer; transition: all 0.15s; font-family: inherit;
     }
     .lang-bar button.active, .lang-bar button:hover {
-      background: var(--orange); border-color: var(--orange); color: white;
+      background: var(--orange); border-color: var(--orange); color: #111827;
     }
 
     /* Hero */
     .hero {
-      position: relative; min-height: 100vh;
+      position: relative; min-height: 100vh; min-height: 100svh;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 4rem 1.5rem 2rem; text-align: center; overflow: hidden;
+      padding: 5.5rem 1.5rem 2.5rem; text-align: center; overflow: hidden;
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
@@ -52,7 +85,7 @@
       pointer-events: none;
     }
     .logo-wrap {
-      margin-bottom: 2rem; position: relative;
+      margin-bottom: 1.75rem; position: relative;
       background: white; border-radius: 20px;
       padding: 14px 24px; display: inline-flex;
       box-shadow: 0 0 40px rgba(245,130,32,0.4), 0 0 0 1px rgba(245,130,32,0.2);
@@ -63,9 +96,29 @@
       color: var(--orange); font-weight: 700; border: 1px solid rgba(245,130,32,0.4);
       padding: 0.35rem 1rem; border-radius: 999px; margin-bottom: 1.25rem;
     }
-    h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.9rem, 5vw, 3.2rem); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; max-width: 640px; }
+    h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.9rem, 5vw, 3.2rem); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; max-width: 640px; text-wrap: balance; }
     h1 span { color: var(--orange); }
-    .sub { color: var(--muted); font-size: 1.05rem; max-width: 480px; margin-bottom: 2.5rem; line-height: 1.65; }
+    .sub { color: var(--muted); font-size: 1.05rem; max-width: 480px; margin-bottom: 1.5rem; line-height: 1.65; }
+
+    /* Trust strip */
+    .trust { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .trust a {
+      display: inline-flex; align-items: center; gap: 0.45rem; text-decoration: none;
+      color: #fff; font-weight: 600; font-size: 0.9rem;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14);
+      padding: 0.5rem 1rem; border-radius: 999px; transition: all 0.2s;
+    }
+    .trust a:hover { border-color: var(--orange); background: rgba(245,130,32,0.1); }
+    .trust .stars { color: #D4AF37; letter-spacing: 0.05em; }
+
+    /* Benefit chips */
+    .chips { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-bottom: 2.25rem; }
+    .chip {
+      font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+      padding: 0.4rem 0.9rem; border-radius: 999px;
+    }
+    .chip b { color: var(--orange); font-weight: 700; }
 
     /* Contact bar */
     .contact-bar { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 3rem; }
@@ -74,9 +127,9 @@
       text-decoration: none; font-weight: 600; font-size: 0.9rem;
       padding: 0.6rem 1.2rem; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; transition: all 0.2s;
     }
-    .contact-bar a:hover { border-color: var(--orange); background: rgba(245,130,32,0.1); }
-    .contact-bar a.cta { background: var(--orange); border-color: var(--orange); }
-    .contact-bar a.cta:hover { background: #d96e10; }
+    .contact-bar a:hover { border-color: var(--orange); background: rgba(245,130,32,0.12); }
+    .contact-bar a.cta { background: var(--orange); border-color: var(--orange); color: #111827; }
+    .contact-bar a.cta:hover { background: #e0760f; }
 
     /* Services */
     .services { width: 100%; max-width: 900px; display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
@@ -90,14 +143,14 @@
     .service-card:hover { border-color: rgba(245,130,32,0.5); background: rgba(245,130,32,0.06); transform: translateY(-2px); }
     .svc-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
     .svc-title { font-family: 'Montserrat',sans-serif; font-size: 0.9rem; font-weight: 800; color: white; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.04em; }
-    .svc-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+    .svc-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
 
     /* Bottom */
-    .bottom { background: rgba(255,255,255,0.03); border-top: 1px solid rgba(255,255,255,0.07); padding: 1.5rem; text-align: center; font-size: 0.78rem; color: var(--muted); }
+    .bottom { background: rgba(255,255,255,0.03); border-top: 1px solid rgba(255,255,255,0.07); padding: 1.5rem; text-align: center; font-size: 0.8rem; color: var(--muted); }
     .bottom a { color: var(--orange); text-decoration: none; }
     .bottom a:hover { text-decoration: underline; }
 
-    /* Mountain Lejdis Section */
+    /* Members Club Section */
     .lejdis {
       background: linear-gradient(180deg, #0a0d18 0%, #111827 100%);
       border-top: 1px solid rgba(212,175,55,0.18);
@@ -118,8 +171,8 @@
     }
     .gold { color: #D4AF37; }
     .lejdis-sub {
-      color: rgba(255,255,255,0.6); font-size: 1rem;
-      max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.65;
+      color: rgba(255,255,255,0.7); font-size: 1rem;
+      max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.65;
     }
     .lejdis-cards {
       display: flex; gap: 1.5rem; justify-content: center; align-items: center;
@@ -144,15 +197,15 @@
     .lstep {
       background: rgba(212,175,55,0.05); border: 1px solid rgba(212,175,55,0.18);
       border-radius: 16px; padding: 1.4rem 1.5rem; max-width: 230px; text-align: center;
-      font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.55; flex: 1; min-width: 180px;
+      font-size: 0.88rem; color: rgba(255,255,255,0.72); line-height: 1.55; flex: 1; min-width: 180px;
     }
     .lstep-num {
       font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900;
       color: #D4AF37; margin-bottom: 0.5rem; line-height: 1;
     }
     .lejdis-ref {
-      font-size: 0.88rem; color: rgba(255,255,255,0.5);
-      max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.65;
+      font-size: 0.9rem; color: rgba(255,255,255,0.62);
+      max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.65;
     }
     .lejdis-cta {
       display: inline-flex; align-items: center; gap: 0.5rem;
@@ -162,11 +215,16 @@
       letter-spacing: 0.03em;
     }
     .lejdis-cta:hover { background: #c49d28; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,175,55,0.3); }
+    .lejdis-call {
+      display: inline-block; margin: 1rem 0 0; color: rgba(255,255,255,0.75);
+      text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    }
+    .lejdis-call:hover { color: #fff; text-decoration: underline; }
 
-    /* Ladies Perks */
+    /* Lejdis Ladies-only Perks */
     .ladies-perks {
       background: rgba(212,175,55,0.04); border: 1px solid rgba(212,175,55,0.2);
-      border-radius: 20px; padding: 2rem 2rem 1.5rem; margin-bottom: 2.5rem;
+      border-radius: 20px; padding: 2rem 2rem 1.5rem; margin: 0 auto 2.5rem;
     }
     .ladies-perks-header { margin-bottom: 1.5rem; }
     .ladies-badge {
@@ -176,20 +234,23 @@
       margin-bottom: 0.6rem;
     }
     .ladies-perks-title {
-      font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800;
+      font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 800;
       color: white; margin-bottom: 0.4rem;
     }
-    .ladies-perks-sub { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+    .ladies-perks-sub { font-size: 0.86rem; color: rgba(255,255,255,0.62); line-height: 1.6; max-width: 480px; margin: 0 auto; }
     .perks-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
-    @media(max-width:600px){ .perks-grid { grid-template-columns: 1fr; } }
+    @media(max-width:600px){
+      .perks-grid { grid-template-columns: 1fr; }
+      .ladies-perks { padding: 1.5rem 1.25rem 1.25rem; }
+    }
     .perk-card {
       background: rgba(255,255,255,0.04); border: 1px solid rgba(212,175,55,0.12);
       border-radius: 14px; padding: 1.2rem; text-align: center;
     }
     .perk-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
-    .perk-name { font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 700; color: white; margin-bottom: 0.35rem; }
+    .perk-name { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 700; color: white; margin-bottom: 0.35rem; }
     .perk-discount { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 900; color: #D4AF37; margin-bottom: 0.3rem; }
-    .perk-desc { font-size: 0.75rem; color: rgba(255,255,255,0.45); line-height: 1.5; }
+    .perk-desc { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
 
     /* Gosia founder block */
     .lejdis-founder {
@@ -208,35 +269,61 @@
     }
     .founder-role {
       font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(255,255,255,0.38); margin-bottom: 0.8rem;
+      color: rgba(255,255,255,0.55); margin-bottom: 0.8rem;
     }
     .founder-quote {
-      font-size: 0.88rem; color: rgba(255,255,255,0.72); line-height: 1.75;
+      font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.75;
       font-style: italic; margin: 0; border-left: 2px solid rgba(212,175,55,0.35); padding-left: 0.9rem;
     }
     @media(max-width:580px){
       .lejdis-founder { flex-direction: column; align-items: center; text-align: center; padding: 1.5rem; }
       .founder-quote { border-left: none; padding-left: 0; border-top: 2px solid rgba(212,175,55,0.3); padding-top: 0.75rem; }
     }
+    .cta-sub { margin-top: 1rem; font-size: 0.85rem; color: rgba(255,255,255,0.62); }
 
-    [data-lang] { display: none; }
-    [data-lang].active { display: contents; }
-    .svc-content[data-lang] { display: none; }
-    .svc-content[data-lang].active { display: block; }
+    /* Mobile sticky call/WhatsApp bar */
+    .mobile-cta-bar { display: none; }
+    @media(max-width:760px){
+      .mobile-cta-bar {
+        display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 200;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+      }
+      .mobile-cta-bar a {
+        flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+        padding: 0.95rem 0.5rem; font-family: 'Montserrat', sans-serif; font-weight: 800;
+        font-size: 0.92rem; text-decoration: none;
+      }
+      .mobile-cta-bar .mcta-call { background: var(--orange); color: #111827; }
+      .mobile-cta-bar .mcta-wa { background: #25D366; color: #07321a; }
+      body { padding-bottom: 58px; }
+    }
+
+    /* Larger tap targets on phones */
+    @media(max-width:480px){
+      .top-nav { padding: 0.6rem 1rem; }
+      .back-btn { padding: 0.6rem 0.9rem; font-size: 0.82rem; }
+      .lang-bar button { padding: 0.55rem 0.8rem; font-size: 0.82rem; min-width: 44px; min-height: 44px; }
+      .logo-wrap { padding: 12px 18px; margin-bottom: 1.5rem; }
+      .logo-wrap img { height: 88px; }
+      .perk-desc, .ladies-perks-sub, .lejdis-ref { font-size: 0.86rem; }
+    }
   </style>
 </head>
 <body>
 
+  <a href="#main" class="skip">Skip to content</a>
+
   <!-- Top nav: back + language switcher -->
   <nav class="top-nav">
-    <a href="https://mountaincar.is" class="back-btn">← mountaincar.is</a>
-    <div class="lang-bar">
-      <button onclick="setLang('en')" id="btn-en" class="active">EN</button>
-      <button onclick="setLang('pl')" id="btn-pl">PL</button>
-      <button onclick="setLang('is')" id="btn-is">IS</button>
+    <a href="https://mountaincar.is" class="back-btn"><span aria-hidden="true">←</span> mountaincar.is</a>
+    <div class="lang-bar" role="group" aria-label="Language">
+      <button type="button" onclick="setLang('en')" id="btn-en" class="active" lang="en" aria-pressed="true" title="English">EN</button>
+      <button type="button" onclick="setLang('pl')" id="btn-pl" lang="pl" aria-pressed="false" title="Polski">PL</button>
+      <button type="button" onclick="setLang('is')" id="btn-is" lang="is" aria-pressed="false" title="Íslenska">IS</button>
     </div>
   </nav>
 
+  <main id="main">
   <section class="hero">
     <div class="logo-wrap">
       <img src="./logo.jpg" alt="Mountain Car Garage">
@@ -244,221 +331,301 @@
 
     <!-- Badge -->
     <span class="badge" id="badge-en">Njarðarbraut 3i — 5 min from KEF Airport</span>
-    <span class="badge" id="badge-pl" style="display:none">Njarðarbraut 3i — 5 minut od lotniska KEF</span>
-    <span class="badge" id="badge-is" style="display:none">Njarðarbraut 3i — 5 mín frá KEF flugvelli</span>
+    <span class="badge" id="badge-pl" lang="pl" style="display:none">Njarðarbraut 3i — 5 minut od lotniska KEF</span>
+    <span class="badge" id="badge-is" lang="is" style="display:none">Njarðarbraut 3i — 5 mín frá KEF flugvelli</span>
 
     <!-- H1 -->
     <h1 id="h1-en">Iceland's <span>Highland-Ready</span><br>Garage & Repair Shop</h1>
-    <h1 id="h1-pl" style="display:none">Islandzki Warsztat<br><span>Gotowy na Każdą Drogę</span></h1>
-    <h1 id="h1-is" style="display:none">Íslands <span>Fjallahæfasta</span><br>Bílverkstæði</h1>
+    <h1 id="h1-pl" lang="pl" style="display:none">Islandzki Warsztat<br><span>Gotowy na Każdą Drogę</span></h1>
+    <h1 id="h1-is" lang="is" style="display:none">Íslands <span>Fjallahæfasta</span><br>Bílverkstæði</h1>
 
     <!-- Subtitle -->
     <p class="sub" id="sub-en">From routine oil changes to F-road damage repair — we keep your vehicle running on Iceland's toughest roads. Fast, honest, professional.</p>
-    <p class="sub" id="sub-pl" style="display:none">Od zwykłych wymian oleju po naprawy szkód z dróg F — dbamy o Twój pojazd na najtrudniejszych islandzkich trasach. Szybko, uczciwie, profesjonalnie.</p>
-    <p class="sub" id="sub-is" style="display:none">Frá venjulegum olíuskiptum yfir í viðgerðir á F-vegaskemmdum — við höldum bílnum þínum gangandi á erfiðustu vegum Íslands. Hratt, heiðarlega, fagmannlega.</p>
+    <p class="sub" id="sub-pl" lang="pl" style="display:none">Od zwykłych wymian oleju po naprawy szkód z dróg F — dbamy o Twój pojazd na najtrudniejszych islandzkich trasach. Szybko, uczciwie, profesjonalnie.</p>
+    <p class="sub" id="sub-is" lang="is" style="display:none">Frá venjulegum olíuskiptum yfir í viðgerðir á F-vegaskemmdum — við höldum bílnum þínum gangandi á erfiðustu vegum Íslands. Hratt, heiðarlega, fagmannlega.</p>
+
+    <!-- Trust strip -->
+    <div class="trust">
+      <a href="https://www.google.com/maps/place/Mountain+car+ehf/@63.9729664,-22.5542144,13z/data=!4m6!3m5!1s0x48d6037e5226a501:0x3cc12a6ecfedeb8f!8m2!3d63.9714579!4d-22.5287403!16s%2Fg%2F11jz3n96h8" target="_blank" rel="noopener">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <span id="trust-en">See our reviews on Google</span>
+        <span id="trust-pl" lang="pl" style="display:none">Zobacz opinie w Google</span>
+        <span id="trust-is" lang="is" style="display:none">Sjáðu umsagnir á Google</span>
+      </a>
+    </div>
+
+    <!-- Benefit chips -->
+    <div class="chips">
+      <span class="chip" id="chip1-en"><b>Free</b> estimate · no obligation</span>
+      <span class="chip" id="chip1-pl" lang="pl" style="display:none"><b>Darmowa</b> wycena · bez zobowiązań</span>
+      <span class="chip" id="chip1-is" lang="is" style="display:none"><b>Ókeypis</b> verðmat · engin skuldbinding</span>
+      <span class="chip" id="chip2-en">🇬🇧 English · 🇵🇱 Polski · 🇮🇸 Íslenska</span>
+      <span class="chip" id="chip2-pl" lang="pl" style="display:none">🇬🇧 English · 🇵🇱 Polski · 🇮🇸 Íslenska</span>
+      <span class="chip" id="chip2-is" lang="is" style="display:none">🇬🇧 English · 🇵🇱 Polski · 🇮🇸 Íslenska</span>
+      <span class="chip" id="chip3-en">Walk-ins welcome</span>
+      <span class="chip" id="chip3-pl" lang="pl" style="display:none">Bez rezerwacji — wejdź od ręki</span>
+      <span class="chip" id="chip3-is" lang="is" style="display:none">Engin tímabókun — komdu við</span>
+    </div>
 
     <!-- Contacts -->
     <div class="contact-bar">
-      <a href="tel:+3548888005">📞 +354 888 8005</a>
-      <a href="mailto:mountainallservice@gmail.com">✉️ mountainallservice@gmail.com</a>
-      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="cta" id="cta-wa-en">💬 WhatsApp Us</a>
-      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="cta" id="cta-wa-pl" style="display:none">💬 WhatsApp</a>
-      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="cta" id="cta-wa-is" style="display:none">💬 WhatsApp</a>
+      <a href="tel:+3548888005"><span aria-hidden="true">📞</span> +354 888 8005</a>
+      <a href="mailto:mountainallservice@gmail.com"><span aria-hidden="true">✉️</span> mountainallservice@gmail.com</a>
+      <a href="https://wa.me/3548888005?text=Hi%20Mountain%20Car%20Garage%21%20I%20would%20like%20to%20book%20a%20car%20service." target="_blank" rel="noopener" class="cta" id="cta-wa-en"><span aria-hidden="true">💬</span> Book on WhatsApp</a>
+      <a href="https://wa.me/3548888005?text=Czesc%21%20Chce%20umowic%20moje%20auto%20na%20serwis%20w%20Mountain%20Car%20Garage." target="_blank" rel="noopener" class="cta" id="cta-wa-pl" lang="pl" style="display:none"><span aria-hidden="true">💬</span> Umów wizytę na WhatsApp</a>
+      <a href="https://wa.me/3548888005?text=Hallo%21%20Eg%20vil%20boka%20tima%20fyrir%20bilathjonustu%20hja%20Mountain%20Car%20Garage." target="_blank" rel="noopener" class="cta" id="cta-wa-is" lang="is" style="display:none"><span aria-hidden="true">💬</span> Bókaðu á WhatsApp</a>
     </div>
 
     <!-- Services -->
     <div class="services">
 
       <div class="service-card">
-        <div class="svc-icon">🔧</div>
-        <div class="svc-title" id="s1t-en">Mechanical Repair</div>
-        <div class="svc-title" id="s1t-pl" style="display:none">Naprawa Mechaniczna</div>
-        <div class="svc-title" id="s1t-is" style="display:none">Vélrænar Viðgerðir</div>
-        <div class="svc-desc" id="s1d-en">Engine, brakes, suspension, transmission — full diagnostic and repair for all vehicle types.</div>
-        <div class="svc-desc" id="s1d-pl" style="display:none">Silnik, hamulce, zawieszenie, skrzynia biegów — pełna diagnostyka i naprawa wszystkich typów pojazdów.</div>
-        <div class="svc-desc" id="s1d-is" style="display:none">Vélar, hemlar, fjöðrun, gírkassar — full greining og viðgerð á öllum tegundum farartækja.</div>
+        <div class="svc-icon" aria-hidden="true">🔧</div>
+        <h3 class="svc-title" id="s1t-en">Mechanical Repair</h3>
+        <h3 class="svc-title" id="s1t-pl" lang="pl" style="display:none">Naprawa Mechaniczna</h3>
+        <h3 class="svc-title" id="s1t-is" lang="is" style="display:none">Vélaviðgerðir</h3>
+        <p class="svc-desc" id="s1d-en">Engine, brakes, suspension, transmission — full diagnostic and repair for all vehicle types.</p>
+        <p class="svc-desc" id="s1d-pl" lang="pl" style="display:none">Silnik, hamulce, zawieszenie, skrzynia biegów — pełna diagnostyka i naprawa wszystkich typów pojazdów.</p>
+        <p class="svc-desc" id="s1d-is" lang="is" style="display:none">Vélar, hemlar, fjöðrun, gírkassar — ítarleg greining og viðgerð á öllum tegundum farartækja.</p>
       </div>
 
       <div class="service-card">
-        <div class="svc-icon">⚖️</div>
-        <div class="svc-title" id="s2t-en">Wheel Balancing</div>
-        <div class="svc-title" id="s2t-pl" style="display:none">Wyważanie Kół</div>
-        <div class="svc-title" id="s2t-is" style="display:none">Hjólajöfnun</div>
-        <div class="svc-desc" id="s2d-en">Precision wheel balancing to eliminate vibration, reduce tire wear and keep your ride smooth on Iceland's roads.</div>
-        <div class="svc-desc" id="s2d-pl" style="display:none">Precyzyjne wyważanie kół — eliminuje drgania, zmniejsza zużycie opon i poprawia komfort jazdy na islandzkich drogach.</div>
-        <div class="svc-desc" id="s2d-is" style="display:none">Nákvæm hjólajöfnun til að útrýma titringi, draga úr dekkjaslit og halda ferð þinni þægilegri á íslenzkum vegum.</div>
+        <div class="svc-icon" aria-hidden="true">⚖️</div>
+        <h3 class="svc-title" id="s2t-en">Wheel Balancing</h3>
+        <h3 class="svc-title" id="s2t-pl" lang="pl" style="display:none">Wyważanie Kół</h3>
+        <h3 class="svc-title" id="s2t-is" lang="is" style="display:none">Hjólajöfnun</h3>
+        <p class="svc-desc" id="s2d-en">Precision wheel balancing to eliminate vibration, reduce tire wear and keep your ride smooth on Iceland's roads.</p>
+        <p class="svc-desc" id="s2d-pl" lang="pl" style="display:none">Precyzyjne wyważanie kół — eliminuje drgania, zmniejsza zużycie opon i poprawia komfort jazdy na islandzkich drogach.</p>
+        <p class="svc-desc" id="s2d-is" lang="is" style="display:none">Nákvæm hjólajöfnun til að útrýma titringi, draga úr dekkjasliti og halda ferð þinni þægilegri á íslenskum vegum.</p>
       </div>
 
       <div class="service-card">
-        <div class="svc-icon">🛣️</div>
-        <div class="svc-title" id="s3t-en">F-Road Damage</div>
-        <div class="svc-title" id="s3t-pl" style="display:none">Szkody z Dróg F</div>
-        <div class="svc-title" id="s3t-is" style="display:none">F-vegaskemmdir</div>
-        <div class="svc-desc" id="s3d-en">Windscreen chips, gravel damage, undercarriage and suspension repairs after Highland drives.</div>
-        <div class="svc-desc" id="s3d-pl" style="display:none">Odpryski szyb, uszkodzenia od żwiru, naprawa podwozia i zawieszenia po jeździe po Highlands.</div>
-        <div class="svc-desc" id="s3d-is" style="display:none">Vindaugabrot, malarskemmdir, viðgerðir á undirjörð og fjöðrun eftir ferðir um hálendið.</div>
+        <div class="svc-icon" aria-hidden="true">🛣️</div>
+        <h3 class="svc-title" id="s3t-en">F-Road Damage</h3>
+        <h3 class="svc-title" id="s3t-pl" lang="pl" style="display:none">Szkody z Dróg F</h3>
+        <h3 class="svc-title" id="s3t-is" lang="is" style="display:none">F-vegaskemmdir</h3>
+        <p class="svc-desc" id="s3d-en">Windscreen chips, gravel damage, undercarriage and suspension repairs after Highland drives.</p>
+        <p class="svc-desc" id="s3d-pl" lang="pl" style="display:none">Odpryski szyb, uszkodzenia od żwiru, naprawa podwozia i zawieszenia po jeździe po islandzkich wyżynach.</p>
+        <p class="svc-desc" id="s3d-is" lang="is" style="display:none">Steinkast í framrúðu, malarskemmdir, viðgerðir á undirvagni og fjöðrun eftir ferðir um hálendið.</p>
       </div>
 
       <div class="service-card">
-        <div class="svc-icon">🎯</div>
-        <div class="svc-title" id="s4t-en">Wheel Alignment</div>
-        <div class="svc-title" id="s4t-pl" style="display:none">Zbieżność Kół</div>
-        <div class="svc-title" id="s4t-is" style="display:none">Hjólastilling</div>
-        <div class="svc-desc" id="s4d-en">Precise wheel alignment and geometry check. Reduces tire wear, improves handling on Iceland's roads.</div>
-        <div class="svc-desc" id="s4d-pl" style="display:none">Precyzyjna regulacja zbieżności i geometria kół. Mniejsze zużycie opon, lepsza prowadzenie na islandzkich drogach.</div>
-        <div class="svc-desc" id="s4d-is" style="display:none">Nákvæm hjólastilling og rúmfræðileg athugun. Minnkar dekkjaslit, bætir stjórnun á íslenzkum vegum.</div>
+        <div class="svc-icon" aria-hidden="true">🎯</div>
+        <h3 class="svc-title" id="s4t-en">Wheel Alignment</h3>
+        <h3 class="svc-title" id="s4t-pl" lang="pl" style="display:none">Zbieżność Kół</h3>
+        <h3 class="svc-title" id="s4t-is" lang="is" style="display:none">Hjólastilling</h3>
+        <p class="svc-desc" id="s4d-en">Precise wheel alignment and geometry check. Reduces tire wear, improves handling on Iceland's roads.</p>
+        <p class="svc-desc" id="s4d-pl" lang="pl" style="display:none">Precyzyjna regulacja zbieżności i geometria kół. Mniejsze zużycie opon, lepsze prowadzenie na islandzkich drogach.</p>
+        <p class="svc-desc" id="s4d-is" lang="is" style="display:none">Nákvæm hjólastilling og rúmfræðileg athugun. Minnkar dekkjaslit, bætir stjórnun á íslenskum vegum.</p>
       </div>
 
-
       <div class="service-card">
-        <div class="svc-icon">🛢️</div>
-        <div class="svc-title" id="s6t-en">Oil & Fluid Service</div>
-        <div class="svc-title" id="s6t-pl" style="display:none">Wymiana Oleju i Płynów</div>
-        <div class="svc-title" id="s6t-is" style="display:none">Olía og Vökvþjónusta</div>
-        <div class="svc-desc" id="s6d-en">Oil change, coolant flush, brake fluid, power steering — quick service, no appointment needed.</div>
-        <div class="svc-desc" id="s6d-pl" style="display:none">Wymiana oleju, przepłukanie układu chłodzenia, płyn hamulcowy, wspomaganie — szybka obsługa bez rezerwacji.</div>
-        <div class="svc-desc" id="s6d-is" style="display:none">Olíuskipti, kælivökvaþvottur, hemlarvökvi, stýrisvökvi — hröð þjónusta, ekki þarf að panta fyrirfram.</div>
+        <div class="svc-icon" aria-hidden="true">🛢️</div>
+        <h3 class="svc-title" id="s5t-en">Oil & Fluid Service</h3>
+        <h3 class="svc-title" id="s5t-pl" lang="pl" style="display:none">Wymiana Oleju i Płynów</h3>
+        <h3 class="svc-title" id="s5t-is" lang="is" style="display:none">Olíu- og Vökvaþjónusta</h3>
+        <p class="svc-desc" id="s5d-en">Oil change, coolant flush, brake fluid, power steering — quick service, no appointment needed.</p>
+        <p class="svc-desc" id="s5d-pl" lang="pl" style="display:none">Wymiana oleju, przepłukanie układu chłodzenia, płyn hamulcowy, wspomaganie — szybka obsługa bez rezerwacji.</p>
+        <p class="svc-desc" id="s5d-is" lang="is" style="display:none">Olíuskipti, kælivökvaþvottur, hemlavökvi, stýrisvökvi — hröð þjónusta, ekki þarf að panta fyrirfram.</p>
       </div>
 
     </div>
   </section>
 
-  <!-- Mountain Lejdis Club Section -->
-  <section class="lejdis">
+  <!-- Mountain Car Members Club Section -->
+  <section class="lejdis" aria-labelledby="club-heading">
     <div class="lejdis-inner">
 
       <span class="lejdis-tag" id="ltag-en">Members Club — Open to Everyone</span>
-      <span class="lejdis-tag" id="ltag-pl" style="display:none">Klub dla Wszystkich</span>
-      <span class="lejdis-tag" id="ltag-is" style="display:none">Opið fyrir Alla</span>
+      <span class="lejdis-tag" id="ltag-pl" lang="pl" style="display:none">Klub dla Wszystkich</span>
+      <span class="lejdis-tag" id="ltag-is" lang="is" style="display:none">Opið fyrir Alla</span>
 
-      <h2 class="lejdis-title">Mountain <span class="gold">Lejdis</span> Club</h2>
+      <h2 class="lejdis-title" id="club-heading">Mountain Car <span class="gold">Members</span> Club</h2>
 
-      <p class="lejdis-sub" id="lsub-en">Our loyalty program is open to everyone. Collect stamps, earn free workshop hours, and refer friends with your unique code. Ladies get something extra — exclusive partner discounts just for you.</p>
-      <p class="lejdis-sub" id="lsub-pl" style="display:none">Nasz program lojalnościowy jest otwarty dla wszystkich. Zbieraj pieczątki, zdobywaj darmowe godziny pracy warsztatu i polecaj znajomych swoim unikalnym kodem. Panie mają coś ekstra — ekskluzywne zniżki u naszych partnerów.</p>
-      <p class="lejdis-sub" id="lsub-is" style="display:none">Hollustukerfi okkar er opið fyrir alla. Safnaðu stimplum, vinndu ókeypis vinnustundir og mæl með vinum með einstaklingslegan kóðann þinn. Konur fá eitthvað aukalegt — sérstakar afsláttartilboð hjá samstarfsaðilum okkar.</p>
+      <p class="lejdis-sub" id="lsub-en">Open to everyone. Collect stamps on every visit, earn free workshop hours, and refer friends with your unique code. And for the ladies — there's <strong class="gold">Mountain Lejdis</strong>, with exclusive partner discounts just for women.</p>
+      <p class="lejdis-sub" id="lsub-pl" lang="pl" style="display:none">Dla każdego. Zbieraj pieczątki przy każdej wizycie, zyskuj darmowe godziny pracy warsztatu i polecaj znajomych swoim unikalnym kodem. A dla pań — <strong class="gold">Mountain Lejdis</strong>, z ekskluzywnymi zniżkami u partnerów tylko dla kobiet.</p>
+      <p class="lejdis-sub" id="lsub-is" lang="is" style="display:none">Opið fyrir alla. Safnaðu stimplum við hverja heimsókn, vinndu ókeypis vinnustundir og mæltu með okkur við vini með einstaka kóðanum þínum. Og fyrir konurnar — <strong class="gold">Mountain Lejdis</strong>, með sérstökum tilboðum hjá samstarfsaðilum, aðeins fyrir konur.</p>
 
       <div class="lejdis-cards">
-        <img src="./mountain_lejdis_side_A.jpg" alt="Mountain Lejdis Card Front" class="card-img front">
-        <img src="./mountain_lejdis_side_B.jpg" alt="Mountain Lejdis Loyalty Card Back" class="card-img back">
+        <img src="./mountain_lejdis_side_A.jpg" alt="" class="card-img front">
+        <img src="./mountain_lejdis_side_B.jpg" alt="" class="card-img back">
       </div>
 
       <div class="lejdis-steps">
         <div class="lstep">
           <div class="lstep-num">1</div>
-          <span id="ls1-en">Come in for a service — ask for your personalised Lejdis card</span>
-          <span id="ls1-pl" style="display:none">Przyjedź na serwis — poproś o swoją imienną kartę Lejdis</span>
-          <span id="ls1-is" style="display:none">Komdu í þjónustu — biddu um persónulega Lejdis kortið þitt</span>
+          <span id="ls1-en">Come in for a service — ask for your personalised club card</span>
+          <span id="ls1-pl" lang="pl" style="display:none">Przyjedź na serwis — poproś o swoją imienną kartę klubową</span>
+          <span id="ls1-is" lang="is" style="display:none">Komdu í þjónustu — biddu um persónulega klúbbkortið þitt</span>
         </div>
         <div class="lstep">
           <div class="lstep-num">2</div>
           <span id="ls2-en">Earn stamps for every service visit — or when someone books using your unique referral code</span>
-          <span id="ls2-pl" style="display:none">Zdobywaj pieczątki za każdą wizytę serwisową — albo gdy ktoś zarezerwuje wizytę Twoim unikalnym kodem polecenia</span>
-          <span id="ls2-is" style="display:none">Fáðu stimpla fyrir hverja þjónustuheimsókn — eða þegar einhver bókar með einstaka tilvísunarkóðanum þínum</span>
+          <span id="ls2-pl" lang="pl" style="display:none">Zdobywaj pieczątki za każdą wizytę serwisową — albo gdy ktoś zarezerwuje wizytę Twoim unikalnym kodem polecenia</span>
+          <span id="ls2-is" lang="is" style="display:none">Fáðu stimpla fyrir hverja þjónustuheimsókn — eða þegar einhver bókar með einstaka tilvísunarkóðanum þínum</span>
         </div>
         <div class="lstep">
           <div class="lstep-num">10</div>
-          <span id="ls3-en"><strong style="color:#D4AF37">1 free hour of workshop labor</strong> — use it for an oil change, brakes, or whatever your car needs most</span>
-          <span id="ls3-pl" style="display:none"><strong style="color:#D4AF37">1 darmowa godzina pracy warsztatu</strong> — wykorzystaj na wymianę oleju, hamulce lub cokolwiek Twoje auto potrzebuje</span>
-          <span id="ls3-is" style="display:none"><strong style="color:#D4AF37">1 klukkustund ókeypis verkstæðisvinnu</strong> — notaðu hana í olíuskipti, hemla eða hvað sem bíllinn þinn þarfnast mest</span>
+          <span id="ls3-en">Collect 10 stamps = <strong style="color:#D4AF37">1 free hour of workshop labour</strong> — use it for an oil change, brakes, or whatever your car needs most</span>
+          <span id="ls3-pl" lang="pl" style="display:none">Zbierz 10 pieczątek = <strong style="color:#D4AF37">1 darmowa godzina pracy warsztatu</strong> — wykorzystaj na wymianę oleju, hamulce lub cokolwiek, czego Twoje auto potrzebuje</span>
+          <span id="ls3-is" lang="is" style="display:none">Safnaðu 10 stimplum = <strong style="color:#D4AF37">1 klukkustund ókeypis verkstæðisvinnu</strong> — notaðu hana í olíuskipti, hemla eða hvað sem bíllinn þinn þarfnast mest</span>
         </div>
       </div>
 
       <!-- Gosia founder block -->
       <div class="lejdis-founder">
-        <img src="./gosia.jpg" alt="Gosia — Mountain Car Garage" class="founder-img">
+        <img src="./gosia.jpg" alt="Gosia, owner of Mountain Car Garage" class="founder-img">
         <div>
           <div class="founder-name">Gosia</div>
           <div class="founder-role" id="frole-en">Owner &amp; Workshop Manager</div>
-          <div class="founder-role" id="frole-pl" style="display:none">Właścicielka i Kierownik Warsztatu</div>
-          <div class="founder-role" id="frole-is" style="display:none">Eigandi og Verkstæðisstjóri</div>
-          <blockquote class="founder-quote" id="fq-en">"Hey, I'm Gosia — I run this workshop with my team. The Lejdis Club is open to everyone, but I'll be honest: it was born from watching women come in nervous and leave smiling. Workshops can feel intimidating — the jargon, the pressure. Here we just fix your car honestly and tell you exactly what we did. The card is for everyone. The ladies' discounts? That's my personal thank-you to the women who trust us."</blockquote>
-          <blockquote class="founder-quote" id="fq-pl" style="display:none">"Hej, jestem Gosia — prowadzę ten warsztat razem z moją ekipą. Klub Lejdis jest dla wszystkich, ale będę szczera: powstał gdy obserwowałam kobiety przychodzące z niepokojem i wychodzące z uśmiechem. Warsztaty mogą być onieśmielające — żargon, presja. U nas po prostu naprawiamy auto uczciwie i tłumaczymy co zrobiliśmy. Karta jest dla każdego. Zniżki dla pań? To moje osobiste podziękowanie dla kobiet, które nam ufają."</blockquote>
-          <blockquote class="founder-quote" id="fq-is" style="display:none">"Hæ, ég heiti Gosia og ég reki þennan verkstæð með liðinu mínu. Lejdis Club er opinn fyrir alla, en ég verð heiðarleg: hann fæddist þegar ég sá konur koma inn kvíðnar og fara út brosandi. Verkstæði geta fundist ógnvænleg — fagmálið, þrýstingurinn. Hér lögum við bara bílinn heiðarlega og segjum þér nákvæmlega hvað við gerðum. Kortið er fyrir alla. Afsláttur kvenna? Það er persónulegt þakklæti mitt til þeirra kvenna sem treysta okkur."</blockquote>
+          <div class="founder-role" id="frole-pl" lang="pl" style="display:none">Właścicielka i Kierownik Warsztatu</div>
+          <div class="founder-role" id="frole-is" lang="is" style="display:none">Eigandi og Verkstæðisstjóri</div>
+          <blockquote class="founder-quote" id="fq-en">"Hey, I'm Gosia — I run this workshop with my team. The Members Club is for everyone who trusts us with their car: come in, collect stamps, earn a free hour of labour. But I wanted to do something special for the women who walk through our door — so I created Mountain Lejdis: exclusive partner discounts, just for the ladies. It's my personal thank-you to them."</blockquote>
+          <blockquote class="founder-quote" id="fq-pl" lang="pl" style="display:none">"Hej, jestem Gosia — prowadzę ten warsztat razem z moją ekipą. Members Club jest dla każdego, kto powierza nam swoje auto: przyjedź, zbieraj pieczątki, zyskaj darmową godzinę pracy. Ale chciałam zrobić coś wyjątkowego dla kobiet, które do nas trafiają — dlatego stworzyłam Mountain Lejdis: ekskluzywne zniżki u partnerów, tylko dla pań. To moje osobiste podziękowanie."</blockquote>
+          <blockquote class="founder-quote" id="fq-is" lang="is" style="display:none">"Hæ, ég heiti Gosia og ég rek þetta verkstæði með liðinu mínu. Members Club er fyrir alla sem treysta okkur fyrir bílnum sínum: komdu við, safnaðu stimplum og fáðu ókeypis vinnustund. En mig langaði að gera eitthvað sérstakt fyrir konurnar sem koma til okkar — þess vegna bjó ég til Mountain Lejdis: sérstök tilboð hjá samstarfsaðilum, aðeins fyrir konur. Það er persónulegt þakklæti mitt til þeirra."</blockquote>
         </div>
       </div>
 
-      <p class="lejdis-ref" id="lref-en">🔗 Every member gets a unique referral code. When someone books a service using your code, you both earn a stamp. Share it with friends, family, colleagues — the more the merrier.</p>
-      <p class="lejdis-ref" id="lref-pl" style="display:none">🔗 Każdy członek klubu otrzymuje unikalny kod polecenia. Gdy ktoś zarezerwuje wizytę używając Twojego kodu, oboje zdobywacie pieczątkę. Udostępniaj znajomym, rodzinie, kolegom z pracy.</p>
-      <p class="lejdis-ref" id="lref-is" style="display:none">🔗 Sérhver meðlimur fær einstakan tilvísunarkóða. Þegar einhver bókar þjónustu með kóðanum þínum, fáið þið bæði stimpil. Deildu með vinum, fjölskyldu, vinnufélögum.</p>
+      <p class="lejdis-ref" id="lref-en"><span aria-hidden="true">🔗</span> Every member gets a unique referral code. When someone books a service using your code, you both earn a stamp. Share it with friends, family, colleagues — the more the merrier.</p>
+      <p class="lejdis-ref" id="lref-pl" lang="pl" style="display:none"><span aria-hidden="true">🔗</span> Każdy członek klubu otrzymuje unikalny kod polecenia. Gdy ktoś zarezerwuje wizytę używając Twojego kodu, oboje zdobywacie pieczątkę. Udostępniaj znajomym, rodzinie, kolegom z pracy — im więcej, tym lepiej.</p>
+      <p class="lejdis-ref" id="lref-is" lang="is" style="display:none"><span aria-hidden="true">🔗</span> Sérhver meðlimur fær einstakan tilvísunarkóða. Þegar einhver bókar þjónustu með kóðanum þínum, fáið þið bæði stimpil. Deildu með vinum, fjölskyldu, vinnufélögum — því fleiri, því betra.</p>
 
-      <!-- Ladies Only Perks -->
+      <!-- Mountain Lejdis — Ladies Only Perks -->
       <div class="ladies-perks">
         <div class="ladies-perks-header">
-          <span class="ladies-badge" id="lb-en">♀ Ladies Only</span>
-          <span class="ladies-badge" id="lb-pl" style="display:none">♀ Tylko dla Pań</span>
-          <span class="ladies-badge" id="lb-is" style="display:none">♀ Aðeins fyrir Konur</span>
-          <p class="ladies-perks-title" id="lpt-en">Exclusive Partner Discounts</p>
-          <p class="ladies-perks-title" id="lpt-pl" style="display:none">Ekskluzywne Zniżki u Partnerów</p>
-          <p class="ladies-perks-title" id="lpt-is" style="display:none">Sérstakar Afsláttartilboð</p>
-          <p class="ladies-perks-sub" id="lptsub-en">Show your Lejdis card at our partner locations and use code <strong>MOUNTAINCAR</strong> to unlock your discount.</p>
-          <p class="ladies-perks-sub" id="lptsub-pl" style="display:none">Pokaż kartę Lejdis u naszych partnerów i użyj kodu <strong>MOUNTAINCAR</strong> aby aktywować zniżkę.</p>
-          <p class="ladies-perks-sub" id="lptsub-is" style="display:none">Sýndu Lejdis kortið þitt hjá samstarfsaðilum okkar og notaðu kóðann <strong>MOUNTAINCAR</strong> til að fá afsláttinn.</p>
+          <span class="ladies-badge" id="lb-en"><span aria-hidden="true">♀</span> Mountain Lejdis — Ladies Only</span>
+          <span class="ladies-badge" id="lb-pl" lang="pl" style="display:none"><span aria-hidden="true">♀</span> Mountain Lejdis — Tylko dla Pań</span>
+          <span class="ladies-badge" id="lb-is" lang="is" style="display:none"><span aria-hidden="true">♀</span> Mountain Lejdis — Aðeins fyrir Konur</span>
+          <p class="ladies-perks-title" id="lpt-en">Exclusive Partner Discounts for Women</p>
+          <p class="ladies-perks-title" id="lpt-pl" lang="pl" style="display:none">Ekskluzywne Zniżki dla Kobiet</p>
+          <p class="ladies-perks-title" id="lpt-is" lang="is" style="display:none">Sérstök Afsláttartilboð fyrir Konur</p>
+          <p class="ladies-perks-sub" id="lptsub-en">Show your club card at our partner locations and mention the club code <strong>MOUNTAINCAR</strong> to unlock your discount.</p>
+          <p class="ladies-perks-sub" id="lptsub-pl" lang="pl" style="display:none">Pokaż kartę klubową u naszych partnerów i podaj kod klubowy <strong>MOUNTAINCAR</strong>, aby aktywować zniżkę.</p>
+          <p class="ladies-perks-sub" id="lptsub-is" lang="is" style="display:none">Sýndu klúbbkortið þitt hjá samstarfsaðilum okkar og gefðu upp klúbbkóðann <strong>MOUNTAINCAR</strong> til að fá afsláttinn.</p>
         </div>
         <div class="perks-grid">
           <div class="perk-card">
-            <div class="perk-icon">🧘</div>
-            <div class="perk-name" id="p1n-en">Yoga Studio Iceland</div>
-            <div class="perk-name" id="p1n-pl" style="display:none">Yoga Studio Iceland</div>
-            <div class="perk-name" id="p1n-is" style="display:none">Yoga Studio Iceland</div>
+            <div class="perk-icon" aria-hidden="true">🧘</div>
+            <div class="perk-name">Yoga Studio Iceland</div>
             <div class="perk-discount">20% OFF</div>
             <div class="perk-desc" id="p1d-en">First month membership or single class</div>
-            <div class="perk-desc" id="p1d-pl" style="display:none">Pierwszy miesiąc członkostwa lub pojedyncze zajęcia</div>
-            <div class="perk-desc" id="p1d-is" style="display:none">Fyrsti mánuður aðildar eða einstaka tími</div>
+            <div class="perk-desc" id="p1d-pl" lang="pl" style="display:none">Pierwszy miesiąc członkostwa lub pojedyncze zajęcia</div>
+            <div class="perk-desc" id="p1d-is" lang="is" style="display:none">Fyrsti mánuður aðildar eða einstaka tími</div>
           </div>
           <div class="perk-card">
-            <div class="perk-icon">🏋️</div>
-            <div class="perk-name" id="p2n-en">Pilates Reykjanes</div>
-            <div class="perk-name" id="p2n-pl" style="display:none">Pilates Reykjanes</div>
-            <div class="perk-name" id="p2n-is" style="display:none">Pilates Reykjanes</div>
+            <div class="perk-icon" aria-hidden="true">🏋️</div>
+            <div class="perk-name">Pilates Reykjanes</div>
             <div class="perk-discount">15% OFF</div>
             <div class="perk-desc" id="p2d-en">Any group class or personal training session</div>
-            <div class="perk-desc" id="p2d-pl" style="display:none">Dowolne zajęcia grupowe lub trening personalny</div>
-            <div class="perk-desc" id="p2d-is" style="display:none">Hópstund eða einkatímar</div>
+            <div class="perk-desc" id="p2d-pl" lang="pl" style="display:none">Dowolne zajęcia grupowe lub trening personalny</div>
+            <div class="perk-desc" id="p2d-is" lang="is" style="display:none">Hópstund eða einkatímar</div>
           </div>
           <div class="perk-card">
-            <div class="perk-icon">✂️</div>
-            <div class="perk-name" id="p3n-en">Hair Salon Keflavík</div>
-            <div class="perk-name" id="p3n-pl" style="display:none">Salon Fryzjerski Keflavík</div>
-            <div class="perk-name" id="p3n-is" style="display:none">Hárgreiðslustofa Keflavík</div>
+            <div class="perk-icon" aria-hidden="true">✂️</div>
+            <div class="perk-name">Hair Salon Keflavík</div>
             <div class="perk-discount">10% OFF</div>
             <div class="perk-desc" id="p3d-en">Cut, colour, or any treatment</div>
-            <div class="perk-desc" id="p3d-pl" style="display:none">Strzyżenie, koloryzacja lub dowolny zabieg</div>
-            <div class="perk-desc" id="p3d-is" style="display:none">Klipping, litun eða önnur meðferð</div>
+            <div class="perk-desc" id="p3d-pl" lang="pl" style="display:none">Strzyżenie, koloryzacja lub dowolny zabieg</div>
+            <div class="perk-desc" id="p3d-is" lang="is" style="display:none">Klipping, litun eða önnur meðferð</div>
           </div>
         </div>
       </div>
 
-      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="lejdis-cta" id="lcta-en">📅 Book a Visit on WhatsApp</a>
-      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="lejdis-cta" id="lcta-pl" style="display:none">📅 Umów Wizytę na WhatsApp</a>
-      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="lejdis-cta" id="lcta-is" style="display:none">📅 Bókaðu Heimsókn á WhatsApp</a>
-      <p style="margin-top:1rem; font-size:0.82rem; color:rgba(255,255,255,0.4);" id="cta-sub-en">Ask Gosia about your club card when you arrive 👋</p>
-      <p style="margin-top:1rem; font-size:0.82rem; color:rgba(255,255,255,0.4);" id="cta-sub-pl" style="display:none">Zapytaj Gosię o kartę klubową gdy przyjedziesz 👋</p>
-      <p style="margin-top:1rem; font-size:0.82rem; color:rgba(255,255,255,0.4);" id="cta-sub-is" style="display:none">Spurðu Gosiu um klubbkortið þegar þú kemur 👋</p>
+      <a href="https://wa.me/3548888005?text=Hi%20Gosia%21%20I%20would%20like%20to%20book%20a%20visit%20and%20ask%20about%20the%20Members%20Club%20card." target="_blank" rel="noopener" class="lejdis-cta" id="lcta-en"><span aria-hidden="true">📅</span> Book a Visit on WhatsApp</a>
+      <a href="https://wa.me/3548888005?text=Czesc%20Gosia%21%20Chce%20umowic%20wizyte%20i%20zapytac%20o%20karte%20Members%20Club." target="_blank" rel="noopener" class="lejdis-cta" id="lcta-pl" lang="pl" style="display:none"><span aria-hidden="true">📅</span> Umów Wizytę na WhatsApp</a>
+      <a href="https://wa.me/3548888005?text=Hallo%20Gosia%21%20Eg%20vil%20boka%20heimsokn%20og%20spyrja%20um%20Members%20Club%20kortid." target="_blank" rel="noopener" class="lejdis-cta" id="lcta-is" lang="is" style="display:none"><span aria-hidden="true">📅</span> Bókaðu Heimsókn á WhatsApp</a>
+
+      <div>
+        <a href="tel:+3548888005" class="lejdis-call" id="lcall-en"><span aria-hidden="true">📞</span> Or call +354 888 8005</a>
+        <a href="tel:+3548888005" class="lejdis-call" id="lcall-pl" lang="pl" style="display:none"><span aria-hidden="true">📞</span> Lub zadzwoń +354 888 8005</a>
+        <a href="tel:+3548888005" class="lejdis-call" id="lcall-is" lang="is" style="display:none"><span aria-hidden="true">📞</span> Eða hringdu í +354 888 8005</a>
+      </div>
+
+      <p class="cta-sub" id="cta-sub-en">Ask Gosia about your club card when you arrive <span aria-hidden="true">👋</span></p>
+      <p class="cta-sub" id="cta-sub-pl" lang="pl" style="display:none">Zapytaj Gosię o kartę klubową gdy przyjedziesz <span aria-hidden="true">👋</span></p>
+      <p class="cta-sub" id="cta-sub-is" lang="is" style="display:none">Spurðu Gosiu um klúbbkortið þegar þú kemur <span aria-hidden="true">👋</span></p>
 
     </div>
   </section>
+  </main>
 
-  <div class="bottom">
-    📍 <a href="https://www.google.com/maps/place/Mountain+car+ehf/@63.9729664,-22.5542144,13z/data=!4m6!3m5!1s0x48d6037e5226a501:0x3cc12a6ecfedeb8f!8m2!3d63.9714579!4d-22.5287403!16s%2Fg%2F11jz3n96h8" target="_blank" rel="noopener">Njarðarbraut 3i, 260 Reykjanesbær</a>
+  <footer class="bottom">
+    <span aria-hidden="true">📍</span> <a href="https://www.google.com/maps/place/Mountain+car+ehf/@63.9729664,-22.5542144,13z/data=!4m6!3m5!1s0x48d6037e5226a501:0x3cc12a6ecfedeb8f!8m2!3d63.9714579!4d-22.5287403!16s%2Fg%2F11jz3n96h8" target="_blank" rel="noopener">Njarðarbraut 3i, 260 Reykjanesbær</a>
     &nbsp;·&nbsp;
     <span id="hours-en">Mon–Sat 10:00–18:00</span>
-    <span id="hours-pl" style="display:none">Pon–Sob 10:00–18:00</span>
-    <span id="hours-is" style="display:none">Mán–Lau 10:00–18:00</span>
+    <span id="hours-pl" lang="pl" style="display:none">Pon–Sob 10:00–18:00</span>
+    <span id="hours-is" lang="is" style="display:none">Mán–Lau 10:00–18:00</span>
     &nbsp;·&nbsp;
-    <a href="https://rental.mountaincar.is" id="rental-link-en">Also need a rental car? →</a>
-    <a href="https://rental.mountaincar.is" id="rental-link-pl" style="display:none">Potrzebujesz wynajmu auta? →</a>
-    <a href="https://rental.mountaincar.is" id="rental-link-is" style="display:none">Þarftu leigubíl? →</a>
+    <a href="https://rental.mountaincar.is" id="rental-link-en">Also need a rental car? <span aria-hidden="true">→</span></a>
+    <a href="https://rental.mountaincar.is" id="rental-link-pl" lang="pl" style="display:none">Potrzebujesz wynajmu auta? <span aria-hidden="true">→</span></a>
+    <a href="https://rental.mountaincar.is" id="rental-link-is" lang="is" style="display:none">Þarftu leigubíl? <span aria-hidden="true">→</span></a>
     &nbsp;·&nbsp; © 2025 Mountain All Service ehf
-  </div>
+  </footer>
+
+  <!-- Mobile sticky call / WhatsApp bar -->
+  <nav class="mobile-cta-bar" aria-label="Quick contact">
+    <a href="tel:+3548888005" class="mcta-call"><span aria-hidden="true">📞</span>
+      <span id="mcall-en">Call</span>
+      <span id="mcall-pl" lang="pl" style="display:none">Zadzwoń</span>
+      <span id="mcall-is" lang="is" style="display:none">Hringja</span>
+    </a>
+    <a href="https://wa.me/3548888005?text=Hi%20Mountain%20Car%20Garage%21%20I%20would%20like%20to%20book%20a%20car%20service." target="_blank" rel="noopener" class="mcta-wa"><span aria-hidden="true">💬</span>
+      <span id="mwa-en">WhatsApp</span>
+      <span id="mwa-pl" lang="pl" style="display:none">WhatsApp</span>
+      <span id="mwa-is" lang="is" style="display:none">WhatsApp</span>
+    </a>
+  </nav>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    "name": "Mountain Car Garage",
+    "legalName": "Mountain All Service ehf",
+    "url": "https://garage.masgroup.is/",
+    "image": "https://garage.masgroup.is/og-image.jpg",
+    "logo": "https://garage.masgroup.is/logo.jpg",
+    "telephone": "+3548888005",
+    "email": "mountainallservice@gmail.com",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Njarðarbraut 3i",
+      "addressLocality": "Reykjanesbær",
+      "postalCode": "260",
+      "addressCountry": "IS"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 63.9714579,
+      "longitude": -22.5287403
+    },
+    "hasMap": "https://www.google.com/maps/place/Mountain+car+ehf/@63.9729664,-22.5542144,13z/data=!4m6!3m5!1s0x48d6037e5226a501:0x3cc12a6ecfedeb8f!8m2!3d63.9714579!4d-22.5287403",
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "10:00",
+      "closes": "18:00"
+    }],
+    "areaServed": "Reykjanesbær, Keflavík, KEF Airport",
+    "knowsLanguage": ["en","pl","is"]
+  }
+  </script>
 
   <script>
     function setLang(lang) {
       const langs = ['en','pl','is'];
       langs.forEach(l => {
-        document.getElementById('btn-'+l).classList.toggle('active', l===lang);
+        const b = document.getElementById('btn-'+l);
+        b.classList.toggle('active', l===lang);
+        b.setAttribute('aria-pressed', l===lang ? 'true' : 'false');
       });
-      // All elements with id ending in -en/-pl/-is
+      // Update document language for assistive tech / SEO
+      document.documentElement.lang = lang;
+      // Toggle every content element whose id ends in -en/-pl/-is,
+      // but skip the language switch buttons themselves.
       document.querySelectorAll('[id$="-en"],[id$="-pl"],[id$="-is"]').forEach(el => {
+        if (el.closest('.lang-bar')) return;
         const suffix = el.id.slice(-2);
         el.style.display = suffix === lang ? '' : 'none';
       });
