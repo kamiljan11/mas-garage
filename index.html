@@ -33,7 +33,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --orange: #F58220; --orange-dark: #B85C00; --dark: #111827; --muted: rgba(255,255,255,0.62); }
-    html, body { font-family: 'Open Sans', sans-serif; background: var(--dark); color: white; min-height: 100%; }
+    html, body { font-family: 'Open Sans', sans-serif; background: var(--dark); color: white; min-height: 100%; overflow-x: hidden; }
 
     /* Accessibility: skip link + focus */
     .skip {
@@ -320,14 +320,37 @@
       body { padding-bottom: 58px; }
     }
 
-    /* Larger tap targets on phones */
+    /* Larger tap targets + mobile polish on phones */
     @media(max-width:480px){
       .top-nav { padding: 0.6rem 1rem; }
-      .back-btn { padding: 0.6rem 0.9rem; font-size: 0.82rem; }
+      .back-btn { padding: 0.6rem 0.9rem; font-size: 0.82rem; min-height: 44px; }
       .lang-bar button { padding: 0.55rem 0.8rem; font-size: 0.82rem; min-width: 44px; min-height: 44px; }
       .logo-wrap { padding: 12px 18px; margin-bottom: 1.5rem; }
       .logo-wrap img { height: 88px; }
       .perk-desc, .ladies-perks-sub, .lejdis-ref { font-size: 0.86rem; }
+      /* Badge: keep to 2 clean lines down to 320px */
+      .badge { font-size: 0.62rem; letter-spacing: 0.12em; padding: 0.35rem 0.8rem; }
+      /* Stack contact links full-width — kills the email-pill overflow */
+      .contact-bar { flex-direction: column; align-items: stretch; gap: 0.6rem; width: 100%; }
+      .contact-bar a { justify-content: center; width: 100%; font-size: 0.85rem; padding: 0.75rem 0.8rem; min-height: 48px; overflow-wrap: anywhere; }
+      /* 44px tap targets for the smaller links */
+      .trust a { padding: 0.6rem 1rem; min-height: 44px; }
+      .lejdis-call { display: inline-flex; align-items: center; min-height: 44px; padding: 0.4rem 0.6rem; }
+      .bottom a { display: inline-flex; align-items: center; min-height: 44px; padding: 0.3rem 0.3rem; }
+      /* Partner form: 16px stops iOS focus-zoom, taller targets */
+      .partner-form input { font-size: 16px; padding: 0.85rem 0.9rem; min-height: 48px; }
+      .partner-btn { min-height: 48px; padding: 0.9rem 1.25rem; }
+      /* Legibility bumps for small low-opacity text */
+      .perk-loc { font-size: 0.8rem; color: rgba(255,255,255,0.7); }
+      .founder-role { font-size: 0.78rem; color: rgba(255,255,255,0.7); }
+      .perks-note { color: rgba(255,255,255,0.7); }
+      /* Final overflow safety net for long unbreakable strings */
+      .svc-desc, .lejdis-sub, .lejdis-ref, .founder-quote, .perk-desc, .bottom, .contact-bar a, .trust a { overflow-wrap: anywhere; }
+    }
+    /* Footer stacks cleanly on phones (no glued · dots) */
+    @media(max-width:600px){
+      .bottom { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 1.25rem 1rem; line-height: 1.5; }
+      .bottom .sep { display: none; }
     }
   </style>
 </head>
@@ -387,9 +410,7 @@
       <span class="chip" id="chip3-en">Free estimate</span>
       <span class="chip" id="chip3-pl" lang="pl" style="display:none">Darmowa wycena</span>
       <span class="chip" id="chip3-is" lang="is" style="display:none">Ókeypis verðmat</span>
-      <span class="chip" id="chip4-en">🇵🇱 Polski · 🇮🇸 Íslenska · 🇬🇧 English</span>
-      <span class="chip" id="chip4-pl" lang="pl" style="display:none">🇵🇱 Polski · 🇮🇸 Íslenska · 🇬🇧 English</span>
-      <span class="chip" id="chip4-is" lang="is" style="display:none">🇵🇱 Polski · 🇮🇸 Íslenska · 🇬🇧 English</span>
+      <span class="chip">🇵🇱 Polski · 🇮🇸 Íslenska · 🇬🇧 English</span>
     </div>
 
     <!-- Contacts -->
@@ -605,16 +626,21 @@
   </main>
 
   <footer class="bottom">
-    <span aria-hidden="true">📍</span> <a href="https://www.google.com/maps/place/Mountain+car+ehf/@63.9729664,-22.5542144,13z/data=!4m6!3m5!1s0x48d6037e5226a501:0x3cc12a6ecfedeb8f!8m2!3d63.9714579!4d-22.5287403!16s%2Fg%2F11jz3n96h8" target="_blank" rel="noopener">Njarðarbraut 3i, 260 Reykjanesbær</a>
-    &nbsp;·&nbsp;
-    <span id="hours-en">Mon–Sat 10:00–18:00</span>
-    <span id="hours-pl" lang="pl" style="display:none">Pon–Sob 10:00–18:00</span>
-    <span id="hours-is" lang="is" style="display:none">Mán–Lau 10:00–18:00</span>
-    &nbsp;·&nbsp;
-    <a href="https://rental.mountaincar.is" id="rental-link-en">Also need a rental car? <span aria-hidden="true">→</span></a>
-    <a href="https://rental.mountaincar.is" id="rental-link-pl" lang="pl" style="display:none">Potrzebujesz wynajmu auta? <span aria-hidden="true">→</span></a>
-    <a href="https://rental.mountaincar.is" id="rental-link-is" lang="is" style="display:none">Þarftu leigubíl? <span aria-hidden="true">→</span></a>
-    &nbsp;·&nbsp; © 2025 Mountain All Service ehf
+    <span class="fitem"><span aria-hidden="true">📍</span> <a href="https://www.google.com/maps/place/Mountain+car+ehf/@63.9729664,-22.5542144,13z/data=!4m6!3m5!1s0x48d6037e5226a501:0x3cc12a6ecfedeb8f!8m2!3d63.9714579!4d-22.5287403!16s%2Fg%2F11jz3n96h8" target="_blank" rel="noopener">Njarðarbraut 3i, 260 Reykjanesbær</a></span>
+    <span class="sep">&nbsp;·&nbsp;</span>
+    <span class="fitem">
+      <span id="hours-en">Mon–Sat 10:00–18:00</span>
+      <span id="hours-pl" lang="pl" style="display:none">Pon–Sob 10:00–18:00</span>
+      <span id="hours-is" lang="is" style="display:none">Mán–Lau 10:00–18:00</span>
+    </span>
+    <span class="sep">&nbsp;·&nbsp;</span>
+    <span class="fitem">
+      <a href="https://rental.mountaincar.is" id="rental-link-en">Also need a rental car? <span aria-hidden="true">→</span></a>
+      <a href="https://rental.mountaincar.is" id="rental-link-pl" lang="pl" style="display:none">Potrzebujesz wynajmu auta? <span aria-hidden="true">→</span></a>
+      <a href="https://rental.mountaincar.is" id="rental-link-is" lang="is" style="display:none">Þarftu leigubíl? <span aria-hidden="true">→</span></a>
+    </span>
+    <span class="sep">&nbsp;·&nbsp;</span>
+    <span class="fitem">© 2025 Mountain All Service ehf</span>
   </footer>
 
   <!-- Mobile sticky call / WhatsApp bar -->
@@ -708,6 +734,9 @@
       e.preventDefault();
       var lang = document.documentElement.lang || 'en';
       var g = function (id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
+      // Validate required fields ourselves (HTML required lets whitespace-only through, and preventDefault already ran)
+      var firstEmpty = ['pf-biz', 'pf-loc', 'pf-disc'].filter(function (id) { return !g(id); })[0];
+      if (firstEmpty) { document.getElementById(firstEmpty).focus(); return false; }
       var head = { en: 'Mountain Lejdis — new partner sign-up', pl: 'Mountain Lejdis — zgloszenie partnera', is: 'Mountain Lejdis — ny samstarfsskraning' }[lang];
       var L = {
         biz:     { en: 'Business', pl: 'Firma', is: 'Fyrirtaeki' },
