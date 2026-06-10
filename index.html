@@ -163,6 +163,34 @@
     }
     .lejdis-cta:hover { background: #c49d28; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,175,55,0.3); }
 
+    /* Ladies Perks */
+    .ladies-perks {
+      background: rgba(212,175,55,0.04); border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 20px; padding: 2rem 2rem 1.5rem; margin-bottom: 2.5rem;
+    }
+    .ladies-perks-header { margin-bottom: 1.5rem; }
+    .ladies-badge {
+      display: inline-block; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.18em;
+      text-transform: uppercase; background: rgba(212,175,55,0.15); color: #D4AF37;
+      border: 1px solid rgba(212,175,55,0.4); padding: 0.25rem 0.75rem; border-radius: 999px;
+      margin-bottom: 0.6rem;
+    }
+    .ladies-perks-title {
+      font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800;
+      color: white; margin-bottom: 0.4rem;
+    }
+    .ladies-perks-sub { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+    .perks-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    @media(max-width:600px){ .perks-grid { grid-template-columns: 1fr; } }
+    .perk-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(212,175,55,0.12);
+      border-radius: 14px; padding: 1.2rem; text-align: center;
+    }
+    .perk-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .perk-name { font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 700; color: white; margin-bottom: 0.35rem; }
+    .perk-discount { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 900; color: #D4AF37; margin-bottom: 0.3rem; }
+    .perk-desc { font-size: 0.75rem; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
     /* Gosia founder block */
     .lejdis-founder {
       display: flex; gap: 2rem; align-items: flex-start;
@@ -252,13 +280,13 @@
       </div>
 
       <div class="service-card">
-        <div class="svc-icon">🛞</div>
-        <div class="svc-title" id="s2t-en">Tire Service</div>
-        <div class="svc-title" id="s2t-pl" style="display:none">Serwis Opon</div>
-        <div class="svc-title" id="s2t-is" style="display:none">Dekkjaþjónusta</div>
-        <div class="svc-desc" id="s2d-en">Winter/summer tire swap, balancing, and storage. Ready for Iceland's Nov 1 winter tire deadline.</div>
-        <div class="svc-desc" id="s2d-pl" style="display:none">Wymiana opon zima/lato, wyważanie i przechowywanie. Gotowi na islandzki obowiązek opon zimowych od 1 listopada.</div>
-        <div class="svc-desc" id="s2d-is" style="display:none">Vetrar-/sumardekkjaskipti, jöfnun og geymsla. Tilbúnir fyrir vetrardekkskylduna 1. nóvember.</div>
+        <div class="svc-icon">⚖️</div>
+        <div class="svc-title" id="s2t-en">Wheel Balancing</div>
+        <div class="svc-title" id="s2t-pl" style="display:none">Wyważanie Kół</div>
+        <div class="svc-title" id="s2t-is" style="display:none">Hjólajöfnun</div>
+        <div class="svc-desc" id="s2d-en">Precision wheel balancing to eliminate vibration, reduce tire wear and keep your ride smooth on Iceland's roads.</div>
+        <div class="svc-desc" id="s2d-pl" style="display:none">Precyzyjne wyważanie kół — eliminuje drgania, zmniejsza zużycie opon i poprawia komfort jazdy na islandzkich drogach.</div>
+        <div class="svc-desc" id="s2d-is" style="display:none">Nákvæm hjólajöfnun til að útrýma titringi, draga úr dekkjaslit og halda ferð þinni þægilegri á íslenzkum vegum.</div>
       </div>
 
       <div class="service-card">
@@ -281,15 +309,6 @@
         <div class="svc-desc" id="s4d-is" style="display:none">Nákvæm hjólastilling og rúmfræðileg athugun. Minnkar dekkjaslit, bætir stjórnun á íslenzkum vegum.</div>
       </div>
 
-      <div class="service-card">
-        <div class="svc-icon">🔥</div>
-        <div class="svc-title" id="s5t-en">Welding</div>
-        <div class="svc-title" id="s5t-pl" style="display:none">Spawanie</div>
-        <div class="svc-title" id="s5t-is" style="display:none">Suðuvinna</div>
-        <div class="svc-desc" id="s5d-en">Basic welding repairs — exhaust systems, chassis, bodywork. Quick and solid work.</div>
-        <div class="svc-desc" id="s5d-pl" style="display:none">Proste prace spawalnicze — układy wydechowe, rama, karoseria. Szybko i solidnie.</div>
-        <div class="svc-desc" id="s5d-is" style="display:none">Einfaldar suðuviðgerðir — útblásturskerfi, undirvagn, karóssería. Hratt og traust vinna.</div>
-      </div>
 
       <div class="service-card">
         <div class="svc-icon">🛢️</div>
@@ -308,15 +327,15 @@
   <section class="lejdis">
     <div class="lejdis-inner">
 
-      <span class="lejdis-tag" id="ltag-en">For Our Female Clients</span>
-      <span class="lejdis-tag" id="ltag-pl" style="display:none">Dla Naszych Klientek</span>
-      <span class="lejdis-tag" id="ltag-is" style="display:none">Fyrir Kvenlegar Viðskiptavinir</span>
+      <span class="lejdis-tag" id="ltag-en">Members Club — Open to Everyone</span>
+      <span class="lejdis-tag" id="ltag-pl" style="display:none">Klub dla Wszystkich</span>
+      <span class="lejdis-tag" id="ltag-is" style="display:none">Opið fyrir Alla</span>
 
       <h2 class="lejdis-title">Mountain <span class="gold">Lejdis</span> Club</h2>
 
-      <p class="lejdis-sub" id="lsub-en">A loyalty program exclusively for the women who trust us with their cars. Get your card, collect stamps, earn rewards.</p>
-      <p class="lejdis-sub" id="lsub-pl" style="display:none">Program lojalnościowy wyłącznie dla kobiet, które powierzają nam swoje auta. Odbierz kartę, zbieraj pieczątki, zyskuj nagrody.</p>
-      <p class="lejdis-sub" id="lsub-is" style="display:none">Hollustukerfi eingöngu fyrir konur sem treysta okkur með bílana sína. Fáðu kortið þitt, safnaðu stimplum, vinndu verðlaun.</p>
+      <p class="lejdis-sub" id="lsub-en">Our loyalty program is open to everyone. Collect stamps, earn free workshop hours, and refer friends with your unique code. Ladies get something extra — exclusive partner discounts just for you.</p>
+      <p class="lejdis-sub" id="lsub-pl" style="display:none">Nasz program lojalnościowy jest otwarty dla wszystkich. Zbieraj pieczątki, zdobywaj darmowe godziny pracy warsztatu i polecaj znajomych swoim unikalnym kodem. Panie mają coś ekstra — ekskluzywne zniżki u naszych partnerów.</p>
+      <p class="lejdis-sub" id="lsub-is" style="display:none">Hollustukerfi okkar er opið fyrir alla. Safnaðu stimplum, vinndu ókeypis vinnustundir og mæl með vinum með einstaklingslegan kóðann þinn. Konur fá eitthvað aukalegt — sérstakar afsláttartilboð hjá samstarfsaðilum okkar.</p>
 
       <div class="lejdis-cards">
         <img src="./mountain_lejdis_side_A.jpg" alt="Mountain Lejdis Card Front" class="card-img front">
@@ -332,15 +351,15 @@
         </div>
         <div class="lstep">
           <div class="lstep-num">2</div>
-          <span id="ls2-en">Get a stamp with every visit — oil change, tires, repair, anything counts</span>
-          <span id="ls2-pl" style="display:none">Zbieraj pieczątkę przy każdej wizycie — wymiana oleju, opony, naprawa — każda liczy się</span>
-          <span id="ls2-is" style="display:none">Fáðu stimpil við hverja heimsókn — olíuskipti, dekk, viðgerð — allt telur</span>
+          <span id="ls2-en">Earn stamps for every service visit — or when someone books using your unique referral code</span>
+          <span id="ls2-pl" style="display:none">Zdobywaj pieczątki za każdą wizytę serwisową — albo gdy ktoś zarezerwuje wizytę Twoim unikalnym kodem polecenia</span>
+          <span id="ls2-is" style="display:none">Fáðu stimpla fyrir hverja þjónustuheimsókn — eða þegar einhver bókar með einstaka tilvísunarkóðanum þínum</span>
         </div>
         <div class="lstep">
           <div class="lstep-num">10</div>
-          <span id="ls3-en"><strong style="color:#D4AF37">Free vehicle inspection</strong> — your 10th stamp earns you a full check on the house</span>
-          <span id="ls3-pl" style="display:none"><strong style="color:#D4AF37">Darmowy przegląd auta</strong> — 10. pieczątka to pełny przegląd gratis od nas</span>
-          <span id="ls3-is" style="display:none"><strong style="color:#D4AF37">Ókeypis skoðun bíls</strong> — 10. stimplið þýðir fulla skoðun að gjöf frá okkur</span>
+          <span id="ls3-en"><strong style="color:#D4AF37">1 free hour of workshop labor</strong> — use it for an oil change, brakes, or whatever your car needs most</span>
+          <span id="ls3-pl" style="display:none"><strong style="color:#D4AF37">1 darmowa godzina pracy warsztatu</strong> — wykorzystaj na wymianę oleju, hamulce lub cokolwiek Twoje auto potrzebuje</span>
+          <span id="ls3-is" style="display:none"><strong style="color:#D4AF37">1 klukkustund ókeypis verkstæðisvinnu</strong> — notaðu hana í olíuskipti, hemla eða hvað sem bíllinn þinn þarfnast mest</span>
         </div>
       </div>
 
@@ -352,19 +371,69 @@
           <div class="founder-role" id="frole-en">Owner &amp; Workshop Manager</div>
           <div class="founder-role" id="frole-pl" style="display:none">Właścicielka i Kierownik Warsztatu</div>
           <div class="founder-role" id="frole-is" style="display:none">Eigandi og Verkstæðisstjóri</div>
-          <blockquote class="founder-quote" id="fq-en">"Hey, I'm Gosia — I run this workshop with my team. Mountain Lejdis Club started with a simple idea: every woman who walks through our door should feel completely at ease. I know how intimidating garages can be — the jargon, the pressure, that nagging feeling someone might take advantage. That's not how we work here. You bring your car, we fix it honestly, you leave knowing exactly what was done and why. The Lejdis card is my way of saying thank you — for trusting us, and for coming back."</blockquote>
-          <blockquote class="founder-quote" id="fq-pl" style="display:none">"Hej, jestem Gosia — prowadzę ten warsztat razem z moją ekipą. Mountain Lejdis Club powstał z prostego pomysłu: każda kobieta, która tu trafia, powinna czuć się w 100% swobodnie. Wiem, jak onieśmielające mogą być warsztaty — branżowy żargon, presja, to nieprzyjemne poczucie że ktoś może próbować coś ukryć. U nas tak nie działa. Przynosisz auto, naprawiamy je uczciwie, a Ty wychodzisz z pełną wiedzą co zostało zrobione i dlaczego. Karta Lejdis to mój sposób na podziękowanie — za Twoje zaufanie i za to, że wracasz."</blockquote>
-          <blockquote class="founder-quote" id="fq-is" style="display:none">"Hæ, ég heiti Gosia og ég reki þennan verkstæð með liðinu mínu. Mountain Lejdis Club fæddist úr einfaldri hugmynd: sérhver kona sem kemur hingað ætti að líða alveg þægilega. Ég veit hversu ógnvænleg verkstæði geta verið — fagmálið, þrýstingurinn, tilfinningin um að vera beitt. Hér er þetta ekki svona. Þú kemur með bílinn, við lögum hann heiðarlega, og þú ferð með nákvæma þekkingu á því sem var gert og af hverju. Lejdis kortið er þakklæti mitt — fyrir traust þitt og fyrir að koma aftur."</blockquote>
+          <blockquote class="founder-quote" id="fq-en">"Hey, I'm Gosia — I run this workshop with my team. The Lejdis Club is open to everyone, but I'll be honest: it was born from watching women come in nervous and leave smiling. Workshops can feel intimidating — the jargon, the pressure. Here we just fix your car honestly and tell you exactly what we did. The card is for everyone. The ladies' discounts? That's my personal thank-you to the women who trust us."</blockquote>
+          <blockquote class="founder-quote" id="fq-pl" style="display:none">"Hej, jestem Gosia — prowadzę ten warsztat razem z moją ekipą. Klub Lejdis jest dla wszystkich, ale będę szczera: powstał gdy obserwowałam kobiety przychodzące z niepokojem i wychodzące z uśmiechem. Warsztaty mogą być onieśmielające — żargon, presja. U nas po prostu naprawiamy auto uczciwie i tłumaczymy co zrobiliśmy. Karta jest dla każdego. Zniżki dla pań? To moje osobiste podziękowanie dla kobiet, które nam ufają."</blockquote>
+          <blockquote class="founder-quote" id="fq-is" style="display:none">"Hæ, ég heiti Gosia og ég reki þennan verkstæð með liðinu mínu. Lejdis Club er opinn fyrir alla, en ég verð heiðarleg: hann fæddist þegar ég sá konur koma inn kvíðnar og fara út brosandi. Verkstæði geta fundist ógnvænleg — fagmálið, þrýstingurinn. Hér lögum við bara bílinn heiðarlega og segjum þér nákvæmlega hvað við gerðum. Kortið er fyrir alla. Afsláttur kvenna? Það er persónulegt þakklæti mitt til þeirra kvenna sem treysta okkur."</blockquote>
         </div>
       </div>
 
-      <p class="lejdis-ref" id="lref-en">💛 Refer a friend — her card will carry your name in the "referred by" field. The more ladies you bring in, the bigger your Lejdis status.</p>
-      <p class="lejdis-ref" id="lref-pl" style="display:none">💛 Poleć koleżankę — na jej karcie znajdzie się Twoje imię w polu "Poleciła". Im więcej kobiet przyciągniesz, tym wyższy Twój status Lejdis.</p>
-      <p class="lejdis-ref" id="lref-is" style="display:none">💛 Mæl með vinkonu — nafn þitt mun vera á korti hennar í "mælt með" reitnum. Því fleiri konur sem þú færð inn, því hærri Lejdis staða þín.</p>
+      <p class="lejdis-ref" id="lref-en">🔗 Every member gets a unique referral code. When someone books a service using your code, you both earn a stamp. Share it with friends, family, colleagues — the more the merrier.</p>
+      <p class="lejdis-ref" id="lref-pl" style="display:none">🔗 Każdy członek klubu otrzymuje unikalny kod polecenia. Gdy ktoś zarezerwuje wizytę używając Twojego kodu, oboje zdobywacie pieczątkę. Udostępniaj znajomym, rodzinie, kolegom z pracy.</p>
+      <p class="lejdis-ref" id="lref-is" style="display:none">🔗 Sérhver meðlimur fær einstakan tilvísunarkóða. Þegar einhver bókar þjónustu með kóðanum þínum, fáið þið bæði stimpil. Deildu með vinum, fjölskyldu, vinnufélögum.</p>
 
-      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="lejdis-cta" id="lcta-en">💬 Join the Club — WhatsApp Us</a>
-      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="lejdis-cta" id="lcta-pl" style="display:none">💬 Dołącz do Klubu — WhatsApp</a>
-      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="lejdis-cta" id="lcta-is" style="display:none">💬 Gakktu í Klubbinn — WhatsApp</a>
+      <!-- Ladies Only Perks -->
+      <div class="ladies-perks">
+        <div class="ladies-perks-header">
+          <span class="ladies-badge" id="lb-en">♀ Ladies Only</span>
+          <span class="ladies-badge" id="lb-pl" style="display:none">♀ Tylko dla Pań</span>
+          <span class="ladies-badge" id="lb-is" style="display:none">♀ Aðeins fyrir Konur</span>
+          <p class="ladies-perks-title" id="lpt-en">Exclusive Partner Discounts</p>
+          <p class="ladies-perks-title" id="lpt-pl" style="display:none">Ekskluzywne Zniżki u Partnerów</p>
+          <p class="ladies-perks-title" id="lpt-is" style="display:none">Sérstakar Afsláttartilboð</p>
+          <p class="ladies-perks-sub" id="lptsub-en">Show your Lejdis card at our partner locations and use code <strong>MOUNTAINCAR</strong> to unlock your discount.</p>
+          <p class="ladies-perks-sub" id="lptsub-pl" style="display:none">Pokaż kartę Lejdis u naszych partnerów i użyj kodu <strong>MOUNTAINCAR</strong> aby aktywować zniżkę.</p>
+          <p class="ladies-perks-sub" id="lptsub-is" style="display:none">Sýndu Lejdis kortið þitt hjá samstarfsaðilum okkar og notaðu kóðann <strong>MOUNTAINCAR</strong> til að fá afsláttinn.</p>
+        </div>
+        <div class="perks-grid">
+          <div class="perk-card">
+            <div class="perk-icon">🧘</div>
+            <div class="perk-name" id="p1n-en">Yoga Studio Iceland</div>
+            <div class="perk-name" id="p1n-pl" style="display:none">Yoga Studio Iceland</div>
+            <div class="perk-name" id="p1n-is" style="display:none">Yoga Studio Iceland</div>
+            <div class="perk-discount">20% OFF</div>
+            <div class="perk-desc" id="p1d-en">First month membership or single class</div>
+            <div class="perk-desc" id="p1d-pl" style="display:none">Pierwszy miesiąc członkostwa lub pojedyncze zajęcia</div>
+            <div class="perk-desc" id="p1d-is" style="display:none">Fyrsti mánuður aðildar eða einstaka tími</div>
+          </div>
+          <div class="perk-card">
+            <div class="perk-icon">🏋️</div>
+            <div class="perk-name" id="p2n-en">Pilates Reykjanes</div>
+            <div class="perk-name" id="p2n-pl" style="display:none">Pilates Reykjanes</div>
+            <div class="perk-name" id="p2n-is" style="display:none">Pilates Reykjanes</div>
+            <div class="perk-discount">15% OFF</div>
+            <div class="perk-desc" id="p2d-en">Any group class or personal training session</div>
+            <div class="perk-desc" id="p2d-pl" style="display:none">Dowolne zajęcia grupowe lub trening personalny</div>
+            <div class="perk-desc" id="p2d-is" style="display:none">Hópstund eða einkatímar</div>
+          </div>
+          <div class="perk-card">
+            <div class="perk-icon">✂️</div>
+            <div class="perk-name" id="p3n-en">Hair Salon Keflavík</div>
+            <div class="perk-name" id="p3n-pl" style="display:none">Salon Fryzjerski Keflavík</div>
+            <div class="perk-name" id="p3n-is" style="display:none">Hárgreiðslustofa Keflavík</div>
+            <div class="perk-discount">10% OFF</div>
+            <div class="perk-desc" id="p3d-en">Cut, colour, or any treatment</div>
+            <div class="perk-desc" id="p3d-pl" style="display:none">Strzyżenie, koloryzacja lub dowolny zabieg</div>
+            <div class="perk-desc" id="p3d-is" style="display:none">Klipping, litun eða önnur meðferð</div>
+          </div>
+        </div>
+      </div>
+
+      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="lejdis-cta" id="lcta-en">📅 Book a Visit on WhatsApp</a>
+      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="lejdis-cta" id="lcta-pl" style="display:none">📅 Umów Wizytę na WhatsApp</a>
+      <a href="https://wa.me/3548888005" target="_blank" rel="noopener" class="lejdis-cta" id="lcta-is" style="display:none">📅 Bókaðu Heimsókn á WhatsApp</a>
+      <p style="margin-top:1rem; font-size:0.82rem; color:rgba(255,255,255,0.4);" id="cta-sub-en">Ask Gosia about your club card when you arrive 👋</p>
+      <p style="margin-top:1rem; font-size:0.82rem; color:rgba(255,255,255,0.4);" id="cta-sub-pl" style="display:none">Zapytaj Gosię o kartę klubową gdy przyjedziesz 👋</p>
+      <p style="margin-top:1rem; font-size:0.82rem; color:rgba(255,255,255,0.4);" id="cta-sub-is" style="display:none">Spurðu Gosiu um klubbkortið þegar þú kemur 👋</p>
 
     </div>
   </section>
