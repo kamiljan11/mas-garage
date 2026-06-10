@@ -251,6 +251,28 @@
     .perk-name { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 700; color: white; margin-bottom: 0.35rem; }
     .perk-discount { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 900; color: #D4AF37; margin-bottom: 0.3rem; }
     .perk-desc { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+    .perk-loc { font-size: 0.74rem; color: rgba(255,255,255,0.5); margin-top: 0.45rem; }
+    .perks-note {
+      font-size: 0.82rem; color: rgba(255,255,255,0.55);
+      margin: -0.5rem auto 1.4rem; max-width: 500px; line-height: 1.55;
+    }
+    /* Partner sign-up module */
+    .partner-cta { margin-top: 1.75rem; padding-top: 1.6rem; border-top: 1px dashed rgba(212,175,55,0.3); }
+    .partner-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.02rem; color: #fff; margin-bottom: 0.3rem; }
+    .partner-sub { font-size: 0.84rem; color: rgba(255,255,255,0.6); margin: 0 auto 1.1rem; max-width: 460px; line-height: 1.55; }
+    .partner-form { display: flex; flex-direction: column; gap: 0.6rem; max-width: 460px; margin: 0 auto; text-align: left; }
+    .partner-form input {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 10px; padding: 0.7rem 0.9rem; color: #fff; font-family: inherit; font-size: 0.88rem;
+    }
+    .partner-form input::placeholder { color: rgba(255,255,255,0.42); }
+    .partner-form input:focus { outline: none; border-color: #D4AF37; }
+    .partner-btn {
+      background: #D4AF37; color: #0a0a0a; font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 0.9rem; border: none; border-radius: 999px;
+      padding: 0.85rem 1.5rem; cursor: pointer; transition: all 0.2s; margin-top: 0.3rem;
+    }
+    .partner-btn:hover { background: #c49d28; transform: translateY(-1px); }
 
     /* Gosia founder block */
     .lejdis-founder {
@@ -506,6 +528,10 @@
           <p class="ladies-perks-sub" id="lptsub-pl" lang="pl" style="display:none">Pokaż kartę klubową u naszych partnerów i podaj kod klubowy <strong>MOUNTAINCAR</strong>, aby aktywować zniżkę.</p>
           <p class="ladies-perks-sub" id="lptsub-is" lang="is" style="display:none">Sýndu klúbbkortið þitt hjá samstarfsaðilum okkar og gefðu upp klúbbkóðann <strong>MOUNTAINCAR</strong> til að fá afsláttinn.</p>
         </div>
+        <p class="perks-note" id="pnote-en"><span aria-hidden="true">🚀</span> Just launching — the offers below are examples of what's coming. Real local partners are being added now. Show your card &amp; say <strong>MOUNTAINCAR</strong> to redeem.</p>
+        <p class="perks-note" id="pnote-pl" lang="pl" style="display:none"><span aria-hidden="true">🚀</span> Dopiero startujemy — oferty poniżej to przykłady tego, co nadchodzi. Prawdziwi lokalni partnerzy właśnie dochodzą. Pokaż kartę i podaj <strong>MOUNTAINCAR</strong>, aby skorzystać.</p>
+        <p class="perks-note" id="pnote-is" lang="is" style="display:none"><span aria-hidden="true">🚀</span> Að fara af stað — tilboðin hér að neðan eru sýnishorn af því sem er að koma. Raunverulegir samstarfsaðilar bætast við núna. Sýndu kortið og segðu <strong>MOUNTAINCAR</strong>.</p>
+
         <div class="perks-grid">
           <div class="perk-card">
             <div class="perk-icon" aria-hidden="true">🧘</div>
@@ -514,6 +540,7 @@
             <div class="perk-desc" id="p1d-en">First month membership or single class</div>
             <div class="perk-desc" id="p1d-pl" lang="pl" style="display:none">Pierwszy miesiąc członkostwa lub pojedyncze zajęcia</div>
             <div class="perk-desc" id="p1d-is" lang="is" style="display:none">Fyrsti mánuður aðildar eða einstaka tími</div>
+            <div class="perk-loc"><span aria-hidden="true">📍</span> Reykjanesbær</div>
           </div>
           <div class="perk-card">
             <div class="perk-icon" aria-hidden="true">🏋️</div>
@@ -522,6 +549,7 @@
             <div class="perk-desc" id="p2d-en">Any group class or personal training session</div>
             <div class="perk-desc" id="p2d-pl" lang="pl" style="display:none">Dowolne zajęcia grupowe lub trening personalny</div>
             <div class="perk-desc" id="p2d-is" lang="is" style="display:none">Hópstund eða einkatímar</div>
+            <div class="perk-loc"><span aria-hidden="true">📍</span> Keflavík</div>
           </div>
           <div class="perk-card">
             <div class="perk-icon" aria-hidden="true">✂️</div>
@@ -530,7 +558,30 @@
             <div class="perk-desc" id="p3d-en">Cut, colour, or any treatment</div>
             <div class="perk-desc" id="p3d-pl" lang="pl" style="display:none">Strzyżenie, koloryzacja lub dowolny zabieg</div>
             <div class="perk-desc" id="p3d-is" lang="is" style="display:none">Klipping, litun eða önnur meðferð</div>
+            <div class="perk-loc"><span aria-hidden="true">📍</span> Keflavík</div>
           </div>
+        </div>
+
+        <!-- Partner sign-up module -->
+        <div class="partner-cta">
+          <p class="partner-title" id="ptn-en">Run a business? Offer a discount to our lady members</p>
+          <p class="partner-title" id="ptn-pl" lang="pl" style="display:none">Masz firmę? Zaproponuj zniżkę naszym klubowiczkom</p>
+          <p class="partner-title" id="ptn-is" lang="is" style="display:none">Ertu með fyrirtæki? Bjóddu afslátt til kvenmeðlima okkar</p>
+          <p class="partner-sub" id="ptns-en">Fill this in — it opens WhatsApp to Gosia with your offer. Free to join, and we'll add you to the list above.</p>
+          <p class="partner-sub" id="ptns-pl" lang="pl" style="display:none">Wypełnij — otworzy się WhatsApp do Gosi z Twoją ofertą. Dołączenie jest darmowe, a my dodamy Cię do listy powyżej.</p>
+          <p class="partner-sub" id="ptns-is" lang="is" style="display:none">Fylltu út — það opnar WhatsApp til Gosiu með tilboðinu þínu. Ókeypis að taka þátt og við bætum þér á listann að ofan.</p>
+          <form class="partner-form" onsubmit="return submitPartner(event)">
+            <input id="pf-biz" type="text" required placeholder="Business name">
+            <input id="pf-loc" type="text" required placeholder="Location / address">
+            <input id="pf-disc" type="text" required placeholder="Discount (e.g. 15% off)">
+            <input id="pf-what" type="text" placeholder="What it covers">
+            <input id="pf-contact" type="text" placeholder="Your phone or email">
+            <button type="submit" class="partner-btn">
+              <span id="pbtn-en"><span aria-hidden="true">💬</span> Send my discount on WhatsApp</span>
+              <span id="pbtn-pl" lang="pl" style="display:none"><span aria-hidden="true">💬</span> Wyślij moją zniżkę na WhatsApp</span>
+              <span id="pbtn-is" lang="is" style="display:none"><span aria-hidden="true">💬</span> Senda afsláttinn minn á WhatsApp</span>
+            </button>
+          </form>
         </div>
       </div>
 
@@ -632,9 +683,52 @@
         const suffix = el.id.slice(-2);
         el.style.display = suffix === lang ? '' : 'none';
       });
+      applyPartnerPlaceholders(lang);
     }
+
+    // Partner sign-up form — placeholders per language + WhatsApp submission
+    var PF_PH = {
+      'pf-biz':     { en: 'Business name', pl: 'Nazwa firmy', is: 'Nafn fyrirtækis' },
+      'pf-loc':     { en: 'Location / address', pl: 'Lokalizacja / adres', is: 'Staðsetning / heimilisfang' },
+      'pf-disc':    { en: 'Discount (e.g. 15% off)', pl: 'Zniżka (np. 15%)', is: 'Afsláttur (t.d. 15%)' },
+      'pf-what':    { en: 'What it covers', pl: 'Na co (czego dotyczy)', is: 'Hvað það nær yfir' },
+      'pf-contact': { en: 'Your phone or email', pl: 'Twój telefon lub e-mail', is: 'Sími þinn eða netfang' }
+    };
+    function applyPartnerPlaceholders(lang) {
+      Object.keys(PF_PH).forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        var ph = PF_PH[id][lang] || PF_PH[id].en;
+        el.placeholder = ph;
+        el.setAttribute('aria-label', ph);
+      });
+    }
+    function submitPartner(e) {
+      e.preventDefault();
+      var lang = document.documentElement.lang || 'en';
+      var g = function (id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
+      var head = { en: 'Mountain Lejdis — new partner sign-up', pl: 'Mountain Lejdis — zgloszenie partnera', is: 'Mountain Lejdis — ny samstarfsskraning' }[lang];
+      var L = {
+        biz:     { en: 'Business', pl: 'Firma', is: 'Fyrirtaeki' },
+        loc:     { en: 'Location', pl: 'Lokalizacja', is: 'Stadsetning' },
+        disc:    { en: 'Discount for ladies', pl: 'Znizka dla pan', is: 'Afslattur fyrir konur' },
+        what:    { en: 'Covers', pl: 'Na co', is: 'Naer yfir' },
+        contact: { en: 'Contact', pl: 'Kontakt', is: 'Samband' }
+      };
+      var msg = head + '\n'
+        + L.biz[lang] + ': ' + g('pf-biz') + '\n'
+        + L.loc[lang] + ': ' + g('pf-loc') + '\n'
+        + L.disc[lang] + ': ' + g('pf-disc') + '\n'
+        + L.what[lang] + ': ' + g('pf-what') + '\n'
+        + L.contact[lang] + ': ' + g('pf-contact') + '\n'
+        + 'Code: MOUNTAINCAR';
+      window.open('https://wa.me/3548888005?text=' + encodeURIComponent(msg), '_blank');
+      return false;
+    }
+
     // Auto-select the visitor's language (Poles & Icelanders see their own language first)
     (function () {
+      applyPartnerPlaceholders('en');
       var l = (navigator.language || 'en').slice(0, 2).toLowerCase();
       if (l === 'pl' || l === 'is') setLang(l);
     })();
