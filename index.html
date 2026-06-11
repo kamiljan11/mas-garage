@@ -82,7 +82,7 @@
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       padding: 5.5rem 1.5rem 2.5rem; text-align: center; overflow: hidden;
       background-image:
-        linear-gradient(rgba(17,24,39,0.78) 0%, rgba(17,24,39,0.84) 45%, rgba(17,24,39,0.93) 100%),
+        linear-gradient(rgba(17,24,39,0.68) 0%, rgba(17,24,39,0.76) 50%, rgba(17,24,39,0.88) 100%),
         url('./hero.jpg');
       background-size: cover;
       background-position: center;
@@ -141,9 +141,10 @@
     .contact-bar a.cta:hover { background: #e0760f; }
 
     /* Services */
-    .services { width: 100%; max-width: 900px; display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
-    @media(max-width:700px){ .services { grid-template-columns: 1fr 1fr; } }
-    @media(max-width:460px){ .services { grid-template-columns: 1fr; } }
+    .services-section { padding: 4rem 1.5rem 4.5rem; text-align: center; }
+    .services-heading { font-family: 'Montserrat', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; margin-bottom: 2.25rem; }
+    .services { width: 100%; max-width: 760px; margin: 0 auto; display: grid; grid-template-columns: repeat(2,1fr); gap: 1.25rem; }
+    @media(max-width:560px){ .services { grid-template-columns: 1fr; } }
     .service-card {
       background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
       border-radius: 14px; padding: 1.4rem 1.2rem; text-align: left;
@@ -434,14 +435,20 @@
       <a href="https://wa.me/3548888005?text=Hallo%21%20Eg%20vil%20boka%20tima%20fyrir%20bilathjonustu%20hja%20Mountain%20Car%20Garage." target="_blank" rel="noopener" class="cta" id="cta-wa-is" lang="is" style="display:none"><span aria-hidden="true">💬</span> Bókaðu á WhatsApp</a>
     </div>
 
-    <!-- Services -->
+  </section>
+
+  <!-- Services -->
+  <section class="services-section">
+    <h2 class="services-heading" id="svc-h-en">Our Services</h2>
+    <h2 class="services-heading" id="svc-h-pl" lang="pl" style="display:none">Nasze Usługi</h2>
+    <h2 class="services-heading" id="svc-h-is" lang="is" style="display:none">Þjónustan Okkar</h2>
     <div class="services">
 
       <div class="service-card">
         <div class="svc-icon" aria-hidden="true">🔧</div>
-        <h2 class="svc-title" id="s1t-en">Mechanical Repair</h2>
-        <h2 class="svc-title" id="s1t-pl" lang="pl" style="display:none">Naprawa Mechaniczna</h2>
-        <h2 class="svc-title" id="s1t-is" lang="is" style="display:none">Vélaviðgerðir</h2>
+        <h3 class="svc-title" id="s1t-en">Mechanical Repair</h3>
+        <h3 class="svc-title" id="s1t-pl" lang="pl" style="display:none">Naprawa Mechaniczna</h3>
+        <h3 class="svc-title" id="s1t-is" lang="is" style="display:none">Vélaviðgerðir</h3>
         <p class="svc-desc" id="s1d-en">Engine, brakes, suspension, transmission — full diagnostic and repair for all vehicle types.</p>
         <p class="svc-desc" id="s1d-pl" lang="pl" style="display:none">Silnik, hamulce, zawieszenie, skrzynia biegów — pełna diagnostyka i naprawa wszystkich typów pojazdów.</p>
         <p class="svc-desc" id="s1d-is" lang="is" style="display:none">Vélar, hemlar, fjöðrun, gírkassar — ítarleg greining og viðgerð á öllum tegundum farartækja.</p>
@@ -449,9 +456,9 @@
 
       <div class="service-card">
         <div class="svc-icon" aria-hidden="true">🔍</div>
-        <h2 class="svc-title" id="s3t-en">Diagnostics</h2>
-        <h2 class="svc-title" id="s3t-pl" lang="pl" style="display:none">Diagnostyka</h2>
-        <h2 class="svc-title" id="s3t-is" lang="is" style="display:none">Bilanagreining</h2>
+        <h3 class="svc-title" id="s3t-en">Diagnostics</h3>
+        <h3 class="svc-title" id="s3t-pl" lang="pl" style="display:none">Diagnostyka</h3>
+        <h3 class="svc-title" id="s3t-is" lang="is" style="display:none">Bilanagreining</h3>
         <p class="svc-desc" id="s3d-en">Check-engine light, electronics, fault-finding — we read the codes and tell you what's really wrong, no guesswork.</p>
         <p class="svc-desc" id="s3d-pl" lang="pl" style="display:none">Kontrolka silnika, elektronika, wykrywanie usterek — odczytujemy kody i mówimy, co naprawdę jest nie tak, bez zgadywania.</p>
         <p class="svc-desc" id="s3d-is" lang="is" style="display:none">Viðvörunarljós, rafkerfi, bilanaleit — við lesum villukóðana og segjum þér hvað er raunverulega að, án ágiskana.</p>
@@ -459,9 +466,9 @@
 
       <div class="service-card">
         <div class="svc-icon" aria-hidden="true">🎯</div>
-        <h2 class="svc-title" id="s4t-en">Wheel Alignment</h2>
-        <h2 class="svc-title" id="s4t-pl" lang="pl" style="display:none">Zbieżność Kół</h2>
-        <h2 class="svc-title" id="s4t-is" lang="is" style="display:none">Hjólastilling</h2>
+        <h3 class="svc-title" id="s4t-en">Wheel Alignment</h3>
+        <h3 class="svc-title" id="s4t-pl" lang="pl" style="display:none">Zbieżność Kół</h3>
+        <h3 class="svc-title" id="s4t-is" lang="is" style="display:none">Hjólastilling</h3>
         <p class="svc-desc" id="s4d-en">Precise wheel alignment and geometry check. Reduces tire wear, improves handling on Iceland's roads.</p>
         <p class="svc-desc" id="s4d-pl" lang="pl" style="display:none">Precyzyjna regulacja zbieżności i geometria kół. Mniejsze zużycie opon, lepsze prowadzenie na islandzkich drogach.</p>
         <p class="svc-desc" id="s4d-is" lang="is" style="display:none">Nákvæm hjólastilling og rúmfræðileg athugun. Minnkar dekkjaslit, bætir stjórnun á íslenskum vegum.</p>
@@ -469,9 +476,9 @@
 
       <div class="service-card">
         <div class="svc-icon" aria-hidden="true">🛢️</div>
-        <h2 class="svc-title" id="s5t-en">Oil & Fluid Service</h2>
-        <h2 class="svc-title" id="s5t-pl" lang="pl" style="display:none">Wymiana Oleju i Płynów</h2>
-        <h2 class="svc-title" id="s5t-is" lang="is" style="display:none">Olíu- og Vökvaþjónusta</h2>
+        <h3 class="svc-title" id="s5t-en">Oil & Fluid Service</h3>
+        <h3 class="svc-title" id="s5t-pl" lang="pl" style="display:none">Wymiana Oleju i Płynów</h3>
+        <h3 class="svc-title" id="s5t-is" lang="is" style="display:none">Olíu- og Vökvaþjónusta</h3>
         <p class="svc-desc" id="s5d-en">Oil change, coolant flush, brake fluid, power steering — quick service, no appointment needed.</p>
         <p class="svc-desc" id="s5d-pl" lang="pl" style="display:none">Wymiana oleju, przepłukanie układu chłodzenia, płyn hamulcowy, wspomaganie — szybka obsługa bez rezerwacji.</p>
         <p class="svc-desc" id="s5d-is" lang="is" style="display:none">Olíuskipti, kælivökvaþvottur, hemlavökvi, stýrisvökvi — hröð þjónusta, ekki þarf að panta fyrirfram.</p>
