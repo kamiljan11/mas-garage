@@ -27,12 +27,16 @@
   <link rel="icon" href="./logo.jpg">
   <link rel="apple-touch-icon" href="./logo.jpg">
 
+  <!-- Preload LCP hero image so it is fetched during HTML parse, not after CSSOM -->
+  <link rel="preload" as="image" href="./hero.jpg" fetchpriority="high">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:wght@400;500;600&display=swap"></noscript>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --orange: #F58220; --orange-dark: #B85C00; --dark: #111827; --muted: rgba(255,255,255,0.62); }
+    :root { --orange: #F58220; --orange-dark: #B85C00; --gold: #D4AF37; --dark: #111827; --muted: rgba(255,255,255,0.62); }
     html, body { font-family: 'Open Sans', sans-serif; background: var(--dark); color: white; min-height: 100%; overflow-x: hidden; }
 
     /* Accessibility: skip link + focus */
@@ -174,7 +178,7 @@
       font-size: clamp(2.2rem, 6vw, 3.8rem);
       font-weight: 900; line-height: 1.05; margin-bottom: 1rem; letter-spacing: -0.01em;
     }
-    .gold { color: #D4AF37; }
+    .gold { color: var(--gold); }
     .lejdis-sub {
       color: rgba(255,255,255,0.7); font-size: 1rem;
       max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.65;
@@ -376,7 +380,7 @@
   <main id="main">
   <section class="hero">
     <div class="logo-wrap">
-      <img src="./logo.jpg" alt="Mountain Car Garage">
+      <img src="./logo.jpg" alt="Mountain Car Garage" width="1100" height="740" decoding="async">
     </div>
 
     <!-- Badge -->
@@ -430,9 +434,9 @@
 
       <div class="service-card">
         <div class="svc-icon" aria-hidden="true">🔧</div>
-        <h3 class="svc-title" id="s1t-en">Mechanical Repair</h3>
-        <h3 class="svc-title" id="s1t-pl" lang="pl" style="display:none">Naprawa Mechaniczna</h3>
-        <h3 class="svc-title" id="s1t-is" lang="is" style="display:none">Vélaviðgerðir</h3>
+        <h2 class="svc-title" id="s1t-en">Mechanical Repair</h2>
+        <h2 class="svc-title" id="s1t-pl" lang="pl" style="display:none">Naprawa Mechaniczna</h2>
+        <h2 class="svc-title" id="s1t-is" lang="is" style="display:none">Vélaviðgerðir</h2>
         <p class="svc-desc" id="s1d-en">Engine, brakes, suspension, transmission — full diagnostic and repair for all vehicle types.</p>
         <p class="svc-desc" id="s1d-pl" lang="pl" style="display:none">Silnik, hamulce, zawieszenie, skrzynia biegów — pełna diagnostyka i naprawa wszystkich typów pojazdów.</p>
         <p class="svc-desc" id="s1d-is" lang="is" style="display:none">Vélar, hemlar, fjöðrun, gírkassar — ítarleg greining og viðgerð á öllum tegundum farartækja.</p>
@@ -440,9 +444,9 @@
 
       <div class="service-card">
         <div class="svc-icon" aria-hidden="true">🔍</div>
-        <h3 class="svc-title" id="s3t-en">Diagnostics</h3>
-        <h3 class="svc-title" id="s3t-pl" lang="pl" style="display:none">Diagnostyka</h3>
-        <h3 class="svc-title" id="s3t-is" lang="is" style="display:none">Bilanagreining</h3>
+        <h2 class="svc-title" id="s3t-en">Diagnostics</h2>
+        <h2 class="svc-title" id="s3t-pl" lang="pl" style="display:none">Diagnostyka</h2>
+        <h2 class="svc-title" id="s3t-is" lang="is" style="display:none">Bilanagreining</h2>
         <p class="svc-desc" id="s3d-en">Check-engine light, electronics, fault-finding — we read the codes and tell you what's really wrong, no guesswork.</p>
         <p class="svc-desc" id="s3d-pl" lang="pl" style="display:none">Kontrolka silnika, elektronika, wykrywanie usterek — odczytujemy kody i mówimy, co naprawdę jest nie tak, bez zgadywania.</p>
         <p class="svc-desc" id="s3d-is" lang="is" style="display:none">Viðvörunarljós, rafkerfi, bilanaleit — við lesum villukóðana og segjum þér hvað er raunverulega að, án ágiskana.</p>
@@ -450,9 +454,9 @@
 
       <div class="service-card">
         <div class="svc-icon" aria-hidden="true">🎯</div>
-        <h3 class="svc-title" id="s4t-en">Wheel Alignment</h3>
-        <h3 class="svc-title" id="s4t-pl" lang="pl" style="display:none">Zbieżność Kół</h3>
-        <h3 class="svc-title" id="s4t-is" lang="is" style="display:none">Hjólastilling</h3>
+        <h2 class="svc-title" id="s4t-en">Wheel Alignment</h2>
+        <h2 class="svc-title" id="s4t-pl" lang="pl" style="display:none">Zbieżność Kół</h2>
+        <h2 class="svc-title" id="s4t-is" lang="is" style="display:none">Hjólastilling</h2>
         <p class="svc-desc" id="s4d-en">Precise wheel alignment and geometry check. Reduces tire wear, improves handling on Iceland's roads.</p>
         <p class="svc-desc" id="s4d-pl" lang="pl" style="display:none">Precyzyjna regulacja zbieżności i geometria kół. Mniejsze zużycie opon, lepsze prowadzenie na islandzkich drogach.</p>
         <p class="svc-desc" id="s4d-is" lang="is" style="display:none">Nákvæm hjólastilling og rúmfræðileg athugun. Minnkar dekkjaslit, bætir stjórnun á íslenskum vegum.</p>
@@ -460,9 +464,9 @@
 
       <div class="service-card">
         <div class="svc-icon" aria-hidden="true">🛢️</div>
-        <h3 class="svc-title" id="s5t-en">Oil & Fluid Service</h3>
-        <h3 class="svc-title" id="s5t-pl" lang="pl" style="display:none">Wymiana Oleju i Płynów</h3>
-        <h3 class="svc-title" id="s5t-is" lang="is" style="display:none">Olíu- og Vökvaþjónusta</h3>
+        <h2 class="svc-title" id="s5t-en">Oil & Fluid Service</h2>
+        <h2 class="svc-title" id="s5t-pl" lang="pl" style="display:none">Wymiana Oleju i Płynów</h2>
+        <h2 class="svc-title" id="s5t-is" lang="is" style="display:none">Olíu- og Vökvaþjónusta</h2>
         <p class="svc-desc" id="s5d-en">Oil change, coolant flush, brake fluid, power steering — quick service, no appointment needed.</p>
         <p class="svc-desc" id="s5d-pl" lang="pl" style="display:none">Wymiana oleju, przepłukanie układu chłodzenia, płyn hamulcowy, wspomaganie — szybka obsługa bez rezerwacji.</p>
         <p class="svc-desc" id="s5d-is" lang="is" style="display:none">Olíuskipti, kælivökvaþvottur, hemlavökvi, stýrisvökvi — hröð þjónusta, ekki þarf að panta fyrirfram.</p>
@@ -486,8 +490,8 @@
       <p class="lejdis-sub" id="lsub-is" lang="is" style="display:none">Opið fyrir alla. Safnaðu stimplum við hverja heimsókn, vinndu ókeypis vinnustundir og mæltu með okkur við vini með einstaka kóðanum þínum. Og fyrir konurnar — <strong class="gold">Mountain Lejdis</strong>, með sérstökum tilboðum hjá samstarfsaðilum, aðeins fyrir konur.</p>
 
       <div class="lejdis-cards">
-        <img src="./mountain_lejdis_side_A.jpg" alt="" class="card-img front">
-        <img src="./mountain_lejdis_side_B.jpg" alt="" class="card-img back">
+        <img src="./mountain_lejdis_side_A.jpg" alt="Mountain Lejdis members club card — front" class="card-img front" loading="lazy" decoding="async" width="2097" height="1377">
+        <img src="./mountain_lejdis_side_B.jpg" alt="Mountain Lejdis members club card — back" class="card-img back" loading="lazy" decoding="async" width="2097" height="1377">
       </div>
 
       <div class="lejdis-steps">
@@ -505,9 +509,9 @@
         </div>
         <div class="lstep">
           <div class="lstep-num">10</div>
-          <span id="ls3-en">Collect 10 stamps = <strong style="color:#D4AF37">1 free hour of workshop labour</strong> — use it for an oil change, brakes, or whatever your car needs most</span>
-          <span id="ls3-pl" lang="pl" style="display:none">Zbierz 10 pieczątek = <strong style="color:#D4AF37">1 darmowa godzina pracy warsztatu</strong> — wykorzystaj na wymianę oleju, hamulce lub cokolwiek, czego Twoje auto potrzebuje</span>
-          <span id="ls3-is" lang="is" style="display:none">Safnaðu 10 stimplum = <strong style="color:#D4AF37">1 klukkustund ókeypis verkstæðisvinnu</strong> — notaðu hana í olíuskipti, hemla eða hvað sem bíllinn þinn þarfnast mest</span>
+          <span id="ls3-en">Collect 10 stamps = <strong class="gold">1 free hour of workshop labour</strong> — use it for an oil change, brakes, or whatever your car needs most</span>
+          <span id="ls3-pl" lang="pl" style="display:none">Zbierz 10 pieczątek = <strong class="gold">1 darmowa godzina pracy warsztatu</strong> — wykorzystaj na wymianę oleju, hamulce lub cokolwiek, czego Twoje auto potrzebuje</span>
+          <span id="ls3-is" lang="is" style="display:none">Safnaðu 10 stimplum = <strong class="gold">1 klukkustund ókeypis verkstæðisvinnu</strong> — notaðu hana í olíuskipti, hemla eða hvað sem bíllinn þinn þarfnast mest</span>
         </div>
       </div>
 
@@ -517,7 +521,7 @@
 
       <!-- Gosia founder block -->
       <div class="lejdis-founder">
-        <img src="./gosia.jpg" alt="Gosia, owner of Mountain Car Garage" class="founder-img">
+        <img src="./gosia.jpg" alt="Gosia, owner of Mountain Car Garage" class="founder-img" loading="lazy" decoding="async" width="120" height="120">
         <div>
           <div class="founder-name">Gosia</div>
           <div class="founder-role" id="frole-en">Owner &amp; Workshop Manager</div>
