@@ -678,6 +678,20 @@
       #club .kw-1 svg, #club .kw-2 svg, #lejdis .kw-1 svg { width: 28px !important; height: 28px !important; }
       #lejdis .kw-3 svg { width: 84px !important; height: auto !important; }
     }
+
+    /* Ladies' in-house workshop discount highlight */
+    .home-perk { display:flex; gap:1rem; align-items:center; text-align:left; max-width:580px; margin:0 auto 1.6rem; padding:1.15rem 1.3rem; background:rgba(245,130,32,0.10); border:1px solid rgba(245,130,32,0.42); border-radius:16px; }
+    .home-perk .hp-ic { font-size:1.9rem; flex-shrink:0; line-height:1; }
+    .home-perk .hp-tag { display:inline-block; font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; font-weight:800; color:#B85C00; background:rgba(245,130,32,0.16); border-radius:999px; padding:.16rem .55rem; margin-bottom:.4rem; }
+    .home-perk .hp-title { font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.02rem; color:var(--ink); margin-bottom:.28rem; line-height:1.25; }
+    .home-perk .hp-sub { font-size:.88rem; color:var(--muted); line-height:1.55; }
+    .perks-label { font-family:'Montserrat',sans-serif; font-weight:800; font-size:.8rem; letter-spacing:.03em; color:var(--ink); text-transform:uppercase; opacity:.75; margin:0 0 1rem; }
+    @media(max-width:560px){ .home-perk { flex-direction:column; text-align:center; align-items:center; gap:.6rem; } }
+
+    /* Mascot wink — one eye, every few seconds */
+    .kw-eye-wink { transform-box:fill-box; transform-origin:center; animation:kwWink 5s ease-in-out infinite; }
+    @keyframes kwWink { 0%,84%,100% { transform:scaleY(1); } 88%,92% { transform:scaleY(0.12); } }
+    @media (prefers-reduced-motion: reduce) { .kw-eye-wink { animation:none; } }
   </style>
 </head>
 <body>
@@ -1080,9 +1094,9 @@
 
       <h2 class="lejdis-title" id="club-heading">Mountain Car <span class="gold">Club</span></h2>
 
-      <p class="lejdis-sub" id="lsub-en">Open to everyone. Collect stamps on every visit, earn free workshop hours, and refer friends with your unique code. And the ladies? They get <strong class="gold">Mountain Lejdis</strong> — exclusive partner discounts the gentlemen simply don't. 😏</p>
-      <p class="lejdis-sub" id="lsub-pl" lang="pl" style="display:none">Dla każdego. Zbieraj pieczątki przy każdej wizycie, zyskuj darmowe godziny pracy warsztatu i polecaj znajomych swoim unikalnym kodem. A panie? Dostają <strong class="gold">Mountain Lejdis</strong> — ekskluzywne zniżki, których panowie po prostu nie mają. 😏</p>
-      <p class="lejdis-sub" id="lsub-is" lang="is" style="display:none">Opið fyrir alla. Safnaðu stimplum við hverja heimsókn, vinndu ókeypis vinnustundir og mæltu með okkur við vini með einstaka kóðanum þínum. Og dömurnar? Þær fá <strong class="gold">Mountain Lejdis</strong> — sérstök tilboð sem herrarnir fá hreinlega ekki. 😏</p>
+      <p class="lejdis-sub" id="lsub-en">Open to everyone. Collect stamps on every visit, earn free workshop hours, and refer friends with your unique code. And the ladies? They get <strong class="gold">Mountain Lejdis</strong> — exclusive discounts the gentlemen simply don't: a little off their bill here at the workshop, and deals at our partners. 😏</p>
+      <p class="lejdis-sub" id="lsub-pl" lang="pl" style="display:none">Dla każdego. Zbieraj pieczątki przy każdej wizycie, zyskuj darmowe godziny pracy warsztatu i polecaj znajomych swoim unikalnym kodem. A panie? Dostają <strong class="gold">Mountain Lejdis</strong> — ekskluzywne zniżki, których panowie po prostu nie mają: trochę taniej za robociznę u nas w warsztacie i oferty u partnerów. 😏</p>
+      <p class="lejdis-sub" id="lsub-is" lang="is" style="display:none">Opið fyrir alla. Safnaðu stimplum við hverja heimsókn, vinndu ókeypis vinnustundir og mæltu með okkur við vini með einstaka kóðanum þínum. Og dömurnar? Þær fá <strong class="gold">Mountain Lejdis</strong> — sérstök tilboð sem herrarnir fá hreinlega ekki: aðeins lægra verð fyrir vinnuna hér á verkstæðinu og tilboð hjá samstarfsaðilum. 😏</p>
 
       <div class="lejdis-cards">
         <img src="./mountain_lejdis_side_A.jpg" alt="Mountain Lejdis members club card — front" class="card-img front" loading="lazy" decoding="async" width="700" height="460">
@@ -1122,7 +1136,7 @@
     <div class="kw-decos" aria-hidden="true">
       <span class="kw kw-1 kw-float"><svg width="40" height="40" viewBox="0 0 40 40"><g fill="#E89AB4"><circle cx="20" cy="8" r="6.6"/><circle cx="32" cy="16" r="6.6"/><circle cx="27.5" cy="30" r="6.6"/><circle cx="12.5" cy="30" r="6.6"/><circle cx="8" cy="16" r="6.6"/></g><circle cx="20" cy="20" r="7" fill="#FFE08A"/><circle cx="17.6" cy="19.5" r="1.1" fill="#7A5C3E"/><circle cx="22.4" cy="19.5" r="1.1" fill="#7A5C3E"/><path d="M17.6 22 q2.4 2 4.8 0" stroke="#7A5C3E" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg></span>
       <span class="kw kw-2 kw-spin"><svg width="38" height="38" viewBox="0 0 40 40"><path d="M20 2 C21.6 13 27 18.4 38 20 C27 21.6 21.6 27 20 38 C18.4 27 13 21.6 2 20 C13 18.4 18.4 13 20 2 Z" fill="#D4AF37"/><circle cx="34" cy="7" r="2.4" fill="#E89AB4"/></svg></span>
-      <span class="kw kw-3 kw-bob"><svg width="116" height="93" viewBox="0 0 150 120"><ellipse cx="75" cy="111" rx="54" ry="6.5" fill="rgba(120,80,40,0.16)"/><circle cx="42" cy="99" r="13" fill="#3a3a3a"/><circle cx="42" cy="99" r="5.5" fill="#d8d8d8"/><circle cx="108" cy="99" r="13" fill="#3a3a3a"/><circle cx="108" cy="99" r="5.5" fill="#d8d8d8"/><path d="M19 92 Q15 60 31 53 Q41 28 75 28 Q109 28 119 53 Q135 60 131 92 Q131 99 123 99 L27 99 Q19 99 19 92 Z" fill="#F58220"/><path d="M45 53 Q51 38 75 38 Q99 38 105 53 Z" fill="#FDF6E9"/><circle cx="63" cy="47" r="3" fill="#4a3b2a"/><circle cx="87" cy="47" r="3" fill="#4a3b2a"/><circle cx="56.5" cy="51" r="3.4" fill="#F4A9C2"/><circle cx="93.5" cy="51" r="3.4" fill="#F4A9C2"/><path d="M69 50 q6 5 12 0" stroke="#4a3b2a" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="35" cy="79" r="6.5" fill="#FFE08A"/><circle cx="115" cy="79" r="6.5" fill="#FFE08A"/><path d="M75 16 c-2.6 -4 -8 -2.6 -8 1.6 c0 3 4 5.4 8 9 c4 -3.6 8 -6 8 -9 c0 -4.2 -5.4 -5.6 -8 -1.6 z" fill="#E89AB4"/></svg></span>
+      <span class="kw kw-3 kw-bob"><svg width="116" height="93" viewBox="0 0 150 120"><ellipse cx="75" cy="111" rx="54" ry="6.5" fill="rgba(120,80,40,0.16)"/><circle cx="42" cy="99" r="13" fill="#3a3a3a"/><circle cx="42" cy="99" r="5.5" fill="#d8d8d8"/><circle cx="108" cy="99" r="13" fill="#3a3a3a"/><circle cx="108" cy="99" r="5.5" fill="#d8d8d8"/><path d="M19 92 Q15 60 31 53 Q41 28 75 28 Q109 28 119 53 Q135 60 131 92 Q131 99 123 99 L27 99 Q19 99 19 92 Z" fill="#F58220"/><path d="M45 53 Q51 38 75 38 Q99 38 105 53 Z" fill="#FDF6E9"/><circle cx="63" cy="47" r="3" fill="#4a3b2a"/><circle class="kw-eye-wink" cx="87" cy="47" r="3" fill="#4a3b2a"/><circle cx="56.5" cy="51" r="3.4" fill="#F4A9C2"/><circle cx="93.5" cy="51" r="3.4" fill="#F4A9C2"/><path d="M69 50 q6 5 12 0" stroke="#4a3b2a" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="35" cy="79" r="6.5" fill="#FFE08A"/><circle cx="115" cy="79" r="6.5" fill="#FFE08A"/><path d="M75 16 c-2.6 -4 -8 -2.6 -8 1.6 c0 3 4 5.4 8 9 c4 -3.6 8 -6 8 -9 c0 -4.2 -5.4 -5.6 -8 -1.6 z" fill="#E89AB4"/></svg></span>
       <span class="kw kw-4 kw-float"><svg width="30" height="28" viewBox="0 0 34 32"><path d="M17 29 C2 18 2 7 10 7 C14 7 16 10 17 12 C18 10 20 7 24 7 C32 7 32 18 17 29 Z" fill="#DBC9F6" stroke="#9D80D6" stroke-width="2"/></svg></span>
     </div>
     <div class="lejdis-inner">
@@ -1133,9 +1147,9 @@
 
       <h2 class="lejdis-title" id="lejdis-heading">Mountain <span class="gold">Lejdis</span></h2>
 
-      <p class="lejdis-sub" id="lsub2-en">Ladies first — always. Exclusive partner discounts, just for women. (Gentlemen, you're welcome too… this part just isn't for you.)</p>
-      <p class="lejdis-sub" id="lsub2-pl" lang="pl" style="display:none">Panie przodem — zawsze. Ekskluzywne zniżki u partnerów, tylko dla kobiet. (Panowie, Was też lubimy… ta część po prostu nie jest dla Was.)</p>
-      <p class="lejdis-sub" id="lsub2-is" lang="is" style="display:none">Dömur fyrst — alltaf. Sérstök tilboð hjá samstarfsaðilum, aðeins fyrir konur. (Herrar, þið eruð líka velkomnir… þessi hluti er bara ekki fyrir ykkur.)</p>
+      <p class="lejdis-sub" id="lsub2-en">Ladies first — always. A discount on our own workshop labour, <em>plus</em> exclusive deals at our partners — just for women. (Gentlemen, you're welcome too… this part just isn't for you.)</p>
+      <p class="lejdis-sub" id="lsub2-pl" lang="pl" style="display:none">Panie przodem — zawsze. Zniżka na naszą robociznę w warsztacie, <em>a do tego</em> ekskluzywne oferty u partnerów — tylko dla kobiet. (Panowie, Was też lubimy… ta część po prostu nie jest dla Was.)</p>
+      <p class="lejdis-sub" id="lsub2-is" lang="is" style="display:none">Dömur fyrst — alltaf. Afsláttur af vinnunni okkar á verkstæðinu, <em>auk þess</em> sérstök tilboð hjá samstarfsaðilum — aðeins fyrir konur. (Herrar, þið eruð líka velkomnir… þessi hluti er bara ekki fyrir ykkur.)</p>
 
       <!-- Gosia note — ladies' side of the Club -->
       <div class="lejdis-founder">
@@ -1146,17 +1160,17 @@
           <div class="founder-role" id="frole-pl" lang="pl" style="display:none">Właścicielka i kierownik warsztatu</div>
           <div class="founder-role" id="frole-is" lang="is" style="display:none">Eigandi og verkstæðisstjóri</div>
           <blockquote class="founder-quote" id="fq-en">
-            <p>Yes — a woman runs this workshop, and I'm loud about it. For years women got quoted more than men for the same repair. So here I flipped the script: the women win. Ladies get the perks and the discounts. Men? Honest work and a fair price — just don't expect a discount. 😏</p>
+            <p>Yes — a woman runs this workshop, and I'm loud about it. For years women got quoted more than men for the same repair. So here I flipped the script: the women win. Ladies get a discount on their bill right here at the workshop — and the partner perks on top. Men? Honest work and a fair price — just don't expect a discount. 😏</p>
             <p>Is it "equal"? Nope, and I won't pretend it is. Mountain Lejdis is my thank-you to every woman who's ever been talked down to in a garage. Gentlemen — you'll survive.</p>
             <span class="founder-sign">— Gosia</span>
           </blockquote>
           <blockquote class="founder-quote" id="fq-pl" lang="pl" style="display:none">
-            <p>Tak — ten warsztat prowadzi kobieta i głośno o tym mówię. Latami kobiety za tę samą naprawę słyszały wyższą cenę niż faceci. Więc u mnie odwróciłam role: kobiety wygrywają. Panie dostają przywileje i rabaty. Panowie? Uczciwa robota i fair cena — tylko na rabat nie liczcie. 😏</p>
+            <p>Tak — ten warsztat prowadzi kobieta i głośno o tym mówię. Latami kobiety za tę samą naprawę słyszały wyższą cenę niż faceci. Więc u mnie odwróciłam role: kobiety wygrywają. Panie dostają zniżkę na rachunek tu, w warsztacie — a do tego przywileje u partnerów. Panowie? Uczciwa robota i fair cena — tylko na rabat nie liczcie. 😏</p>
             <p>Czy to „sprawiedliwie"? Nie, i nie będę udawać. Mountain Lejdis to moje podziękowanie dla każdej kobiety, którą w warsztacie potraktowano z góry. Panowie — przeżyjecie.</p>
             <span class="founder-sign">— Gosia</span>
           </blockquote>
           <blockquote class="founder-quote" id="fq-is" lang="is" style="display:none">
-            <p>Já — það er kona sem rekur þetta verkstæði, og ég er hávær um það. Árum saman fengu konur hærra verð en karlar fyrir sömu viðgerð. Svo hér sneri ég dæminu við: konurnar vinna. Dömurnar fá fríðindin og afsláttinn. Karlarnir? Heiðarleg vinna og sanngjarnt verð — en ekki búast við afslætti. 😏</p>
+            <p>Já — það er kona sem rekur þetta verkstæði, og ég er hávær um það. Árum saman fengu konur hærra verð en karlar fyrir sömu viðgerð. Svo hér sneri ég dæminu við: konurnar vinna. Dömurnar fá afslátt af reikningnum hér á verkstæðinu — og fríðindin hjá samstarfsaðilum að auki. Karlarnir? Heiðarleg vinna og sanngjarnt verð — en ekki búast við afslætti. 😏</p>
             <p>Er það „jafnrétti"? Nei, og ég ætla ekki að þykjast. Mountain Lejdis er þakklæti mitt til hverrar konu sem hefur verið talað niður til á verkstæði. Herrar mínir — þið lifið þetta af.</p>
             <span class="founder-sign">— Gosia</span>
           </blockquote>
@@ -1169,13 +1183,33 @@
           <span class="ladies-badge" id="lb-en"><span aria-hidden="true">♀</span> Mountain Lejdis — Ladies Only</span>
           <span class="ladies-badge" id="lb-pl" lang="pl" style="display:none"><span aria-hidden="true">♀</span> Mountain Lejdis — tylko dla pań</span>
           <span class="ladies-badge" id="lb-is" lang="is" style="display:none"><span aria-hidden="true">♀</span> Mountain Lejdis — aðeins fyrir konur</span>
-          <h3 class="ladies-perks-title" id="lpt-en">Exclusive Partner Discounts for Women</h3>
-          <h3 class="ladies-perks-title" id="lpt-pl" lang="pl" style="display:none">Ekskluzywne zniżki dla kobiet</h3>
-          <h3 class="ladies-perks-title" id="lpt-is" lang="is" style="display:none">Sérstök afsláttartilboð fyrir konur</h3>
-          <p class="ladies-perks-sub" id="lptsub-en">Show your club card at our partner locations and mention the club code <strong>MOUNTAINCAR</strong> to unlock your discount.</p>
-          <p class="ladies-perks-sub" id="lptsub-pl" lang="pl" style="display:none">Pokaż kartę klubową u naszych partnerów i podaj kod klubowy <strong>MOUNTAINCAR</strong>, aby aktywować zniżkę.</p>
-          <p class="ladies-perks-sub" id="lptsub-is" lang="is" style="display:none">Sýndu klúbbkortið þitt hjá samstarfsaðilum okkar og gefðu upp klúbbkóðann <strong>MOUNTAINCAR</strong> til að fá afsláttinn.</p>
+          <h3 class="ladies-perks-title" id="lpt-en">Discounts — Just for the Ladies</h3>
+          <h3 class="ladies-perks-title" id="lpt-pl" lang="pl" style="display:none">Zniżki — tylko dla pań</h3>
+          <h3 class="ladies-perks-title" id="lpt-is" lang="is" style="display:none">Afslættir — aðeins fyrir dömur</h3>
+          <p class="ladies-perks-sub" id="lptsub-en">Two ways the ladies win — a discount on our own workshop labour, <em>and</em> exclusive deals at our partners. Show your club card and say <strong>MOUNTAINCAR</strong>.</p>
+          <p class="ladies-perks-sub" id="lptsub-pl" lang="pl" style="display:none">Panie wygrywają na dwa sposoby — zniżka na naszą robociznę w warsztacie, <em>a do tego</em> ekskluzywne oferty u partnerów. Pokaż kartę klubową i podaj <strong>MOUNTAINCAR</strong>.</p>
+          <p class="ladies-perks-sub" id="lptsub-is" lang="is" style="display:none">Dömurnar fá tvöfaldan plús — afslátt af vinnunni okkar á verkstæðinu, <em>auk þess</em> sérstök tilboð hjá samstarfsaðilum. Sýndu klúbbkortið og segðu <strong>MOUNTAINCAR</strong>.</p>
         </div>
+
+        <!-- Primary perk: discount on our own workshop labour -->
+        <div class="home-perk">
+          <span class="hp-ic" aria-hidden="true">🔧</span>
+          <div>
+            <span class="hp-tag" id="hptag-en">At our workshop</span>
+            <span class="hp-tag" id="hptag-pl" lang="pl" style="display:none">U nas w warsztacie</span>
+            <span class="hp-tag" id="hptag-is" lang="is" style="display:none">Hjá okkur á verkstæðinu</span>
+            <div class="hp-title" id="hpt-en">Ladies get a discount on our own labour</div>
+            <div class="hp-title" id="hpt-pl" lang="pl" style="display:none">Panie dostają zniżkę na naszą robociznę</div>
+            <div class="hp-title" id="hpt-is" lang="is" style="display:none">Dömur fá afslátt af vinnunni okkar</div>
+            <div class="hp-sub" id="hps-en">Not just at our partners — right here, on the work we do. Bring your car in, mention Mountain Lejdis, and the ladies' rate is yours.</div>
+            <div class="hp-sub" id="hps-pl" lang="pl" style="display:none">Nie tylko u partnerów — także tutaj, za naszą pracę. Przyjedź autem, powiedz Mountain Lejdis, a stawka dla pań jest Twoja.</div>
+            <div class="hp-sub" id="hps-is" lang="is" style="display:none">Ekki bara hjá samstarfsaðilum — heldur hér, fyrir vinnuna okkar. Komdu með bílinn, nefndu Mountain Lejdis, og dömuverðið er þitt.</div>
+          </div>
+        </div>
+
+        <div class="perks-label" id="plabel-en">…and to treat yourself — at our partners</div>
+        <div class="perks-label" id="plabel-pl" lang="pl" style="display:none">…a coś dla siebie — u naszych partnerów</div>
+        <div class="perks-label" id="plabel-is" lang="is" style="display:none">…og fyrir sjálfa þig — hjá samstarfsaðilum okkar</div>
         <p class="perks-note" id="pnote-en"><span aria-hidden="true">🚀</span> Just launching — the offers below are examples of what's coming. Real local partners are being added now. Show your card &amp; say <strong>MOUNTAINCAR</strong> to redeem.</p>
         <p class="perks-note" id="pnote-pl" lang="pl" style="display:none"><span aria-hidden="true">🚀</span> Dopiero startujemy — oferty poniżej to przykłady tego, co nadchodzi. Prawdziwi lokalni partnerzy właśnie dochodzą. Pokaż kartę i podaj <strong>MOUNTAINCAR</strong>, aby skorzystać.</p>
         <p class="perks-note" id="pnote-is" lang="is" style="display:none"><span aria-hidden="true">🚀</span> Að fara af stað — tilboðin hér að neðan eru sýnishorn af því sem er að koma. Raunverulegir samstarfsaðilar bætast við núna. Sýndu kortið og segðu <strong>MOUNTAINCAR</strong>.</p>
