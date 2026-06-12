@@ -160,12 +160,9 @@
     }
     @media (prefers-reduced-motion: reduce) { .hero-slide { transition: none; } }
     .logo-wrap {
-      margin-bottom: 1.75rem; position: relative;
-      background: rgba(255,255,255,0.62); -webkit-backdrop-filter: blur(9px); backdrop-filter: blur(9px); border-radius: 20px;
-      padding: 14px 24px; display: inline-flex;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.28), inset 0 0 0 1px rgba(255,255,255,0.4);
+      margin-bottom: 1.75rem; position: relative; display: inline-flex;
     }
-    .logo-wrap img { height: 120px; width: auto; display: block; }
+    .logo-wrap img { height: 130px; width: auto; display: block; filter: drop-shadow(0 3px 12px rgba(0,0,0,0.45)); }
     .badge {
       display: inline-block; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
       color: var(--orange); font-weight: 700; border: 1px solid rgba(245,130,32,0.4);
@@ -565,7 +562,42 @@
     .cta-band h2 { font-family: 'Montserrat',sans-serif; color: #fff; font-size: clamp(1.4rem,4.5vw,2.1rem); font-weight: 900; line-height: 1.15; max-width: 620px; margin: 0 auto 1.5rem; text-wrap: balance; text-shadow: 0 2px 18px rgba(0,0,0,0.55); }
     .cta-band .contact-bar { margin-bottom: 0; }
     .cta-band .contact-bar a:not(.cta) { color: #fff; border-color: rgba(255,255,255,0.32); }
-    /* Club (.lejdis) intentionally stays a dark gold zone for contrast */
+    .cta-band { padding: 5.5rem 1.5rem; }
+    .cta-band .contact-bar a.cta { font-size: 1.05rem; padding: 0.95rem 2.1rem; }
+
+    /* Scrollbar in site style */
+    html { scrollbar-color: var(--orange) var(--paper-2); scrollbar-width: thin; }
+    ::-webkit-scrollbar { width: 12px; height: 12px; }
+    ::-webkit-scrollbar-track { background: var(--paper-2); }
+    ::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 999px; border: 3px solid var(--paper-2); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--orange-dark); }
+
+    /* Custom orange cursor (desktop fine-pointer only) */
+    .cursor-dot, .cursor-ring { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; border-radius: 50%; will-change: transform; }
+    .cursor-dot { width: 6px; height: 6px; background: var(--orange); }
+    .cursor-ring { width: 28px; height: 28px; border: 2px solid rgba(245,130,32,0.6); transition: width .15s, height .15s, border-color .15s, background .15s; }
+    .cursor-ring.hover { width: 42px; height: 42px; border-color: var(--orange); background: rgba(245,130,32,0.1); }
+    @media (hover:hover) and (pointer:fine) { html.has-cursor, html.has-cursor * { cursor: none !important; } }
+
+    /* Club (.lejdis) -> light theme (per request) */
+    .lejdis { background: linear-gradient(180deg, #EFE6D0 0%, var(--paper) 100%); border-top-color: rgba(212,175,55,0.35); border-bottom-color: rgba(212,175,55,0.35); }
+    .lejdis-sub, .lejdis-ref, .ladies-perks-sub, .perks-note, .partner-sub, .perk-desc, .perk-loc, .founder-role { color: var(--muted); }
+    .gold { color: #9C7C18; }
+    .lejdis-tag { color: #8A6D12; border-color: rgba(138,109,18,0.5); }
+    .lstep { background: rgba(212,175,55,0.1); border-color: rgba(212,175,55,0.32); color: var(--ink); }
+    .lstep-num, .perk-discount, .founder-name { color: #9C7C18; }
+    .card-img { box-shadow: 0 10px 30px rgba(0,0,0,0.16), 0 0 0 1px rgba(212,175,55,0.45); }
+    .ladies-perks { background: rgba(212,175,55,0.08); border-color: rgba(212,175,55,0.32); }
+    .ladies-badge { color: #8A6D12; background: rgba(212,175,55,0.2); border-color: rgba(138,109,18,0.45); }
+    .ladies-perks-title, .partner-title { color: var(--ink); }
+    .perk-card { background: rgba(255,255,255,0.55); border-color: rgba(212,175,55,0.28); }
+    .perk-name { color: var(--ink); }
+    .partner-cta { border-top-color: rgba(212,175,55,0.4); }
+    .partner-form input { background: rgba(255,255,255,0.6); border-color: var(--line); color: var(--ink); }
+    .partner-form input::placeholder { color: rgba(38,35,32,0.5); }
+    .lejdis-founder { background: rgba(212,175,55,0.08); border-color: rgba(212,175,55,0.28); }
+    .founder-quote { color: var(--ink); border-left-color: rgba(212,175,55,0.5); }
+    @media(max-width:580px){ .founder-quote { border-top-color: rgba(212,175,55,0.4); } }
   </style>
 </head>
 <body>
@@ -621,7 +653,7 @@
       <div class="hero-slide" style="background-image: linear-gradient(rgba(17,24,39,0.72) 0%, rgba(17,24,39,0.8) 45%, rgba(17,24,39,0.92) 100%), url('./hero5.webp')"></div>
     </div>
     <div class="logo-wrap">
-      <img src="./logo.jpg" alt="Mountain Car Garage" width="600" height="404" fetchpriority="high" decoding="async">
+      <img src="./logo-white.png" alt="Mountain Car Garage" width="600" height="404" fetchpriority="high" decoding="async">
     </div>
 
     <!-- Badge -->
@@ -1042,20 +1074,6 @@
         </details>
       </div>
 
-      <a href="https://wa.me/3548888005?text=Hi%20Gosia%21%20I%20would%20like%20to%20book%20a%20visit%20and%20ask%20about%20the%20Club%20card." target="_blank" rel="noopener" class="lejdis-cta" id="lcta-en"><span aria-hidden="true">📅</span> Book a Visit on WhatsApp</a>
-      <a href="https://wa.me/3548888005?text=Czesc%20Gosia%21%20Chce%20umowic%20wizyte%20i%20zapytac%20o%20karte%20klubowa." target="_blank" rel="noopener" class="lejdis-cta" id="lcta-pl" lang="pl" style="display:none"><span aria-hidden="true">📅</span> Umów Wizytę na WhatsApp</a>
-      <a href="https://wa.me/3548888005?text=Hallo%20Gosia%21%20Eg%20vil%20boka%20heimsokn%20og%20spyrja%20um%20klubbkortid." target="_blank" rel="noopener" class="lejdis-cta" id="lcta-is" lang="is" style="display:none"><span aria-hidden="true">📅</span> Bókaðu Heimsókn á WhatsApp</a>
-
-      <div>
-        <a href="tel:+3548888005" class="lejdis-call" id="lcall-en"><span aria-hidden="true">📞</span> Or call +354 888 8005</a>
-        <a href="tel:+3548888005" class="lejdis-call" id="lcall-pl" lang="pl" style="display:none"><span aria-hidden="true">📞</span> Lub zadzwoń +354 888 8005</a>
-        <a href="tel:+3548888005" class="lejdis-call" id="lcall-is" lang="is" style="display:none"><span aria-hidden="true">📞</span> Eða hringdu í +354 888 8005</a>
-      </div>
-
-      <p class="cta-sub" id="cta-sub-en">Ask Gosia about your club card when you arrive <span aria-hidden="true">👋</span></p>
-      <p class="cta-sub" id="cta-sub-pl" lang="pl" style="display:none">Zapytaj Gosię o kartę klubową gdy przyjedziesz <span aria-hidden="true">👋</span></p>
-      <p class="cta-sub" id="cta-sub-is" lang="is" style="display:none">Spurðu Gosiu um klúbbkortið þegar þú kemur <span aria-hidden="true">👋</span></p>
-
     </div>
   </section>
 
@@ -1147,6 +1165,32 @@
         i = (i + 1) % slides.length;
         slides[i].classList.add('active');
       }, 5500);
+    })();
+
+    // Custom orange cursor (desktop fine-pointer only)
+    (function () {
+      if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+      var dot = document.createElement('div'); dot.className = 'cursor-dot';
+      var ring = document.createElement('div'); ring.className = 'cursor-ring';
+      document.body.appendChild(dot); document.body.appendChild(ring);
+      document.documentElement.classList.add('has-cursor');
+      var rx = 0, ry = 0, mx = 0, my = 0;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.addEventListener('mousemove', function (e) {
+        mx = e.clientX; my = e.clientY;
+        dot.style.transform = 'translate(' + (mx - 3) + 'px,' + (my - 3) + 'px)';
+      });
+      (function loop() {
+        rx += (mx - rx) * (reduce ? 1 : 0.2); ry += (my - ry) * (reduce ? 1 : 0.2);
+        ring.style.transform = 'translate(' + (rx - 14) + 'px,' + (ry - 14) + 'px)';
+        requestAnimationFrame(loop);
+      })();
+      document.addEventListener('mouseover', function (e) {
+        if (e.target.closest && e.target.closest('a,button,[role=button],input,summary,label')) ring.classList.add('hover');
+      });
+      document.addEventListener('mouseout', function (e) {
+        if (e.target.closest && e.target.closest('a,button,[role=button],input,summary,label')) ring.classList.remove('hover');
+      });
     })();
 
     function setLang(lang) {
