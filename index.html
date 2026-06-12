@@ -121,13 +121,14 @@
     .trust .stars { color: #D4AF37; letter-spacing: 0.05em; }
 
     /* Benefit chips */
-    .chips { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-bottom: 2.25rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.5rem 1.6rem; justify-content: center; margin-bottom: 2.25rem; }
     .chip {
-      font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.85);
-      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
-      padding: 0.4rem 0.9rem; border-radius: 999px;
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-size: 0.9rem; font-weight: 500; color: rgba(255,255,255,0.82);
+      background: none; border: none; padding: 0;
     }
-    .chip b { color: var(--orange); font-weight: 700; }
+    .chip::before { content: '✓'; color: var(--orange); font-weight: 800; font-size: 0.95em; }
+    .chip b { color: rgba(255,255,255,0.96); font-weight: 700; }
 
     /* Contact bar */
     .contact-bar { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 3rem; }
@@ -554,9 +555,9 @@
     <h2 class="services-heading" id="hww-h-pl" lang="pl" style="display:none">Jak Działamy</h2>
     <h2 class="services-heading" id="hww-h-is" lang="is" style="display:none">Hvernig Við Vinnum</h2>
 
-    <p class="process-sub" id="hww-sub-en">No car held hostage, no surprise bills. We plan the job, keep our word and respect your time — your car's first stop for an honest look, the simple fixes we can handle, and a clear answer when it needs a specialist.</p>
-    <p class="process-sub" id="hww-sub-pl" lang="pl" style="display:none">Bez przetrzymywania auta, bez niespodzianek na rachunku. Planujemy naprawę, jesteśmy słowni i szanujemy Twój czas — pierwszy przystanek dla Twojego auta: uczciwe spojrzenie, proste naprawy które ogarniamy i jasna odpowiedź, gdy potrzeba specjalisty.</p>
-    <p class="process-sub" id="hww-sub-is" lang="is" style="display:none">Enginn bíll í gíslingu, engin óvænt útgjöld. Við skipuleggjum verkið, stöndum við orð okkar og virðum tíma þinn — fyrsti viðkomustaður bílsins: heiðarleg athugun, einfaldar viðgerðir sem við ráðum við og skýrt svar þegar þörf er á sérfræðingi.</p>
+    <p class="process-sub" id="hww-sub-en">Think of us as your car's GP — here to keep it running day to day, and to send you to a specialist when something's more serious. We plan the job, keep our word and respect your time — no car held hostage, no surprise bills.</p>
+    <p class="process-sub" id="hww-sub-pl" lang="pl" style="display:none">Traktuj nas jak lekarza pierwszego kontaktu dla Twojego auta — jesteśmy po to, żeby na co dzień utrzymać je w ruchu, a przy poważniejszym problemie pokierować do specjalisty. Planujemy naprawę, jesteśmy słowni i szanujemy Twój czas — bez przetrzymywania auta, bez niespodzianek na rachunku.</p>
+    <p class="process-sub" id="hww-sub-is" lang="is" style="display:none">Hugsaðu um okkur eins og heimilislækni bílsins þíns — við höldum honum gangandi frá degi til dags og vísum þér til sérfræðings þegar eitthvað alvarlegra kemur upp. Við skipuleggjum verkið, stöndum við orð okkar og virðum tíma þinn — enginn bíll í gíslingu, engin óvænt útgjöld.</p>
 
     <div class="process-steps">
       <div class="pstep">
