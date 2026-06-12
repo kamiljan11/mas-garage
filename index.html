@@ -558,6 +558,13 @@
 
     /* Footer */
     .bottom { background: var(--paper-2); border-top-color: var(--line); }
+    /* Cinematic closing CTA band (AI Iceland backdrop, dark zone) */
+    .cta-band { position: relative; padding: 4.5rem 1.5rem; text-align: center; overflow: hidden;
+      background-image: linear-gradient(rgba(17,24,39,0.72), rgba(17,24,39,0.82)), url('./cta-bg.webp');
+      background-size: cover; background-position: center; }
+    .cta-band h2 { font-family: 'Montserrat',sans-serif; color: #fff; font-size: clamp(1.4rem,4.5vw,2.1rem); font-weight: 900; line-height: 1.15; max-width: 620px; margin: 0 auto 1.5rem; text-wrap: balance; text-shadow: 0 2px 18px rgba(0,0,0,0.55); }
+    .cta-band .contact-bar { margin-bottom: 0; }
+    .cta-band .contact-bar a:not(.cta) { color: #fff; border-color: rgba(255,255,255,0.32); }
     /* Club (.lejdis) intentionally stays a dark gold zone for contrast */
   </style>
 </head>
@@ -1049,6 +1056,19 @@
       <p class="cta-sub" id="cta-sub-pl" lang="pl" style="display:none">Zapytaj Gosię o kartę klubową gdy przyjedziesz <span aria-hidden="true">👋</span></p>
       <p class="cta-sub" id="cta-sub-is" lang="is" style="display:none">Spurðu Gosiu um klúbbkortið þegar þú kemur <span aria-hidden="true">👋</span></p>
 
+    </div>
+  </section>
+
+  <!-- Cinematic closing CTA (AI-generated Iceland backdrop) -->
+  <section class="cta-band" aria-label="Get in touch">
+    <h2 id="cta-h-en">Something off with the car? Bring it in — we'll take an honest look.</h2>
+    <h2 id="cta-h-pl" lang="pl" style="display:none">Coś nie tak z autem? Podjedź — sprawdzimy uczciwie.</h2>
+    <h2 id="cta-h-is" lang="is" style="display:none">Eitthvað að bílnum? Komdu við — við kíkjum heiðarlega á það.</h2>
+    <div class="contact-bar">
+      <a href="https://wa.me/3548888005?text=Hi%20Mountain%20Car%20Garage%21%20I%20would%20like%20to%20book%20a%20car%20service." target="_blank" rel="noopener" class="cta" id="ctab-wa-en"><span aria-hidden="true">💬</span> Book on WhatsApp</a>
+      <a href="https://wa.me/3548888005?text=Czesc%21%20Chce%20umowic%20moje%20auto%20na%20serwis%20w%20Mountain%20Car%20Garage." target="_blank" rel="noopener" class="cta" id="ctab-wa-pl" lang="pl" style="display:none"><span aria-hidden="true">💬</span> Umów wizytę na WhatsApp</a>
+      <a href="https://wa.me/3548888005?text=Hallo%21%20Eg%20vil%20boka%20tima%20fyrir%20bilathjonustu%20hja%20Mountain%20Car%20Garage." target="_blank" rel="noopener" class="cta" id="ctab-wa-is" lang="is" style="display:none"><span aria-hidden="true">💬</span> Bókaðu á WhatsApp</a>
+      <a href="tel:+3548888005"><span aria-hidden="true">📞</span> +354 888 8005</a>
     </div>
   </section>
   </main>
