@@ -152,12 +152,13 @@
     .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; max-width: 940px; margin: 0 auto; }
     @media(max-width:760px){ .process-steps { grid-template-columns: 1fr 1fr; } }
     @media(max-width:440px){ .process-steps { grid-template-columns: 1fr; } }
-    .pstep { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 1.5rem 1.25rem; text-align: left; }
-    .pstep-num { font-family: 'Montserrat',sans-serif; font-size: 1.9rem; font-weight: 900; color: var(--orange); line-height: 1; margin-bottom: 0.6rem; }
-    .pstep h3 { font-family: 'Montserrat',sans-serif; font-size: 0.86rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; color: #fff; margin-bottom: 0.45rem; }
-    .pstep p { font-size: 0.84rem; color: var(--muted); line-height: 1.55; }
+    .pstep { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 1.4rem 1.25rem; text-align: left; }
+    .pstep-num { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 12px; background: rgba(245,130,32,0.14); color: var(--orange); font-family: 'Montserrat',sans-serif; font-size: 1.3rem; font-weight: 900; margin-bottom: 0.9rem; }
+    .pstep-body h3 { font-family: 'Montserrat',sans-serif; font-size: 0.86rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; color: #fff; margin-bottom: 0.4rem; }
+    .pstep-body p { font-size: 0.84rem; color: var(--muted); line-height: 1.55; }
     .pstep.redirect { border-color: rgba(212,175,55,0.3); background: rgba(212,175,55,0.05); }
-    .pstep.redirect .pstep-num { color: var(--gold); }
+    .pstep.redirect .pstep-num { color: var(--gold); background: rgba(212,175,55,0.14); }
+    @media(max-width:440px){ .pstep { display: flex; gap: 0.9rem; align-items: flex-start; } .pstep-num { margin-bottom: 0; flex-shrink: 0; } }
 
     /* Pricing */
     .pricing-section { padding: 4rem 1.5rem 4.5rem; text-align: center; background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
@@ -177,6 +178,17 @@
     .inspect-band-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1rem; color: #fff; margin-bottom: 0.25rem; }
     .inspect-band-text { font-size: 0.86rem; color: var(--muted); line-height: 1.5; }
     @media(max-width:520px){ .inspect-band { flex-direction: column; text-align: center; gap: 0.75rem; } }
+
+    /* Why Us */
+    .why-section { padding: 4rem 1.5rem 4.5rem; text-align: center; }
+    .why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; max-width: 900px; margin: 0 auto; }
+    @media(max-width:700px){ .why-grid { grid-template-columns: 1fr; max-width: 480px; } }
+    .why-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 1.75rem 1.4rem; text-align: left; }
+    .why-card.feature { border-color: rgba(245,130,32,0.35); background: rgba(245,130,32,0.06); }
+    .why-icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 14px; background: rgba(245,130,32,0.14); font-size: 1.5rem; line-height: 1; margin-bottom: 1rem; }
+    .why-body h3 { font-family: 'Montserrat',sans-serif; font-size: 1.02rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; }
+    .why-body p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+    @media(max-width:700px){ .why-card { display: flex; gap: 1rem; align-items: flex-start; padding: 1.4rem 1.25rem; } .why-icon { margin-bottom: 0; flex-shrink: 0; } }
     .service-card {
       background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
       border-radius: 14px; padding: 1.4rem 1.2rem; text-align: left;
@@ -549,39 +561,90 @@
     <div class="process-steps">
       <div class="pstep">
         <div class="pstep-num">1</div>
-        <h3 id="ps1t-en">Book a visit</h3>
-        <h3 id="ps1t-pl" lang="pl" style="display:none">Umów wizytę</h3>
-        <h3 id="ps1t-is" lang="is" style="display:none">Bókaðu tíma</h3>
-        <p id="ps1d-en">You get in touch and we'll try to book you in as soon as we can. We start with a look at the car — we won't take it apart blind.</p>
-        <p id="ps1d-pl" lang="pl" style="display:none">Kontaktujesz się z nami, a my staramy się dać termin jak najszybciej. Zaczynamy od sprawdzenia auta — nie ruszamy go na ślepo.</p>
-        <p id="ps1d-is" lang="is" style="display:none">Þú hefur samband og við reynum að bóka þig sem fyrst. Við byrjum á að athuga bílinn — við opnum hann ekki í blindni.</p>
+        <div class="pstep-body">
+          <h3 id="ps1t-en">Book a visit</h3>
+          <h3 id="ps1t-pl" lang="pl" style="display:none">Umów wizytę</h3>
+          <h3 id="ps1t-is" lang="is" style="display:none">Bókaðu tíma</h3>
+          <p id="ps1d-en">You get in touch and we'll try to book you in as soon as we can. We start with a look at the car — we won't take it apart blind.</p>
+          <p id="ps1d-pl" lang="pl" style="display:none">Kontaktujesz się z nami, a my staramy się dać termin jak najszybciej. Zaczynamy od sprawdzenia auta — nie ruszamy go na ślepo.</p>
+          <p id="ps1d-is" lang="is" style="display:none">Þú hefur samband og við reynum að bóka þig sem fyrst. Við byrjum á að athuga bílinn — við opnum hann ekki í blindni.</p>
+        </div>
       </div>
       <div class="pstep">
         <div class="pstep-num">2</div>
-        <h3 id="ps2t-en">We take a look</h3>
-        <h3 id="ps2t-pl" lang="pl" style="display:none">Sprawdzamy auto</h3>
-        <h3 id="ps2t-is" lang="is" style="display:none">Við athugum bílinn</h3>
-        <p id="ps2d-en">We take a proper look and explain, in plain words, what we're seeing and the likely cause.</p>
-        <p id="ps2d-pl" lang="pl" style="display:none">Dokładnie sprawdzamy i tłumaczymy po ludzku, co widzimy i co prawdopodobnie jest przyczyną.</p>
-        <p id="ps2d-is" lang="is" style="display:none">Við athugum bílinn vel og útskýrum á mannamáli hvað við sjáum og líklega orsök.</p>
+        <div class="pstep-body">
+          <h3 id="ps2t-en">We take a look</h3>
+          <h3 id="ps2t-pl" lang="pl" style="display:none">Sprawdzamy auto</h3>
+          <h3 id="ps2t-is" lang="is" style="display:none">Við athugum bílinn</h3>
+          <p id="ps2d-en">We take a proper look and explain, in plain words, what we're seeing and the likely cause.</p>
+          <p id="ps2d-pl" lang="pl" style="display:none">Dokładnie sprawdzamy i tłumaczymy po ludzku, co widzimy i co prawdopodobnie jest przyczyną.</p>
+          <p id="ps2d-is" lang="is" style="display:none">Við athugum bílinn vel og útskýrum á mannamáli hvað við sjáum og líklega orsök.</p>
+        </div>
       </div>
       <div class="pstep">
         <div class="pstep-num">3</div>
-        <h3 id="ps3t-en">Simple job? We plan it.</h3>
-        <h3 id="ps3t-pl" lang="pl" style="display:none">Proste? Planujemy i robimy.</h3>
-        <h3 id="ps3t-is" lang="is" style="display:none">Einfalt? Við skipuleggjum.</h3>
-        <p id="ps3d-en">If it's something we can handle, we plan it out — price, parts and time agreed up front — and aim to keep the wait short.</p>
-        <p id="ps3d-pl" lang="pl" style="display:none">Jeśli to coś, co ogarniamy, planujemy całość — cena, części i czas z góry — i staramy się nie przeciągać.</p>
-        <p id="ps3d-is" lang="is" style="display:none">Ef það er eitthvað sem við ráðum við, skipuleggjum við allt — verð, varahluti og tíma fyrirfram — og reynum að hafa biðina stutta.</p>
+        <div class="pstep-body">
+          <h3 id="ps3t-en">Simple job? We plan it.</h3>
+          <h3 id="ps3t-pl" lang="pl" style="display:none">Proste? Planujemy i robimy.</h3>
+          <h3 id="ps3t-is" lang="is" style="display:none">Einfalt? Við skipuleggjum.</h3>
+          <p id="ps3d-en">If it's something we can handle, we plan it out — price, parts and time agreed up front — and aim to keep the wait short.</p>
+          <p id="ps3d-pl" lang="pl" style="display:none">Jeśli to coś, co ogarniamy, planujemy całość — cena, części i czas z góry — i staramy się nie przeciągać.</p>
+          <p id="ps3d-is" lang="is" style="display:none">Ef það er eitthvað sem við ráðum við, skipuleggjum við allt — verð, varahluti og tíma fyrirfram — og reynum að hafa biðina stutta.</p>
+        </div>
       </div>
       <div class="pstep redirect">
         <div class="pstep-num">→</div>
-        <h3 id="ps4t-en">Big job? Honest redirect.</h3>
-        <h3 id="ps4t-pl" lang="pl" style="display:none">Trudne? Uczciwie kierujemy.</h3>
-        <h3 id="ps4t-is" lang="is" style="display:none">Stórt mál? Heiðarleg tilvísun.</h3>
-        <p id="ps4d-en">Engine, gearbox, major work isn't us. We tell you honestly and send you to a trusted partner — no wasted time or money.</p>
-        <p id="ps4d-pl" lang="pl" style="display:none">Silnik, skrzynia, duże naprawy to nie my. Mówimy uczciwie i kierujemy do zaufanego partnera — bez traconego czasu i pieniędzy.</p>
-        <p id="ps4d-is" lang="is" style="display:none">Vél, gírkassi, stórar viðgerðir eru ekki okkar. Við segjum þér heiðarlega og vísum þér á traustan samstarfsaðila — engin sóun á tíma eða peningum.</p>
+        <div class="pstep-body">
+          <h3 id="ps4t-en">Big job? Honest redirect.</h3>
+          <h3 id="ps4t-pl" lang="pl" style="display:none">Trudne? Uczciwie kierujemy.</h3>
+          <h3 id="ps4t-is" lang="is" style="display:none">Stórt mál? Heiðarleg tilvísun.</h3>
+          <p id="ps4d-en">Engine, gearbox, major work isn't us. We tell you honestly and send you to a trusted partner — no wasted time or money.</p>
+          <p id="ps4d-pl" lang="pl" style="display:none">Silnik, skrzynia, duże naprawy to nie my. Mówimy uczciwie i kierujemy do zaufanego partnera — bez traconego czasu i pieniędzy.</p>
+          <p id="ps4d-is" lang="is" style="display:none">Vél, gírkassi, stórar viðgerðir eru ekki okkar. Við segjum þér heiðarlega og vísum þér á traustan samstarfsaðila — engin sóun á tíma eða peningum.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section class="why-section">
+    <h2 class="services-heading" id="why-h-en">Why Mountain Car?</h2>
+    <h2 class="services-heading" id="why-h-pl" lang="pl" style="display:none">Dlaczego My?</h2>
+    <h2 class="services-heading" id="why-h-is" lang="is" style="display:none">Af Hverju Við?</h2>
+
+    <div class="why-grid">
+      <div class="why-card feature">
+        <div class="why-icon" aria-hidden="true">⚡</div>
+        <div class="why-body">
+          <h3 id="why1t-en">Fast service</h3>
+          <h3 id="why1t-pl" lang="pl" style="display:none">Szybki serwis</h3>
+          <h3 id="why1t-is" lang="is" style="display:none">Hröð þjónusta</h3>
+          <p id="why1d-en">Our biggest strength — quick turnaround. We won't leave you waiting around for the everyday stuff.</p>
+          <p id="why1d-pl" lang="pl" style="display:none">Nasz największy atut — szybko ogarniamy. Nie każemy Ci czekać w nieskończoność na bieżące sprawy.</p>
+          <p id="why1d-is" lang="is" style="display:none">Okkar stærsti kostur — fljót afgreiðsla. Við látum þig ekki bíða endalaust eftir hversdagslegu hlutunum.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" aria-hidden="true">🔧</div>
+        <div class="why-body">
+          <h3 id="why2t-en">Like it's our own</h3>
+          <h3 id="why2t-pl" lang="pl" style="display:none">Robimy jak dla siebie</h3>
+          <h3 id="why2t-is" lang="is" style="display:none">Eins og okkar eigin</h3>
+          <p id="why2d-en">We're hands-on and committed — we work on your car the way we'd want it done on ours. Solid, no shortcuts.</p>
+          <p id="why2d-pl" lang="pl" style="display:none">Jesteśmy zaangażowani — pracujemy przy Twoim aucie tak, jakbyśmy robili przy własnym. Solidnie, bez chodzenia na skróty.</p>
+          <p id="why2d-is" lang="is" style="display:none">Við leggjum okkur fram — við vinnum á bílnum þínum eins og við myndum vilja á okkar eigin. Traust vinna, engar skammleiðir.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" aria-hidden="true">🤝</div>
+        <div class="why-body">
+          <h3 id="why3t-en">We remember you</h3>
+          <h3 id="why3t-pl" lang="pl" style="display:none">Pamiętamy o Tobie</h3>
+          <h3 id="why3t-is" lang="is" style="display:none">Við munum eftir þér</h3>
+          <p id="why3d-en">We're not a one-time stop. We build a relationship, get to know your car and remember its history.</p>
+          <p id="why3d-pl" lang="pl" style="display:none">Nie jesteśmy warsztatem na chwilę. Budujemy relację, poznajemy Twoje auto i pamiętamy jego historię.</p>
+          <p id="why3d-is" lang="is" style="display:none">Við erum ekki einnota verkstæði. Við byggjum upp samband, kynnumst bílnum þínum og munum sögu hans.</p>
+        </div>
       </div>
     </div>
   </section>
