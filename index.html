@@ -31,7 +31,7 @@
   <link rel="apple-touch-icon" href="./logo.jpg">
 
   <!-- Preload LCP hero image so it is fetched during HTML parse, not after CSSOM -->
-  <link rel="preload" as="image" href="./hero.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="./hero3.webp" fetchpriority="high">
   <link rel="preload" as="image" href="./logo.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -142,18 +142,23 @@
       position: relative; min-height: 100vh; min-height: 100svh;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       padding: 5.5rem 1.5rem 2.5rem; text-align: center; overflow: hidden;
-      background-image:
-        linear-gradient(rgba(17,24,39,0.74) 0%, rgba(17,24,39,0.82) 45%, rgba(17,24,39,0.92) 100%),
-        url('./hero.webp');
-      background-size: cover;
-      background-position: center;
+      background: var(--dark);
     }
+    /* Rotating hero photos (real workshop shots) */
+    .hero-slides { position: absolute; inset: 0; z-index: 0; }
+    .hero-slide {
+      position: absolute; inset: 0; background-size: cover; background-position: center;
+      opacity: 0; transition: opacity 1.6s ease-in-out;
+    }
+    .hero-slide.active { opacity: 1; }
+    .hero > *:not(.hero-slides) { position: relative; z-index: 1; }
     .hero::before {
-      content: ''; position: absolute; inset: 0;
+      content: ''; position: absolute; inset: 0; z-index: 1;
       background: radial-gradient(ellipse at top, rgba(245,130,32,0.12) 0%, transparent 60%),
         repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 41px);
       pointer-events: none;
     }
+    @media (prefers-reduced-motion: reduce) { .hero-slide { transition: none; } }
     .logo-wrap {
       margin-bottom: 1.75rem; position: relative;
       background: white; border-radius: 20px;
@@ -203,7 +208,8 @@
     .contact-bar a.cta:hover { background: var(--orange-dark); }
 
     /* Services */
-    .services-section { padding: 4rem 1.5rem 4.5rem; text-align: center; }
+    .services-section { padding: 4rem 1.5rem 4.5rem; text-align: center;
+      background-image: radial-gradient(ellipse 80% 55% at 50% -10%, rgba(245,130,32,0.05), transparent 70%), repeating-linear-gradient(45deg, transparent, transparent 38px, rgba(255,255,255,0.012) 38px, rgba(255,255,255,0.012) 39px); }
     .services-heading { position: relative; font-family: 'Montserrat', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; margin-bottom: 2.25rem; }
     /* Creative section kicker — gradient accent rule above every heading */
     .services-heading::before {
@@ -252,7 +258,8 @@
     @media(max-width:520px){ .inspect-band { flex-direction: column; text-align: center; gap: 0.75rem; } }
 
     /* Why Us */
-    .why-section { padding: 4rem 1.5rem 4.5rem; text-align: center; }
+    .why-section { padding: 4rem 1.5rem 4.5rem; text-align: center;
+      background-image: radial-gradient(ellipse 80% 55% at 50% 110%, rgba(212,175,55,0.04), transparent 70%), repeating-linear-gradient(-45deg, transparent, transparent 38px, rgba(255,255,255,0.012) 38px, rgba(255,255,255,0.012) 39px); }
     .why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; max-width: 900px; margin: 0 auto; }
     @media(max-width:700px){ .why-grid { grid-template-columns: 1fr; max-width: 480px; } }
     .why-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 1.75rem 1.4rem; text-align: left; }
@@ -540,6 +547,13 @@
 
   <main id="main" tabindex="-1">
   <section class="hero">
+    <div class="hero-slides" aria-hidden="true">
+      <div class="hero-slide active" style="background-image: linear-gradient(rgba(17,24,39,0.72) 0%, rgba(17,24,39,0.8) 45%, rgba(17,24,39,0.92) 100%), url('./hero3.webp')"></div>
+      <div class="hero-slide" style="background-image: linear-gradient(rgba(17,24,39,0.72) 0%, rgba(17,24,39,0.8) 45%, rgba(17,24,39,0.92) 100%), url('./hero1.webp')"></div>
+      <div class="hero-slide" style="background-image: linear-gradient(rgba(17,24,39,0.72) 0%, rgba(17,24,39,0.8) 45%, rgba(17,24,39,0.92) 100%), url('./hero4.webp')"></div>
+      <div class="hero-slide" style="background-image: linear-gradient(rgba(17,24,39,0.72) 0%, rgba(17,24,39,0.8) 45%, rgba(17,24,39,0.92) 100%), url('./hero2.webp')"></div>
+      <div class="hero-slide" style="background-image: linear-gradient(rgba(17,24,39,0.72) 0%, rgba(17,24,39,0.8) 45%, rgba(17,24,39,0.92) 100%), url('./hero5.webp')"></div>
+    </div>
     <div class="logo-wrap">
       <img src="./logo.jpg" alt="Mountain Car Garage" width="600" height="404" fetchpriority="high" decoding="async">
     </div>
@@ -555,9 +569,9 @@
     <h1 id="h1-is" lang="is" style="display:none">Bílavandræði?<br>Við kíkjum á bílinn — <span>fljótt.</span></h1>
 
     <!-- Subtitle -->
-    <p class="sub" id="sub-en">Your first stop in Reykjanesbær when something's not right and you're not sure where to start. We take a quick look, tell you honestly what's going on, and either sort the simple stuff on the spot or point you to the right specialist. Run by Gosia & team — we speak Polish and English.</p>
-    <p class="sub" id="sub-pl" lang="pl" style="display:none">Twój pierwszy przystanek w Reykjanesbæ (Keflavík), gdy coś się dzieje, a nie wiesz, od czego zacząć. Szybko sprawdzamy, mówimy uczciwie, w czym rzecz, i albo załatwiamy proste rzeczy od ręki, albo kierujemy do właściwego specjalisty. Prowadzi Gosia z ekipą — mówimy po polsku i angielsku.</p>
-    <p class="sub" id="sub-is" lang="is" style="display:none">Fyrsti viðkomustaðurinn þinn í Reykjanesbæ þegar eitthvað er að og þú veist ekki alveg hvar á að byrja. Við kíkjum fljótt á bílinn, segjum þér heiðarlega hvað er í gangi og annaðhvort reynum við að klára einföldu verkin strax eða vísum þér á réttan sérfræðing. Rekið af Gosiu og teyminu — við tölum pólsku og ensku.</p>
+    <p class="sub" id="sub-en">Your fast, honest first stop in Reykjanesbær. The simple stuff on the spot — bigger jobs pointed the right way. We speak Polish & English.</p>
+    <p class="sub" id="sub-pl" lang="pl" style="display:none">Szybki i uczciwy pierwszy przystanek w Reykjanesbæ. Proste rzeczy od ręki — przy większych pokierujemy Cię dalej. Mówimy po polsku i angielsku.</p>
+    <p class="sub" id="sub-is" lang="is" style="display:none">Fljótur og heiðarlegur fyrsti viðkomustaður þinn í Reykjanesbæ. Einföldu verkin strax — sé málið stærra vísum við þér áfram. Við tölum pólsku og ensku.</p>
 
     <!-- Trust strip -->
     <div class="trust">
@@ -569,27 +583,12 @@
       </a>
     </div>
 
-    <!-- Benefit chips -->
-    <div class="chips">
-      <span class="chip" id="chip1-en"><b>Fast service</b> · seen quickly</span>
-      <span class="chip" id="chip1-pl" lang="pl" style="display:none"><b>Szybki serwis</b> · od ręki</span>
-      <span class="chip" id="chip1-is" lang="is" style="display:none"><b>Hröð þjónusta</b> · skoðað fljótt</span>
-      <span class="chip" id="chip2-en"><b>On time</b> · we keep our word</span>
-      <span class="chip" id="chip2-pl" lang="pl" style="display:none"><b>Terminowo</b> · jesteśmy słowni</span>
-      <span class="chip" id="chip2-is" lang="is" style="display:none"><b>Stundvís</b> · við stöndum við orð okkar</span>
-      <span class="chip" id="chip3-en">Honest advice · <b>no upselling</b></span>
-      <span class="chip" id="chip3-pl" lang="pl" style="display:none">Uczciwa porada · <b>bez wciskania zbędnych usług</b></span>
-      <span class="chip" id="chip3-is" lang="is" style="display:none">Heiðarleg ráð · <b>engin sölupressa</b></span>
-    </div>
-
     <!-- Contacts -->
     <div class="contact-bar">
       <a href="https://wa.me/3548888005?text=Hi%20Mountain%20Car%20Garage%21%20I%20would%20like%20to%20book%20a%20car%20service." target="_blank" rel="noopener" class="cta" id="cta-wa-en"><span aria-hidden="true">💬</span> Book on WhatsApp</a>
       <a href="https://wa.me/3548888005?text=Czesc%21%20Chce%20umowic%20moje%20auto%20na%20serwis%20w%20Mountain%20Car%20Garage." target="_blank" rel="noopener" class="cta" id="cta-wa-pl" lang="pl" style="display:none"><span aria-hidden="true">💬</span> Umów wizytę na WhatsApp</a>
       <a href="https://wa.me/3548888005?text=Hallo%21%20Eg%20vil%20boka%20tima%20fyrir%20bilathjonustu%20hja%20Mountain%20Car%20Garage." target="_blank" rel="noopener" class="cta" id="cta-wa-is" lang="is" style="display:none"><span aria-hidden="true">💬</span> Bókaðu á WhatsApp</a>
       <a href="tel:+3548888005"><span aria-hidden="true">📞</span> +354 888 8005</a>
-      <a href="https://www.google.com/maps/place/Mountain+car+ehf/@63.9729664,-22.5542144,13z/data=!4m6!3m5!1s0x48d6037e5226a501:0x3cc12a6ecfedeb8f!8m2!3d63.9714579!4d-22.5287403!16s%2Fg%2F11jz3n96h8" target="_blank" rel="noopener"><span aria-hidden="true">📍</span> Njarðarbraut 3i, Reykjanesbær</a>
-      <a href="mailto:mountainallservice@gmail.com"><span aria-hidden="true">✉️</span> mountainallservice@gmail.com</a>
     </div>
 
   </section>
@@ -605,19 +604,19 @@
         <div class="intro-role" id="introle-is" lang="is" style="display:none">Eigandi og verkstæðisstjóri</div>
         <blockquote class="intro-quote" id="introq-en">
           <p>Hi, I'm Gosia and I run Mountain Car. I started it because I was tired of how garages treat people — the talking-down, the jargon, the bill that somehow beats the quote.</p>
-          <p>So here it's simple: we take an honest look, tell you in plain words what's going on, and agree the price before we touch your car. The everyday stuff we aim to sort fast. If it's a big engine or gearbox job, we won't pretend — we tell you straight and point you to the right specialist.</p>
+          <p>So here it's simple: we take an honest look, tell you in plain words what's going on, and agree the price before we touch your car. If something extra turns up, we call you — the decision is yours, and we'll say honestly what's worth doing and what to skip, so you don't overpay. The everyday stuff we aim to sort fast; for a big engine or gearbox job, we won't pretend — we point you to the right specialist.</p>
           <p class="filter">We're not the cheapest, and we don't do miracles. We're honest, on time, and here for the long run — we get to know you and your car. If that's the garage you're after, you'll feel at home here.</p>
           <span class="intro-sign">— Gosia</span>
         </blockquote>
         <blockquote class="intro-quote" id="introq-pl" lang="pl" style="display:none">
           <p>Cześć, jestem Gosia i prowadzę Mountain Car. Zaczęłam, bo miałam dość tego, jak warsztaty traktują ludzi — tłumaczenie z góry, żargon, rachunek, który jakimś cudem wychodzi wyższy niż wycena.</p>
-          <p>Więc u nas jest prosto: uczciwie sprawdzamy, mówimy po ludzku, w czym rzecz, i ustalamy cenę, zanim dotkniemy auta. Bieżące rzeczy staramy się ogarnąć szybko. A jeśli to duża robota przy silniku czy skrzyni — nie udajemy, mówimy wprost i kierujemy do właściwego specjalisty.</p>
+          <p>Więc u nas jest prosto: uczciwie sprawdzamy, tłumaczymy po ludzku, w czym rzecz, i ustalamy cenę, zanim dotkniemy auta. Jeśli w trakcie coś wyjdzie, dzwonimy — decyzja należy do Ciebie, a my szczerze podpowiemy, co ma sens, a co odpuścić, żebyś nie przepłacał. Bieżące rzeczy staramy się zrobić szybko; a przy dużej robocie przy silniku czy skrzyni nie udajemy — kierujemy Cię do właściwego specjalisty.</p>
           <p class="filter">Nie jesteśmy najtańsi i nie robimy cudów. Jesteśmy uczciwi, terminowi i na dłużej — poznajemy Ciebie i Twoje auto. Jeśli takiego warsztatu szukasz, będziesz u nas u siebie.</p>
           <span class="intro-sign">— Gosia</span>
         </blockquote>
         <blockquote class="intro-quote" id="introq-is" lang="is" style="display:none">
           <p>Hæ, ég heiti Gosia og ég rek Mountain Car. Ég byrjaði af því að ég var orðin þreytt á því hvernig verkstæði koma fram við fólk — talað niður til þín, fagmál, reikningur sem einhvern veginn fer fram úr tilboðinu.</p>
-          <p>Þannig að hér er þetta einfalt: við kíkjum heiðarlega á bílinn, segjum þér á mannamáli hvað er í gangi og semjum um verðið áður en við snertum hann. Daglegu verkin reynum við að klára fljótt. Og ef um stóra vél- eða gírkassaviðgerð er að ræða segjum við það hreint út og vísum þér á réttan sérfræðing.</p>
+          <p>Þannig að hér er þetta einfalt: við kíkjum heiðarlega á bílinn, segjum þér á mannamáli hvað er í gangi og semjum um verðið áður en við snertum hann. Ef eitthvað kemur upp á leiðinni hringjum við í þig — ákvörðunin er þín, og við segjum þér hreint út hvað borgar sig og hvað má sleppa, svo þú borgir ekki of mikið. Daglegu verkin reynum við að klára fljótt; og ef um stóra vél- eða gírkassaviðgerð er að ræða, þá vísum við þér á réttan sérfræðing.</p>
           <p class="filter">Við erum ekki ódýrust og við gerum ekki kraftaverk. Við erum heiðarleg, stundvís og hér til lengri tíma — við kynnumst þér og bílnum þínum. Ef það er verkstæðið sem þú ert að leita að, þá áttu heima hjá okkur.</p>
           <span class="intro-sign">— Gosia</span>
         </blockquote>
@@ -822,9 +821,9 @@
   <section class="inspect-section" aria-label="Get in touch" style="padding: 2.5rem 1.5rem 1rem;">
     <div class="inspect-band" style="flex-direction: column; text-align: center; gap: 0.9rem;">
       <div>
-        <div class="inspect-band-title" id="midc-t-en">Not sure what it is? Send us a message — we'll take a look.</div>
-        <div class="inspect-band-title" id="midc-t-pl" lang="pl" style="display:none">Nie wiesz, co to? Napisz — sprawdzimy.</div>
-        <div class="inspect-band-title" id="midc-t-is" lang="is" style="display:none">Veistu ekki hvað er að? Sendu okkur skilaboð — við kíkjum á það.</div>
+        <div class="inspect-band-title" id="midc-t-en">Not sure what's wrong with the car? Message us — we'll take a look.</div>
+        <div class="inspect-band-title" id="midc-t-pl" lang="pl" style="display:none">Coś nie tak z autem? Napisz — sprawdzimy.</div>
+        <div class="inspect-band-title" id="midc-t-is" lang="is" style="display:none">Eitthvað að bílnum? Sendu okkur skilaboð — við kíkjum á það.</div>
       </div>
       <div class="contact-bar" style="margin-bottom: 0;">
         <a href="https://wa.me/3548888005?text=Hi%20Mountain%20Car%20Garage%21%20I%20would%20like%20to%20book%20a%20car%20service." target="_blank" rel="noopener" class="cta" id="midc-wa-en"><span aria-hidden="true">💬</span> Book on WhatsApp</a>
@@ -1057,6 +1056,19 @@
       var btn = document.querySelector('.nav-toggle');
       if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
+
+    // Rotating hero background (real workshop photos)
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var slides = document.querySelectorAll('.hero-slide');
+      if (slides.length < 2) return;
+      var i = 0;
+      setInterval(function () {
+        slides[i].classList.remove('active');
+        i = (i + 1) % slides.length;
+        slides[i].classList.add('active');
+      }, 5500);
+    })();
 
     function setLang(lang) {
       const langs = ['en','pl','is'];
