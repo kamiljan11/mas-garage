@@ -574,7 +574,7 @@
     ::-webkit-scrollbar-thumb:hover { background: var(--orange-dark); }
 
     /* Cute cursor — heart pointer + flower/sparkle trail (desktop fine-pointer only) */
-    .cursor-heart { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10000; will-change: transform; filter: drop-shadow(0 2px 3px rgba(80,60,120,0.35)); }
+    .cursor-heart { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10000; will-change: transform; filter: drop-shadow(0 2px 3px rgba(120,60,10,0.38)); }
     .cursor-heart svg { display: block; }
     .cursor-trail { position: fixed; pointer-events: none; z-index: 9999; font-size: 14px; line-height: 1; transform: translate(-50%,-50%); animation: trailFloat .95s ease-out forwards; }
     @keyframes trailFloat { 0% { opacity: .95; transform: translate(-50%,-50%) scale(.5) rotate(0deg); } 100% { opacity: 0; transform: translate(-60%,-150%) scale(1.15) rotate(25deg); } }
@@ -1392,10 +1392,10 @@
       if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       var heart = document.createElement('div'); heart.className = 'cursor-heart';
-      heart.innerHTML = '<svg width="36" height="40" viewBox="0 0 34 38" xmlns="http://www.w3.org/2000/svg"><path d="M5 4 C4 2 7 1 9 3 L29 17 C31 18.5 30 21.5 27 21 L20 20 L24 31 C25 33.5 21.5 34.5 20 32 L16 22 L9 28 C6.5 30 4 28 5 25 Z" fill="#DBC9F6" stroke="#9D80D6" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="12" cy="13" rx="1.6" ry="2.2" fill="#6B5797"/><ellipse cx="17.5" cy="16" rx="1.6" ry="2.2" fill="#6B5797"/><circle cx="9.5" cy="17" r="1.8" fill="#F4A9C2" opacity="0.75"/><circle cx="20" cy="19.5" r="1.8" fill="#F4A9C2" opacity="0.75"/><path d="M13.5 16.5 q1.3 1.4 2.6 0.2" stroke="#6B5797" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M31 3 l0.8 2.4 2.4 0.8 -2.4 0.8 -0.8 2.4 -0.8 -2.4 -2.4 -0.8 2.4 -0.8 z" fill="#B79CE6"/></svg>';
+      heart.innerHTML = '<svg width="36" height="40" viewBox="0 0 34 38" xmlns="http://www.w3.org/2000/svg"><path d="M5 4 C4 2 7 1 9 3 L29 17 C31 18.5 30 21.5 27 21 L20 20 L24 31 C25 33.5 21.5 34.5 20 32 L16 22 L9 28 C6.5 30 4 28 5 25 Z" fill="#F58220" stroke="#A14E07" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="12" cy="13" rx="1.6" ry="2.2" fill="#3E2A12"/><ellipse cx="17.5" cy="16" rx="1.6" ry="2.2" fill="#3E2A12"/><circle cx="9.5" cy="17" r="1.8" fill="#FF8FB0" opacity="0.7"/><circle cx="20" cy="19.5" r="1.8" fill="#FF8FB0" opacity="0.7"/><path d="M13.5 16.5 q1.3 1.4 2.6 0.2" stroke="#3E2A12" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M31 3 l0.8 2.4 2.4 0.8 -2.4 0.8 -0.8 2.4 -0.8 -2.4 -2.4 -0.8 2.4 -0.8 z" fill="#FFD24D"/></svg>';
       document.body.appendChild(heart);
       document.documentElement.classList.add('has-cursor');
-      var charms = ['🌸', '✨', '💕', '🌼', '💖', '🌷'];
+      var charms = ['🧡', '✨', '🌟', '💛', '🌼', '🌷'];
       var last = 0;
       document.addEventListener('mousemove', function (e) {
         heart.style.transform = 'translate(' + (e.clientX - 5) + 'px,' + (e.clientY - 4) + 'px)';
