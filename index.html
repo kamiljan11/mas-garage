@@ -502,6 +502,61 @@
       .bottom { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 1.25rem 1rem; line-height: 1.5; }
       .bottom .sep { display: none; }
     }
+
+    /* ===================== LIGHT (paper) THEME — matches the brand card ===================== */
+    :root { --paper: #F4EEE0; --paper-2: #ECE3D0; --ink: #262320; --line: rgba(38,35,32,0.14); --muted: rgba(38,35,32,0.62); }
+    html, body { background: var(--paper); color: var(--ink); }
+
+    /* Top nav */
+    .top-nav { background: rgba(244,238,224,0.9); border-bottom-color: var(--line); }
+    .back-btn { color: var(--ink); border-color: var(--line); }
+    .back-btn:hover { color: var(--ink); border-color: rgba(38,35,32,0.32); background: rgba(38,35,32,0.05); }
+    .nav-anchor { color: var(--ink); border-bottom-color: var(--line); }
+    .nav-anchor:hover { color: #000; background: rgba(245,130,32,0.14); }
+    .nav-anchors { background: rgba(244,238,224,0.98); border-bottom-color: var(--line); }
+    .lang-bar button { background: rgba(38,35,32,0.06); border-color: var(--line); color: var(--ink); }
+    .nav-toggle { background: rgba(38,35,32,0.06); border-color: var(--line); color: var(--ink); }
+
+    /* Hero stays a dark photo zone — keep its text light */
+    .hero h1 { color: #fff; }
+
+    /* Headings + intros */
+    .services-heading { color: var(--ink); }
+    .process-sub { color: var(--muted); }
+
+    /* Meet Gosia band */
+    .intro-quote { color: var(--ink); border-left-color: rgba(245,130,32,0.5); }
+    .intro-quote .filter { color: var(--ink); }
+    .intro-role { color: var(--muted); }
+    @media(max-width:580px){ .intro-quote { border-top-color: rgba(245,130,32,0.4); } }
+
+    /* Services list */
+    .service-card { border-bottom-color: var(--line); }
+    .svc-title { color: var(--ink); }
+
+    /* Inspection + mid-page CTA bands */
+    .inspect-band-title { color: var(--ink); }
+    .inspect-band .contact-bar a:not(.cta) { color: var(--ink); border-color: var(--line); }
+
+    /* How We Work — alt band + timeline */
+    .process-section { background: var(--paper-2); border-top-color: rgba(245,130,32,0.2); border-bottom-color: var(--line); }
+    .pstep-body h3 { color: var(--ink); }
+
+    /* Why Us strip */
+    .why-grid { border-color: var(--line); }
+    .why-card { border-right-color: var(--line); }
+    .why-body h3 { color: var(--ink); }
+    @media(max-width:700px){ .why-card { border-bottom-color: var(--line); } }
+
+    /* Pricing — alt band */
+    .pricing-section { background: var(--paper-2); border-top-color: rgba(245,130,32,0.2); border-bottom-color: var(--line); }
+    .price-label { color: var(--muted); }
+    .price-old { color: rgba(38,35,32,0.42); }
+    .price-foot { color: var(--ink); }
+
+    /* Footer */
+    .bottom { background: var(--paper-2); border-top-color: var(--line); }
+    /* Club (.lejdis) intentionally stays a dark gold zone for contrast */
   </style>
 </head>
 <body>
