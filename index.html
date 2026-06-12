@@ -611,6 +611,33 @@
     .cta:hover, .partner-btn:hover, .contact-bar a:hover { transform: translateY(-2px); }
     .nav-anchor:hover { transform: translateY(-1px); }
     .lang-bar button:hover { transform: translateY(-1px) scale(1.05); }
+
+    /* Contact links readable on light sections (hero + cta-band keep white) */
+    .contact-bar a:not(.cta) { color: var(--ink); border-color: var(--line); }
+    .hero .contact-bar a:not(.cta) { color: #fff; border-color: rgba(255,255,255,0.15); }
+
+    /* FAQ accordion */
+    .faq-section { padding: 4rem 1.5rem 4.5rem; text-align: center; }
+    .faq-list { max-width: 680px; margin: 0 auto; text-align: left; }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-item summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.15rem 0.25rem; font-family: 'Montserrat',sans-serif; font-weight: 700; font-size: 1rem; color: var(--ink); }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: '+'; color: var(--orange); font-size: 1.5rem; font-weight: 700; line-height: 1; transition: transform .2s; flex-shrink: 0; }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-a { padding: 0 0.25rem 1.2rem; margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
+
+    /* Visit us + map */
+    .visit-section { padding: 4rem 1.5rem 4.5rem; background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .visit-grid { max-width: 940px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; align-items: stretch; }
+    @media(max-width:760px){ .visit-grid { grid-template-columns: 1fr; } }
+    .visit-info { text-align: left; }
+    .visit-info h2 { font-family: 'Montserrat',sans-serif; font-size: clamp(1.6rem,4vw,2.2rem); font-weight: 900; color: var(--ink); margin-bottom: 1.25rem; }
+    .visit-row { display: flex; gap: 0.7rem; align-items: flex-start; margin-bottom: 0.85rem; font-size: 0.95rem; color: var(--ink); line-height: 1.4; }
+    .visit-row .ic { font-size: 1.15rem; flex-shrink: 0; line-height: 1.3; }
+    .visit-row a { color: var(--orange); text-decoration: none; }
+    .visit-row a:hover { text-decoration: underline; }
+    .visit-map { border-radius: 16px; overflow: hidden; border: 1px solid var(--line); min-height: 300px; box-shadow: 0 8px 24px rgba(38,35,32,0.08); }
+    .visit-map iframe { width: 100%; height: 100%; min-height: 300px; border: 0; display: block; }
   </style>
 </head>
 <body>
@@ -642,6 +669,7 @@
         <span id="navpr-pl" lang="pl" style="display:none">Cennik</span>
         <span id="navpr-is" lang="is" style="display:none">Verð</span>
       </a>
+      <a href="#faq" class="nav-anchor">FAQ</a>
       <a href="#club" class="nav-anchor">
         <span id="navcl-en">Club</span>
         <span id="navcl-pl" lang="pl" style="display:none">Klub</span>
@@ -935,6 +963,58 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <h2 class="services-heading" id="faq-h-en">Questions? Answers.</h2>
+    <h2 class="services-heading" id="faq-h-pl" lang="pl" style="display:none">Pytania? Odpowiedzi.</h2>
+    <h2 class="services-heading" id="faq-h-is" lang="is" style="display:none">Spurningar? Svör.</h2>
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary><span id="f1q-en">Do I need to book, or can I drop by?</span><span id="f1q-pl" lang="pl" style="display:none">Trzeba się umawiać, czy mogę po prostu podjechać?</span><span id="f1q-is" lang="is" style="display:none">Þarf ég að bóka, eða má ég kíkja við?</span></summary>
+        <p class="faq-a" id="f1a-en">Best to book — message us on WhatsApp and we'll find you the earliest slot. Quick question? Just drop by.</p>
+        <p class="faq-a" id="f1a-pl" lang="pl" style="display:none">Najlepiej się umówić — napisz na WhatsApp, znajdziemy najszybszy termin. Krótkie pytanie? Po prostu podjedź.</p>
+        <p class="faq-a" id="f1a-is" lang="is" style="display:none">Best er að bóka — sendu okkur skilaboð á WhatsApp og við finnum fyrsta lausa tímann. Stutt spurning? Kíktu bara við.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary><span id="f2q-en">What do you fix — and what don't you?</span><span id="f2q-pl" lang="pl" style="display:none">Co naprawiacie, a czego nie?</span><span id="f2q-is" lang="is" style="display:none">Hverju gerið þið við — og hverju ekki?</span></summary>
+        <p class="faq-a" id="f2a-en">Everyday repairs, honest diagnosis, oil &amp; fluids. For big engine or gearbox jobs we don't pretend — we diagnose, tell you straight, and point you to the right specialist.</p>
+        <p class="faq-a" id="f2a-pl" lang="pl" style="display:none">Bieżące naprawy, uczciwa diagnoza, wymiana oleju i płynów. Przy większych robotach przy silniku czy skrzyni nie udajemy — diagnozujemy, mówimy wprost i kierujemy do właściwego specjalisty.</p>
+        <p class="faq-a" id="f2a-is" lang="is" style="display:none">Daglegar viðgerðir, heiðarleg greining, olía og vökvar. Þegar um stóra vél- eða gírkassaviðgerð er að ræða látumst við ekki kunna allt — við greinum, segjum það hreint út og vísum þér á réttan sérfræðing.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary><span id="f3q-en">Will I know the price before you start?</span><span id="f3q-pl" lang="pl" style="display:none">Czy poznam cenę, zanim zaczniecie?</span><span id="f3q-is" lang="is" style="display:none">Fæ ég að vita verðið áður en þið byrjið?</span></summary>
+        <p class="faq-a" id="f3a-en">Yes. We agree it before we touch your car — and if something extra comes up, we call you first. The decision is always yours.</p>
+        <p class="faq-a" id="f3a-pl" lang="pl" style="display:none">Tak. Ustalamy ją, zanim dotkniemy auta — a jeśli dochodzi coś ekstra, najpierw dzwonimy. Decyzja zawsze należy do Ciebie.</p>
+        <p class="faq-a" id="f3a-is" lang="is" style="display:none">Já. Við semjum um það áður en við snertum bílinn — og ef eitthvað aukalega kemur upp, hringjum við fyrst. Ákvörðunin er alltaf þín.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary><span id="f4q-en">Can you help with skoðun (inspection)?</span><span id="f4q-pl" lang="pl" style="display:none">Pomożecie z przeglądem (skoðun)?</span><span id="f4q-is" lang="is" style="display:none">Getið þið hjálpað með skoðun?</span></summary>
+        <p class="faq-a" id="f4a-en">Yes — come before or after. We'll do our best to sort the simple things so you can get back on the road.</p>
+        <p class="faq-a" id="f4a-pl" lang="pl" style="display:none">Tak — przyjedź przed przeglądem albo po nim. Dołożymy starań, żeby ogarnąć proste rzeczy i wrócić na drogę.</p>
+        <p class="faq-a" id="f4a-is" lang="is" style="display:none">Já — komdu til okkar fyrir eða eftir skoðun. Við gerum okkar besta til að laga einföldu hlutina svo þú komist aftur á götuna.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary><span id="f5q-en">What languages do you speak?</span><span id="f5q-pl" lang="pl" style="display:none">W jakich językach rozmawiacie?</span><span id="f5q-is" lang="is" style="display:none">Hvaða tungumál talið þið?</span></summary>
+        <p class="faq-a" id="f5a-en">Polish and English — we're a Polish-run garage in Reykjanesbær.</p>
+        <p class="faq-a" id="f5a-pl" lang="pl" style="display:none">Po polsku i angielsku — to polski warsztat w Reykjanesbæ.</p>
+        <p class="faq-a" id="f5a-is" lang="is" style="display:none">Pólsku og ensku — við erum pólskt verkstæði í Reykjanesbæ.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary><span id="f6q-en">Where are you, and when are you open?</span><span id="f6q-pl" lang="pl" style="display:none">Gdzie jesteście i kiedy otwarte?</span><span id="f6q-is" lang="is" style="display:none">Hvar eruð þið og hvenær er opið?</span></summary>
+        <p class="faq-a" id="f6a-en">Njarðarbraut 3i, Reykjanesbær (Keflavík). Open Mon–Sat, 10:00–18:00.</p>
+        <p class="faq-a" id="f6a-pl" lang="pl" style="display:none">Njarðarbraut 3i, Reykjanesbær (Keflavík). Otwarte pon–sob, 10:00–18:00.</p>
+        <p class="faq-a" id="f6a-is" lang="is" style="display:none">Njarðarbraut 3i, Reykjanesbær (Keflavík). Opið mán–lau, 10:00–18:00.</p>
+      </details>
+
+    </div>
+  </section>
+
   <!-- Mountain Car Club Section -->
   <section class="lejdis" id="club" aria-labelledby="club-heading">
     <div class="lejdis-inner">
@@ -1097,7 +1177,31 @@
     </div>
   </section>
 
-  <!-- Cinematic closing CTA (AI-generated Iceland backdrop) -->
+  <!-- Visit us + map -->
+  <section class="visit-section" id="visit">
+    <div class="visit-grid">
+      <div class="visit-info">
+        <h2 id="visit-h-en">Visit us</h2>
+        <h2 id="visit-h-pl" lang="pl" style="display:none">Odwiedź nas</h2>
+        <h2 id="visit-h-is" lang="is" style="display:none">Komdu við</h2>
+        <div class="visit-row"><span class="ic" aria-hidden="true">📍</span><a href="https://www.google.com/maps/place/Mountain+car+ehf/@63.9729664,-22.5542144,13z/data=!4m6!3m5!1s0x48d6037e5226a501:0x3cc12a6ecfedeb8f!8m2!3d63.9714579!4d-22.5287403!16s%2Fg%2F11jz3n96h8" target="_blank" rel="noopener">Njarðarbraut 3i, 260 Reykjanesbær</a></div>
+        <div class="visit-row"><span class="ic" aria-hidden="true">🕘</span><span><span id="vhrs-en">Mon–Sat 10:00–18:00</span><span id="vhrs-pl" lang="pl" style="display:none">Pon–Sob 10:00–18:00</span><span id="vhrs-is" lang="is" style="display:none">Mán–Lau 10:00–18:00</span></span></div>
+        <div class="visit-row"><span class="ic" aria-hidden="true">🗣️</span><span><span id="vlang-en">We speak Polish &amp; English</span><span id="vlang-pl" lang="pl" style="display:none">Mówimy po polsku i angielsku</span><span id="vlang-is" lang="is" style="display:none">Við tölum pólsku og ensku</span></span></div>
+        <div class="visit-row"><span class="ic" aria-hidden="true">🚗</span><span><span id="varea-en">Serving Reykjanesbær, Keflavík &amp; the KEF airport area</span><span id="varea-pl" lang="pl" style="display:none">Obsługujemy Reykjanesbæ, Keflavík i okolice lotniska KEF</span><span id="varea-is" lang="is" style="display:none">Þjónum Reykjanesbæ, Keflavík og svæðinu við Keflavíkurflugvöll</span></span></div>
+        <div class="contact-bar" style="justify-content: flex-start; margin: 1.4rem 0 0;">
+          <a href="https://wa.me/3548888005?text=Hi%20Mountain%20Car%20Garage%21%20I%20would%20like%20to%20book%20a%20car%20service." target="_blank" rel="noopener" class="cta" id="vwa-en"><span aria-hidden="true">💬</span> Book on WhatsApp</a>
+          <a href="https://wa.me/3548888005?text=Czesc%21%20Chce%20umowic%20moje%20auto%20na%20serwis%20w%20Mountain%20Car%20Garage." target="_blank" rel="noopener" class="cta" id="vwa-pl" lang="pl" style="display:none"><span aria-hidden="true">💬</span> Umów wizytę na WhatsApp</a>
+          <a href="https://wa.me/3548888005?text=Hallo%21%20Eg%20vil%20boka%20tima%20fyrir%20bilathjonustu%20hja%20Mountain%20Car%20Garage." target="_blank" rel="noopener" class="cta" id="vwa-is" lang="is" style="display:none"><span aria-hidden="true">💬</span> Bókaðu á WhatsApp</a>
+          <a href="tel:+3548888005"><span aria-hidden="true">📞</span> +354 888 8005</a>
+        </div>
+      </div>
+      <div class="visit-map">
+        <iframe src="https://maps.google.com/maps?q=63.9714579,-22.5287403&amp;z=15&amp;output=embed" loading="lazy" title="Mountain Car Garage — Njarðarbraut 3i, Reykjanesbær" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cinematic closing CTA (real workshop photo) -->
   <section class="cta-band" aria-label="Get in touch">
     <h2 id="cta-h-en">Something off with the car? Bring it in — we'll take an honest look.</h2>
     <h2 id="cta-h-pl" lang="pl" style="display:none">Coś nie tak z autem? Podjedź — sprawdzimy uczciwie.</h2>
