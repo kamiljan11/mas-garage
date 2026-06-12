@@ -696,6 +696,22 @@
     .kw-eye-wink { transform-box:fill-box; transform-origin:center; animation:kwWink 5s ease-in-out infinite; }
     @keyframes kwWink { 0%,84%,100% { transform:scaleY(1); } 88%,92% { transform:scaleY(0.12); } }
     @media (prefers-reduced-motion: reduce) { .kw-eye-wink { animation:none; } }
+
+    /* Mobile read-more for the long Gosia quote — core visible, rest on tap */
+    .quote-more-cb { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+    .quote-more-btn { display: none; }
+    .quote-more-btn .less { display: none; }
+    @media (max-width: 600px) {
+      .intro-quote.clampable { max-height: 13em; overflow: hidden; transition: max-height .28s ease;
+        -webkit-mask-image: linear-gradient(180deg, #000 68%, transparent); mask-image: linear-gradient(180deg, #000 68%, transparent); }
+      .quote-more-cb:checked ~ .intro-quote.clampable { max-height: 2000px; -webkit-mask-image: none; mask-image: none; }
+      .quote-more-btn { display: inline-flex; align-items: center; gap: 0.25rem; margin-top: 0.55rem;
+        padding: 0.35rem 0.95rem; border: 1px solid rgba(245,130,32,0.45); border-radius: 999px;
+        background: rgba(245,130,32,0.08); color: var(--orange-dark);
+        font-family: 'Montserrat',sans-serif; font-weight: 800; font-size: 0.8rem; cursor: pointer; }
+      .quote-more-cb:checked ~ .quote-more-btn .more { display: none; }
+      .quote-more-cb:checked ~ .quote-more-btn .less { display: inline; }
+    }
   </style>
 </head>
 <body>
@@ -732,6 +748,12 @@
         <span id="navcl-en">Club</span>
         <span id="navcl-pl" lang="pl" style="display:none">Klub</span>
         <span id="navcl-is" lang="is" style="display:none">Klúbbur</span>
+      </a>
+      <a href="#lejdis" class="nav-anchor">Lejdis</a>
+      <a href="#visit" class="nav-anchor">
+        <span id="navvi-en">Visit</span>
+        <span id="navvi-pl" lang="pl" style="display:none">Dojazd</span>
+        <span id="navvi-is" lang="is" style="display:none">Staðsetning</span>
       </a>
     </div>
     <div class="lang-bar" role="radiogroup" aria-label="Language">
@@ -799,24 +821,29 @@
         <div class="intro-role" id="introle-en">Owner &amp; Workshop Manager</div>
         <div class="intro-role" id="introle-pl" lang="pl" style="display:none">Właścicielka i kierownik warsztatu</div>
         <div class="intro-role" id="introle-is" lang="is" style="display:none">Eigandi og verkstæðisstjóri</div>
-        <blockquote class="intro-quote" id="introq-en">
+        <input type="checkbox" id="iq-more" class="quote-more-cb" aria-hidden="true" tabindex="-1">
+        <blockquote class="intro-quote clampable" id="introq-en">
           <p>Hi, I'm Gosia — I own this garage and I run it my way. I'd had it with how garages treat people — women especially: the talking-down, the jargon, the bill that magically beats the quote. So I built the opposite.</p>
           <p>Here's how I run it: we take an honest look, tell you straight what's going on, and lock the price before we touch your car. Something extra shows up? We call — your call. And I'll tell you honestly what's worth doing and what to skip, so you're not throwing money away. Everyday stuff we sort fast. Big engine or gearbox job? I won't bluff you — I send you to the right specialist.</p>
           <p class="filter">I'm not the cheapest and I don't do miracles — never claimed to. What I am: honest, on time, and here for the long run. Found your kind of garage? Then welcome home. And ladies — there's a little something extra waiting for you. 😉</p>
           <span class="intro-sign">— Gosia<span class="kw-inline kw-float"><svg width="19" height="19" viewBox="0 0 40 40" aria-hidden="true"><g fill="#F4A9C2"><circle cx="20" cy="8" r="6.5"/><circle cx="32" cy="16" r="6.5"/><circle cx="27.5" cy="30" r="6.5"/><circle cx="12.5" cy="30" r="6.5"/><circle cx="8" cy="16" r="6.5"/></g><circle cx="20" cy="20" r="7" fill="#FFE08A"/><circle cx="17.6" cy="19.5" r="1" fill="#7A5C3E"/><circle cx="22.4" cy="19.5" r="1" fill="#7A5C3E"/><path d="M17.6 22 q2.4 2 4.8 0" stroke="#7A5C3E" stroke-width="1" fill="none" stroke-linecap="round"/></svg></span></span>
         </blockquote>
-        <blockquote class="intro-quote" id="introq-pl" lang="pl" style="display:none">
+        <blockquote class="intro-quote clampable" id="introq-pl" lang="pl" style="display:none">
           <p>Cześć, jestem Gosia — to mój warsztat i prowadzę go po swojemu. Miałam dość tego, jak warsztaty traktują ludzi — a zwłaszcza kobiety: tłumaczenie z góry, żargon, rachunek, który magicznie wychodzi wyższy niż wycena. Więc zrobiłam coś odwrotnego.</p>
           <p>Tak to u mnie wygląda: uczciwie sprawdzamy, mówimy wprost, w czym rzecz, i ustalamy cenę, zanim dotkniemy auta. Coś wyjdzie w trakcie? Dzwonimy — decyzja Twoja. A ja szczerze powiem, co ma sens, a co odpuścić, żebyś nie wyrzucał kasy. Bieżące rzeczy ogarniamy szybko. Duża robota przy silniku czy skrzyni? Nie ściemniam — kieruję Cię do właściwego specjalisty.</p>
           <p class="filter">Nie jestem najtańsza i nie robię cudów — i nigdy tego nie obiecywałam. Za to jestem uczciwa, terminowa i zostaję na dłużej. Trafiłeś na swój warsztat? To witaj u siebie. A panie — czeka na Was coś ekstra. 😉</p>
           <span class="intro-sign">— Gosia<span class="kw-inline kw-float"><svg width="19" height="19" viewBox="0 0 40 40" aria-hidden="true"><g fill="#F4A9C2"><circle cx="20" cy="8" r="6.5"/><circle cx="32" cy="16" r="6.5"/><circle cx="27.5" cy="30" r="6.5"/><circle cx="12.5" cy="30" r="6.5"/><circle cx="8" cy="16" r="6.5"/></g><circle cx="20" cy="20" r="7" fill="#FFE08A"/><circle cx="17.6" cy="19.5" r="1" fill="#7A5C3E"/><circle cx="22.4" cy="19.5" r="1" fill="#7A5C3E"/><path d="M17.6 22 q2.4 2 4.8 0" stroke="#7A5C3E" stroke-width="1" fill="none" stroke-linecap="round"/></svg></span></span>
         </blockquote>
-        <blockquote class="intro-quote" id="introq-is" lang="is" style="display:none">
+        <blockquote class="intro-quote clampable" id="introq-is" lang="is" style="display:none">
           <p>Hæ, ég heiti Gosia — ég á þetta verkstæði og rek það á minn hátt. Ég var búin að fá nóg af því hvernig verkstæði koma fram við fólk — sérstaklega konur: talað niður til þín, fagmál, reikningur sem einhvern veginn fer fram úr tilboðinu. Svo ég gerði þetta öfugt.</p>
           <p>Svona geri ég þetta: við kíkjum heiðarlega á bílinn, segjum þér hreint út hvað er í gangi og festum verðið áður en við snertum hann. Kemur eitthvað óvænt upp? Við hringjum — þín ákvörðun. Og ég segi þér heiðarlega hvað borgar sig og hvað má sleppa, svo þú hendir ekki peningum. Daglegu verkin klárum við hratt. Stór vél- eða gírkassaviðgerð? Ég blekki þig ekki — ég vísa þér á réttan sérfræðing.</p>
           <p class="filter">Ég er ekki ódýrust og ég geri ekki kraftaverk — lofaði því aldrei. En ég er heiðarleg, stundvís og hér til langframa. Fannstu verkstæðið þitt? Þá ertu kominn heim. Og dömur — það bíður ykkar svolítið aukalega. 😉</p>
           <span class="intro-sign">— Gosia<span class="kw-inline kw-float"><svg width="19" height="19" viewBox="0 0 40 40" aria-hidden="true"><g fill="#F4A9C2"><circle cx="20" cy="8" r="6.5"/><circle cx="32" cy="16" r="6.5"/><circle cx="27.5" cy="30" r="6.5"/><circle cx="12.5" cy="30" r="6.5"/><circle cx="8" cy="16" r="6.5"/></g><circle cx="20" cy="20" r="7" fill="#FFE08A"/><circle cx="17.6" cy="19.5" r="1" fill="#7A5C3E"/><circle cx="22.4" cy="19.5" r="1" fill="#7A5C3E"/><path d="M17.6 22 q2.4 2 4.8 0" stroke="#7A5C3E" stroke-width="1" fill="none" stroke-linecap="round"/></svg></span></span>
         </blockquote>
+        <label for="iq-more" class="quote-more-btn">
+          <span class="more"><span id="iqmore-en">Read more</span><span id="iqmore-pl" lang="pl" style="display:none">Czytaj więcej</span><span id="iqmore-is" lang="is" style="display:none">Lesa meira</span> <span aria-hidden="true">↓</span></span>
+          <span class="less"><span id="iqless-en">Show less</span><span id="iqless-pl" lang="pl" style="display:none">Zwiń</span><span id="iqless-is" lang="is" style="display:none">Sýna minna</span> <span aria-hidden="true">↑</span></span>
+        </label>
       </div>
     </div>
   </section>
@@ -1135,9 +1162,9 @@
         </div>
       </div>
 
-      <p class="lejdis-ref" id="lref-en"><span aria-hidden="true">🔗</span> Every member gets a unique referral code. When someone books a service using your code, you both earn a stamp. Share it with friends, family, colleagues — the more the merrier.</p>
-      <p class="lejdis-ref" id="lref-pl" lang="pl" style="display:none"><span aria-hidden="true">🔗</span> Każdy członek klubu otrzymuje unikalny kod polecenia. Gdy ktoś zarezerwuje wizytę używając Twojego kodu, oboje zdobywacie pieczątkę. Udostępniaj znajomym, rodzinie, kolegom z pracy — im więcej, tym lepiej.</p>
-      <p class="lejdis-ref" id="lref-is" lang="is" style="display:none"><span aria-hidden="true">🔗</span> Sérhver meðlimur fær einstakan tilvísunarkóða. Þegar einhver bókar þjónustu með kóðanum þínum, fáið þið bæði stimpil. Deildu með vinum, fjölskyldu, vinnufélögum — því fleiri, því betra.</p>
+      <p class="lejdis-ref" id="lref-en"><span aria-hidden="true">🔗</span> Every member gets a unique referral code. When someone books a service using your code, you both earn a stamp. Share it with friends, family, colleagues — the more who use it, the bigger your rewards.</p>
+      <p class="lejdis-ref" id="lref-pl" lang="pl" style="display:none"><span aria-hidden="true">🔗</span> Każdy członek klubu otrzymuje unikalny kod polecenia. Gdy ktoś zarezerwuje wizytę używając Twojego kodu, oboje zdobywacie pieczątkę. Udostępniaj znajomym, rodzinie, kolegom z pracy — im więcej osób skorzysta, tym większe korzyści dla Ciebie.</p>
+      <p class="lejdis-ref" id="lref-is" lang="is" style="display:none"><span aria-hidden="true">🔗</span> Sérhver meðlimur fær einstakan tilvísunarkóða. Þegar einhver bókar þjónustu með kóðanum þínum, fáið þið bæði stimpil. Deildu með vinum, fjölskyldu, vinnufélögum — því fleiri sem nota hann, því meiri fríðindi fyrir þig.</p>
 
     </div>
   </section>
@@ -1252,6 +1279,33 @@
             <div class="perk-desc" id="p3d-pl" lang="pl" style="display:none">Strzyżenie, koloryzacja lub dowolny zabieg</div>
             <div class="perk-desc" id="p3d-is" lang="is" style="display:none">Klipping, litun eða önnur meðferð</div>
             <div class="perk-loc"><span aria-hidden="true">📍</span> Keflavík</div>
+          </div>
+          <div class="perk-card">
+            <div class="perk-icon" aria-hidden="true">💅</div>
+            <div class="perk-name">Nail &amp; Brow Bar</div>
+            <div class="perk-discount">15% OFF</div>
+            <div class="perk-desc" id="p4d-en">Manicure, pedicure, brows &amp; lashes</div>
+            <div class="perk-desc" id="p4d-pl" lang="pl" style="display:none">Manicure, pedicure, brwi i rzęsy</div>
+            <div class="perk-desc" id="p4d-is" lang="is" style="display:none">Handsnyrting, fótsnyrting, augabrúnir og augnhár</div>
+            <div class="perk-loc"><span aria-hidden="true">📍</span> Keflavík</div>
+          </div>
+          <div class="perk-card">
+            <div class="perk-icon" aria-hidden="true">💆</div>
+            <div class="perk-name">Spa &amp; Massage</div>
+            <div class="perk-discount">15% OFF</div>
+            <div class="perk-desc" id="p5d-en">A facial or a relaxing massage</div>
+            <div class="perk-desc" id="p5d-pl" lang="pl" style="display:none">Zabieg na twarz lub relaksujący masaż</div>
+            <div class="perk-desc" id="p5d-is" lang="is" style="display:none">Andlitsmeðferð eða afslappandi nudd</div>
+            <div class="perk-loc"><span aria-hidden="true">📍</span> Reykjanesbær</div>
+          </div>
+          <div class="perk-card">
+            <div class="perk-icon" aria-hidden="true">☕</div>
+            <div class="perk-name">Café &amp; Brunch</div>
+            <div class="perk-discount">10% OFF</div>
+            <div class="perk-desc" id="p6d-en">Coffee &amp; weekend brunch</div>
+            <div class="perk-desc" id="p6d-pl" lang="pl" style="display:none">Kawa i weekendowy brunch</div>
+            <div class="perk-desc" id="p6d-is" lang="is" style="display:none">Kaffi og helgarbrunch</div>
+            <div class="perk-loc"><span aria-hidden="true">📍</span> Reykjanesbær</div>
           </div>
         </div>
 
@@ -1408,7 +1462,7 @@
       if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       var heart = document.createElement('div'); heart.className = 'cursor-heart';
-      heart.innerHTML = '<svg width="36" height="40" viewBox="0 0 34 38" xmlns="http://www.w3.org/2000/svg"><path d="M5 4 C4 2 7 1 9 3 L29 17 C31 18.5 30 21.5 27 21 L20 20 L24 31 C25 33.5 21.5 34.5 20 32 L16 22 L9 28 C6.5 30 4 28 5 25 Z" fill="#F58220" stroke="#A14E07" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="12" cy="13" rx="1.6" ry="2.2" fill="#3E2A12"/><ellipse cx="17.5" cy="16" rx="1.6" ry="2.2" fill="#3E2A12"/><circle cx="9.5" cy="17" r="1.8" fill="#FF8FB0" opacity="0.7"/><circle cx="20" cy="19.5" r="1.8" fill="#FF8FB0" opacity="0.7"/><path d="M13.5 16.5 q1.3 1.4 2.6 0.2" stroke="#3E2A12" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M31 3 l0.8 2.4 2.4 0.8 -2.4 0.8 -0.8 2.4 -0.8 -2.4 -2.4 -0.8 2.4 -0.8 z" fill="#FFD24D"/></svg>';
+      heart.innerHTML = '<svg width="36" height="40" viewBox="0 0 34 38" xmlns="http://www.w3.org/2000/svg"><path d="M5 4 C4 2 7 1 9 3 L29 17 C31 18.5 30 21.5 27 21 L20 20 L24 31 C25 33.5 21.5 34.5 20 32 L16 22 L9 28 C6.5 30 4 28 5 25 Z" fill="#F58220" stroke="#A14E07" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="11.8" cy="12.4" rx="1.7" ry="2.1" fill="#3E2A12"/><ellipse cx="16.4" cy="12.4" rx="1.7" ry="2.1" fill="#3E2A12"/><circle cx="8.9" cy="15" r="1.7" fill="#FF8FB0" opacity="0.75"/><circle cx="19.3" cy="15" r="1.7" fill="#FF8FB0" opacity="0.75"/><path d="M12.5 14.9 q1.6 1.7 3.2 0" stroke="#3E2A12" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M31 3 l0.8 2.4 2.4 0.8 -2.4 0.8 -0.8 2.4 -0.8 -2.4 -2.4 -0.8 2.4 -0.8 z" fill="#FFD24D"/></svg>';
       document.body.appendChild(heart);
       document.documentElement.classList.add('has-cursor');
       var charms = ['🧡', '✨', '🌟', '💛', '🌼', '🌷'];
