@@ -161,9 +161,9 @@
     @media (prefers-reduced-motion: reduce) { .hero-slide { transition: none; } }
     .logo-wrap {
       margin-bottom: 1.75rem; position: relative;
-      background: white; border-radius: 20px;
+      background: rgba(255,255,255,0.62); -webkit-backdrop-filter: blur(9px); backdrop-filter: blur(9px); border-radius: 20px;
       padding: 14px 24px; display: inline-flex;
-      box-shadow: 0 0 40px rgba(245,130,32,0.4), 0 0 0 1px rgba(245,130,32,0.2);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.28), inset 0 0 0 1px rgba(255,255,255,0.4);
     }
     .logo-wrap img { height: 120px; width: auto; display: block; }
     .badge {
@@ -507,7 +507,7 @@
     :root { --paper: #F4EEE0; --paper-2: #E8DEC8; --ink: #262320; --line: rgba(38,35,32,0.14); --muted: rgba(38,35,32,0.62); }
     html, body { background: var(--paper); color: var(--ink); }
     .lang-bar button { min-width: 42px; }
-    .lang-bar .flag { display: block; height: 13px; width: auto; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,0.22); }
+    .lang-bar .flag { display: block; width: 22px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,0.22); }
 
     /* Top nav */
     .top-nav { background: rgba(244,238,224,0.9); border-bottom-color: var(--line); }
@@ -604,9 +604,9 @@
       </a>
     </div>
     <div class="lang-bar" role="radiogroup" aria-label="Language">
-      <button type="button" onclick="setLang('en')" id="btn-en" class="active" lang="en" role="radio" aria-checked="true" aria-label="English" title="English"><svg class="flag" viewBox="0 0 24 12" aria-hidden="true"><rect width="24" height="12" fill="#012169"/><path d="M0 0L24 12M24 0L0 12" stroke="#fff" stroke-width="2.5"/><path d="M0 0L24 12M24 0L0 12" stroke="#C8102E" stroke-width="1.2"/><rect x="9.5" width="5" height="12" fill="#fff"/><rect y="3.5" width="24" height="5" fill="#fff"/><rect x="10.5" width="3" height="12" fill="#C8102E"/><rect y="4.5" width="24" height="3" fill="#C8102E"/></svg></button>
-      <button type="button" onclick="setLang('pl')" id="btn-pl" lang="pl" role="radio" aria-checked="false" aria-label="Polski" title="Polski"><svg class="flag" viewBox="0 0 20 12" aria-hidden="true"><rect width="20" height="12" fill="#fff"/><rect y="6" width="20" height="6" fill="#DC143C"/></svg></button>
-      <button type="button" onclick="setLang('is')" id="btn-is" lang="is" role="radio" aria-checked="false" aria-label="Íslenska" title="Íslenska"><svg class="flag" viewBox="0 0 25 18" aria-hidden="true"><rect width="25" height="18" fill="#02529C"/><rect x="6" width="4" height="18" fill="#fff"/><rect y="7" width="25" height="4" fill="#fff"/><rect x="7" width="2" height="18" fill="#DC1E35"/><rect y="8" width="25" height="2" fill="#DC1E35"/></svg></button>
+      <button type="button" onclick="setLang('en')" id="btn-en" class="active" lang="en" role="radio" aria-checked="true" aria-label="English" title="English"><svg class="flag" preserveAspectRatio="none" viewBox="0 0 24 12" aria-hidden="true"><rect width="24" height="12" fill="#012169"/><path d="M0 0L24 12M24 0L0 12" stroke="#fff" stroke-width="2.5"/><path d="M0 0L24 12M24 0L0 12" stroke="#C8102E" stroke-width="1.2"/><rect x="9.5" width="5" height="12" fill="#fff"/><rect y="3.5" width="24" height="5" fill="#fff"/><rect x="10.5" width="3" height="12" fill="#C8102E"/><rect y="4.5" width="24" height="3" fill="#C8102E"/></svg></button>
+      <button type="button" onclick="setLang('pl')" id="btn-pl" lang="pl" role="radio" aria-checked="false" aria-label="Polski" title="Polski"><svg class="flag" preserveAspectRatio="none" viewBox="0 0 20 12" aria-hidden="true"><rect width="20" height="12" fill="#fff"/><rect y="6" width="20" height="6" fill="#DC143C"/></svg></button>
+      <button type="button" onclick="setLang('is')" id="btn-is" lang="is" role="radio" aria-checked="false" aria-label="Íslenska" title="Íslenska"><svg class="flag" preserveAspectRatio="none" viewBox="0 0 25 18" aria-hidden="true"><rect width="25" height="18" fill="#02529C"/><rect x="6" width="4" height="18" fill="#fff"/><rect y="7" width="25" height="4" fill="#fff"/><rect x="7" width="2" height="18" fill="#DC1E35"/><rect y="8" width="25" height="2" fill="#DC1E35"/></svg></button>
     </div>
     <button type="button" class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="navmenu" onclick="toggleMenu()">☰</button>
   </nav>
