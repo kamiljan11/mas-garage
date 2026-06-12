@@ -557,7 +557,7 @@
     .bottom { background: var(--paper-2); border-top-color: var(--line); }
     /* Cinematic closing CTA band (AI Iceland backdrop, dark zone) */
     .cta-band { position: relative; padding: 4.5rem 1.5rem; text-align: center; overflow: hidden;
-      background-image: linear-gradient(rgba(17,24,39,0.7), rgba(17,24,39,0.82)), url('./hero4.webp');
+      background-image: linear-gradient(rgba(17,24,39,0.68), rgba(17,24,39,0.82)), url('./footer-cta.webp');
       background-size: cover; background-position: center; }
     .cta-band h2 { font-family: 'Montserrat',sans-serif; color: #fff; font-size: clamp(1.4rem,4.5vw,2.1rem); font-weight: 900; line-height: 1.15; max-width: 620px; margin: 0 auto 1.5rem; text-wrap: balance; text-shadow: 0 2px 18px rgba(0,0,0,0.55); }
     .cta-band .contact-bar { margin-bottom: 0; }
@@ -572,12 +572,12 @@
     ::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 999px; border: 3px solid var(--paper-2); }
     ::-webkit-scrollbar-thumb:hover { background: var(--orange-dark); }
 
-    /* Custom orange cursor (desktop fine-pointer only) */
-    .cursor-dot, .cursor-ring { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; border-radius: 50%; will-change: transform; }
-    .cursor-dot { width: 6px; height: 6px; background: var(--orange); }
-    .cursor-ring { width: 28px; height: 28px; border: 2px solid rgba(245,130,32,0.6); transition: width .15s, height .15s, border-color .15s, background .15s; }
-    .cursor-ring.hover { width: 42px; height: 42px; border-color: var(--orange); background: rgba(245,130,32,0.1); }
+    /* Cute cursor — heart pointer + flower/sparkle trail (desktop fine-pointer only) */
+    .cursor-heart { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10000; font-size: 20px; line-height: 1; transform: translate(-50%,-50%); will-change: transform; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3)); }
+    .cursor-trail { position: fixed; pointer-events: none; z-index: 9999; font-size: 14px; line-height: 1; transform: translate(-50%,-50%); animation: trailFloat .95s ease-out forwards; }
+    @keyframes trailFloat { 0% { opacity: .95; transform: translate(-50%,-50%) scale(.5) rotate(0deg); } 100% { opacity: 0; transform: translate(-60%,-150%) scale(1.15) rotate(25deg); } }
     @media (hover:hover) and (pointer:fine) { html.has-cursor, html.has-cursor * { cursor: none !important; } }
+    @media (prefers-reduced-motion: reduce) { .cursor-trail { display: none; } }
 
     /* Club (.lejdis) -> light theme (per request) */
     .lejdis { background: linear-gradient(180deg, #EFE6D0 0%, var(--paper) 100%); border-top-color: rgba(212,175,55,0.35); border-bottom-color: rgba(212,175,55,0.35); }
@@ -1291,29 +1291,27 @@
       }, 5500);
     })();
 
-    // Custom orange cursor (desktop fine-pointer only)
+    // Cute cursor — heart pointer + flower/sparkle trail (desktop only)
     (function () {
       if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
-      var dot = document.createElement('div'); dot.className = 'cursor-dot';
-      var ring = document.createElement('div'); ring.className = 'cursor-ring';
-      document.body.appendChild(dot); document.body.appendChild(ring);
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var heart = document.createElement('div'); heart.className = 'cursor-heart'; heart.textContent = '💖';
+      document.body.appendChild(heart);
       document.documentElement.classList.add('has-cursor');
-      var rx = 0, ry = 0, mx = 0, my = 0;
-      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var charms = ['🌸', '✨', '💕', '🌼', '💖', '🌷'];
+      var last = 0;
       document.addEventListener('mousemove', function (e) {
-        mx = e.clientX; my = e.clientY;
-        dot.style.transform = 'translate(' + (mx - 3) + 'px,' + (my - 3) + 'px)';
-      });
-      (function loop() {
-        rx += (mx - rx) * (reduce ? 1 : 0.2); ry += (my - ry) * (reduce ? 1 : 0.2);
-        ring.style.transform = 'translate(' + (rx - 14) + 'px,' + (ry - 14) + 'px)';
-        requestAnimationFrame(loop);
-      })();
-      document.addEventListener('mouseover', function (e) {
-        if (e.target.closest && e.target.closest('a,button,[role=button],input,summary,label')) ring.classList.add('hover');
-      });
-      document.addEventListener('mouseout', function (e) {
-        if (e.target.closest && e.target.closest('a,button,[role=button],input,summary,label')) ring.classList.remove('hover');
+        heart.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px) translate(-50%,-50%)';
+        var now = Date.now();
+        if (now - last > 60) {
+          last = now;
+          var t = document.createElement('span'); t.className = 'cursor-trail';
+          t.textContent = charms[(Math.random() * charms.length) | 0];
+          t.style.left = (e.clientX + (Math.random() * 16 - 8)) + 'px';
+          t.style.top = (e.clientY + 4) + 'px';
+          document.body.appendChild(t);
+          setTimeout(function () { t.remove(); }, 950);
+        }
       });
     })();
 
