@@ -145,6 +145,30 @@
     .services-heading { font-family: 'Montserrat', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; margin-bottom: 2.25rem; }
     .services { width: 100%; max-width: 760px; margin: 0 auto; display: grid; grid-template-columns: repeat(2,1fr); gap: 1.25rem; }
     @media(max-width:560px){ .services { grid-template-columns: 1fr; } }
+
+    /* How We Work */
+    .process-section { padding: 4rem 1.5rem 4.5rem; text-align: center; }
+    .process-sub { color: rgba(255,255,255,0.65); max-width: 540px; margin: -1.25rem auto 2.5rem; line-height: 1.6; font-size: 0.95rem; }
+    .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; max-width: 940px; margin: 0 auto; }
+    @media(max-width:760px){ .process-steps { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:440px){ .process-steps { grid-template-columns: 1fr; } }
+    .pstep { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 1.5rem 1.25rem; text-align: left; }
+    .pstep-num { font-family: 'Montserrat',sans-serif; font-size: 1.9rem; font-weight: 900; color: var(--orange); line-height: 1; margin-bottom: 0.6rem; }
+    .pstep h3 { font-family: 'Montserrat',sans-serif; font-size: 0.86rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; color: #fff; margin-bottom: 0.45rem; }
+    .pstep p { font-size: 0.84rem; color: var(--muted); line-height: 1.55; }
+    .pstep.redirect { border-color: rgba(212,175,55,0.3); background: rgba(212,175,55,0.05); }
+    .pstep.redirect .pstep-num { color: var(--gold); }
+
+    /* Pricing */
+    .pricing-section { padding: 4rem 1.5rem 4.5rem; text-align: center; background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .price-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; max-width: 600px; margin: 0 auto 1.5rem; }
+    @media(max-width:520px){ .price-cards { grid-template-columns: 1fr; } }
+    .price-card { background: rgba(245,130,32,0.06); border: 1px solid rgba(245,130,32,0.25); border-radius: 16px; padding: 1.75rem 1.25rem; }
+    .price-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.6); margin-bottom: 0.7rem; }
+    .price-now { font-family: 'Montserrat',sans-serif; font-size: 1.85rem; font-weight: 900; color: var(--orange); }
+    .price-old { font-size: 1.05rem; color: rgba(255,255,255,0.4); text-decoration: line-through; margin-right: 0.5rem; font-weight: 600; }
+    .price-note { font-size: 0.8rem; color: var(--muted); margin-top: 0.55rem; line-height: 1.5; }
+    .price-foot { font-size: 0.9rem; color: rgba(255,255,255,0.72); max-width: 460px; margin: 0 auto; line-height: 1.55; }
     .service-card {
       background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
       border-radius: 14px; padding: 1.4rem 1.2rem; text-align: left;
@@ -484,6 +508,88 @@
       </div>
 
     </div>
+  </section>
+
+  <!-- How We Work -->
+  <section class="process-section">
+    <h2 class="services-heading" id="hww-h-en">How We Work</h2>
+    <h2 class="services-heading" id="hww-h-pl" lang="pl" style="display:none">Jak Działamy</h2>
+    <h2 class="services-heading" id="hww-h-is" lang="is" style="display:none">Hvernig Við Vinnum</h2>
+
+    <p class="process-sub" id="hww-sub-en">No car held hostage, no guesswork, no surprise bills. We're your car's first stop — honest diagnosis, simple fixes done fast, and a straight answer when it needs a specialist.</p>
+    <p class="process-sub" id="hww-sub-pl" lang="pl" style="display:none">Bez przetrzymywania auta, bez zgadywania, bez niespodzianek na rachunku. Jesteśmy pierwszym przystankiem dla Twojego auta — uczciwa diagnoza, proste naprawy od ręki i jasna odpowiedź, gdy potrzeba specjalisty.</p>
+    <p class="process-sub" id="hww-sub-is" lang="is" style="display:none">Enginn bíll í gíslingu, engar ágiskanir, engin óvænt útgjöld. Við erum fyrsti viðkomustaður bílsins þíns — heiðarleg greining, einfaldar viðgerðir strax og skýrt svar þegar þörf er á sérfræðingi.</p>
+
+    <div class="process-steps">
+      <div class="pstep">
+        <div class="pstep-num">1</div>
+        <h3 id="ps1t-en">Book a diagnosis</h3>
+        <h3 id="ps1t-pl" lang="pl" style="display:none">Umów diagnostykę</h3>
+        <h3 id="ps1t-is" lang="is" style="display:none">Bókaðu greiningu</h3>
+        <p id="ps1d-en">You contact us and we give you the soonest possible diagnostic slot. No diagnosis, no repair — we never open your car blind.</p>
+        <p id="ps1d-pl" lang="pl" style="display:none">Kontaktujesz się z nami, a my dajemy Ci najszybszy możliwy termin na diagnostykę. Bez diagnostyki nie ma naprawy — nie ruszamy auta na ślepo.</p>
+        <p id="ps1d-is" lang="is" style="display:none">Þú hefur samband og við gefum þér fyrsta lausa tímann í greiningu. Engin greining, engin viðgerð — við opnum aldrei bílinn í blindni.</p>
+      </div>
+      <div class="pstep">
+        <div class="pstep-num">2</div>
+        <h3 id="ps2t-en">We find the problem</h3>
+        <h3 id="ps2t-pl" lang="pl" style="display:none">Znajdujemy problem</h3>
+        <h3 id="ps2t-is" lang="is" style="display:none">Við finnum vandamálið</h3>
+        <p id="ps2d-en">We diagnose it and tell you straight, in plain words, what's actually going on.</p>
+        <p id="ps2d-pl" lang="pl" style="display:none">Diagnozujemy i mówimy wprost, po ludzku, co naprawdę jest nie tak.</p>
+        <p id="ps2d-is" lang="is" style="display:none">Við greinum það og segjum þér hreint út, á mannamáli, hvað er raunverulega að.</p>
+      </div>
+      <div class="pstep">
+        <div class="pstep-num">3</div>
+        <h3 id="ps3t-en">Simple fix? Done fast.</h3>
+        <h3 id="ps3t-pl" lang="pl" style="display:none">Proste? Robimy od ręki.</h3>
+        <h3 id="ps3t-is" lang="is" style="display:none">Einfalt? Klárað strax.</h3>
+        <p id="ps3d-en">If it's something we handle, we agree the price, parts and time up front — then fix it quickly.</p>
+        <p id="ps3d-pl" lang="pl" style="display:none">Jeśli to coś, co ogarniamy, ustalamy z góry cenę, części i czas — i naprawiamy szybko.</p>
+        <p id="ps3d-is" lang="is" style="display:none">Ef það er eitthvað sem við ráðum við, semjum við fyrirfram um verð, varahluti og tíma — og lögum það fljótt.</p>
+      </div>
+      <div class="pstep redirect">
+        <div class="pstep-num">→</div>
+        <h3 id="ps4t-en">Big job? Honest redirect.</h3>
+        <h3 id="ps4t-pl" lang="pl" style="display:none">Trudne? Uczciwie kierujemy.</h3>
+        <h3 id="ps4t-is" lang="is" style="display:none">Stórt mál? Heiðarleg tilvísun.</h3>
+        <p id="ps4d-en">Engine, gearbox, major work isn't us. We tell you honestly and send you to a trusted partner — no wasted time or money.</p>
+        <p id="ps4d-pl" lang="pl" style="display:none">Silnik, skrzynia, duże naprawy to nie my. Mówimy uczciwie i kierujemy do zaufanego partnera — bez traconego czasu i pieniędzy.</p>
+        <p id="ps4d-is" lang="is" style="display:none">Vél, gírkassi, stórar viðgerðir eru ekki okkar. Við segjum þér heiðarlega og vísum þér á traustan samstarfsaðila — engin sóun á tíma eða peningum.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing-section">
+    <h2 class="services-heading" id="pr-h-en">Clear, Honest Pricing</h2>
+    <h2 class="services-heading" id="pr-h-pl" lang="pl" style="display:none">Jasny Cennik</h2>
+    <h2 class="services-heading" id="pr-h-is" lang="is" style="display:none">Skýrt Verð</h2>
+
+    <div class="price-cards">
+      <div class="price-card">
+        <div class="price-label" id="pr1l-en">Vehicle diagnosis</div>
+        <div class="price-label" id="pr1l-pl" lang="pl" style="display:none">Diagnostyka auta</div>
+        <div class="price-label" id="pr1l-is" lang="is" style="display:none">Bílagreining</div>
+        <div class="price-now">10,000 ISK</div>
+        <div class="price-note" id="pr1n-en">We find the problem first — always.</div>
+        <div class="price-note" id="pr1n-pl" lang="pl" style="display:none">Najpierw znajdujemy problem — zawsze.</div>
+        <div class="price-note" id="pr1n-is" lang="is" style="display:none">Við finnum vandamálið fyrst — alltaf.</div>
+      </div>
+      <div class="price-card">
+        <div class="price-label" id="pr2l-en">Workshop labour / hour</div>
+        <div class="price-label" id="pr2l-pl" lang="pl" style="display:none">Robocizna / godzina</div>
+        <div class="price-label" id="pr2l-is" lang="is" style="display:none">Verkstæðisvinna / klst.</div>
+        <div><span class="price-old">17,999</span><span class="price-now">12,000 ISK</span></div>
+        <div class="price-note" id="pr2n-en">Simple, fair — no padding the bill.</div>
+        <div class="price-note" id="pr2n-pl" lang="pl" style="display:none">Prosto, uczciwie — bez dopisywania do rachunku.</div>
+        <div class="price-note" id="pr2n-is" lang="is" style="display:none">Einfalt, sanngjarnt — engin uppskrúfun á reikningi.</div>
+      </div>
+    </div>
+
+    <p class="price-foot" id="pr-foot-en">You approve the price before we start. No surprises on the bill.</p>
+    <p class="price-foot" id="pr-foot-pl" lang="pl" style="display:none">Cenę akceptujesz, zanim zaczniemy. Żadnych niespodzianek na rachunku.</p>
+    <p class="price-foot" id="pr-foot-is" lang="is" style="display:none">Þú samþykkir verðið áður en við byrjum. Engin óvænt útgjöld á reikningnum.</p>
   </section>
 
   <!-- Mountain Car Club Section -->
