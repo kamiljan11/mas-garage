@@ -507,7 +507,7 @@
     .lang-bar .flag { display: block; width: 22px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,0.22); }
 
     /* Top nav */
-    .top-nav { background: rgba(244,238,224,0.9); border-bottom-color: var(--line); }
+    .top-nav { background: var(--paper); border-bottom-color: var(--line); }
     .back-btn { color: var(--ink); border-color: var(--line); }
     .back-btn:hover { color: var(--ink); border-color: rgba(38,35,32,0.32); background: rgba(38,35,32,0.05); }
     .nav-anchor { color: var(--ink); border-bottom-color: var(--line); }
@@ -557,7 +557,7 @@
     .bottom { background: var(--paper-2); border-top-color: var(--line); }
     /* Cinematic closing CTA band (AI Iceland backdrop, dark zone) */
     .cta-band { position: relative; padding: 4.5rem 1.5rem; text-align: center; overflow: hidden;
-      background-image: linear-gradient(rgba(17,24,39,0.72), rgba(17,24,39,0.82)), url('./cta-bg.webp');
+      background-image: linear-gradient(rgba(17,24,39,0.7), rgba(17,24,39,0.82)), url('./hero4.webp');
       background-size: cover; background-position: center; }
     .cta-band h2 { font-family: 'Montserrat',sans-serif; color: #fff; font-size: clamp(1.4rem,4.5vw,2.1rem); font-weight: 900; line-height: 1.15; max-width: 620px; margin: 0 auto 1.5rem; text-wrap: balance; text-shadow: 0 2px 18px rgba(0,0,0,0.55); }
     .cta-band .contact-bar { margin-bottom: 0; }
@@ -581,6 +581,7 @@
 
     /* Club (.lejdis) -> light theme (per request) */
     .lejdis { background: linear-gradient(180deg, #EFE6D0 0%, var(--paper) 100%); border-top-color: rgba(212,175,55,0.35); border-bottom-color: rgba(212,175,55,0.35); }
+    .lejdis-ladies { background: linear-gradient(180deg, #F2E1DB 0%, #ECDDD3 100%); border-top-color: rgba(184,110,120,0.3); border-bottom-color: rgba(184,110,120,0.3); }
     .lejdis-sub, .lejdis-ref, .ladies-perks-sub, .perks-note, .partner-sub, .perk-desc, .perk-loc, .founder-role { color: var(--muted); }
     .gold { color: #9C7C18; }
     .lejdis-tag { color: #8A6D12; border-color: rgba(138,109,18,0.5); }
@@ -598,6 +599,18 @@
     .lejdis-founder { background: rgba(212,175,55,0.08); border-color: rgba(212,175,55,0.28); }
     .founder-quote { color: var(--ink); border-left-color: rgba(212,175,55,0.5); }
     @media(max-width:580px){ .founder-quote { border-top-color: rgba(212,175,55,0.4); } }
+
+    /* Hover micro-interactions */
+    .price-card, .perk-card, .svc-icon, .why-card, .pstep-num, .card-img, .contact-bar a, .cta, .partner-btn, .nav-anchor, .lang-bar button { transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; }
+    .price-card:hover { transform: translateY(-5px); box-shadow: 0 14px 34px rgba(38,35,32,0.13); border-color: rgba(245,130,32,0.55); }
+    .perk-card:hover { transform: translateY(-4px); box-shadow: 0 12px 26px rgba(38,35,32,0.12); }
+    .service-card:hover .svc-icon { transform: scale(1.1) rotate(-5deg); }
+    .pstep:hover .pstep-num { transform: scale(1.12); }
+    .why-card:hover { background: rgba(245,130,32,0.06); }
+    .card-img:hover { transform: rotate(0deg) scale(1.04); position: relative; z-index: 1; }
+    .cta:hover, .partner-btn:hover, .contact-bar a:hover { transform: translateY(-2px); }
+    .nav-anchor:hover { transform: translateY(-1px); }
+    .lang-bar button:hover { transform: translateY(-1px) scale(1.05); }
   </style>
 </head>
 <body>
@@ -913,22 +926,12 @@
     <p class="price-foot" id="pr-foot-en">We agree the price before we start — and if extra costs come up, we tell you first and give you simple options to choose from.</p>
     <p class="price-foot" id="pr-foot-pl" lang="pl" style="display:none">Cenę ustalamy, zanim zaczniemy — a jeśli dochodzą koszty, najpierw Cię informujemy i dajemy proste opcje do wyboru.</p>
     <p class="price-foot" id="pr-foot-is" lang="is" style="display:none">Við semjum um verðið áður en við byrjum — og ef aukakostnaður kemur upp, látum við þig vita fyrst og bjóðum einfalda valkosti.</p>
-  </section>
 
-  <!-- Mid-page contact prompt (after Pricing) -->
-  <section class="inspect-section" aria-label="Get in touch" style="padding: 2.5rem 1.5rem 1rem;">
-    <div class="inspect-band" style="flex-direction: column; text-align: center; gap: 0.9rem;">
-      <div>
-        <div class="inspect-band-title" id="midc-t-en">Not sure what's wrong with the car? Message us — we'll take a look.</div>
-        <div class="inspect-band-title" id="midc-t-pl" lang="pl" style="display:none">Coś nie tak z autem? Napisz — sprawdzimy.</div>
-        <div class="inspect-band-title" id="midc-t-is" lang="is" style="display:none">Eitthvað að bílnum? Sendu okkur skilaboð — við kíkjum á það.</div>
-      </div>
-      <div class="contact-bar" style="margin-bottom: 0;">
-        <a href="https://wa.me/3548888005?text=Hi%20Mountain%20Car%20Garage%21%20I%20would%20like%20to%20book%20a%20car%20service." target="_blank" rel="noopener" class="cta" id="midc-wa-en"><span aria-hidden="true">💬</span> Book on WhatsApp</a>
-        <a href="https://wa.me/3548888005?text=Czesc%21%20Chce%20umowic%20moje%20auto%20na%20serwis%20w%20Mountain%20Car%20Garage." target="_blank" rel="noopener" class="cta" id="midc-wa-pl" lang="pl" style="display:none"><span aria-hidden="true">💬</span> Umów wizytę na WhatsApp</a>
-        <a href="https://wa.me/3548888005?text=Hallo%21%20Eg%20vil%20boka%20tima%20fyrir%20bilathjonustu%20hja%20Mountain%20Car%20Garage." target="_blank" rel="noopener" class="cta" id="midc-wa-is" lang="is" style="display:none"><span aria-hidden="true">💬</span> Bókaðu á WhatsApp</a>
-        <a href="tel:+3548888005"><span aria-hidden="true">📞</span> +354 888 8005</a>
-      </div>
+    <div class="contact-bar" style="margin: 1.75rem auto 0;">
+      <a href="https://wa.me/3548888005?text=Hi%20Mountain%20Car%20Garage%21%20I%20would%20like%20to%20book%20a%20car%20service." target="_blank" rel="noopener" class="cta" id="midc-wa-en"><span aria-hidden="true">💬</span> Book on WhatsApp</a>
+      <a href="https://wa.me/3548888005?text=Czesc%21%20Chce%20umowic%20moje%20auto%20na%20serwis%20w%20Mountain%20Car%20Garage." target="_blank" rel="noopener" class="cta" id="midc-wa-pl" lang="pl" style="display:none"><span aria-hidden="true">💬</span> Umów wizytę na WhatsApp</a>
+      <a href="https://wa.me/3548888005?text=Hallo%21%20Eg%20vil%20boka%20tima%20fyrir%20bilathjonustu%20hja%20Mountain%20Car%20Garage." target="_blank" rel="noopener" class="cta" id="midc-wa-is" lang="is" style="display:none"><span aria-hidden="true">💬</span> Bókaðu á WhatsApp</a>
+      <a href="tel:+3548888005"><span aria-hidden="true">📞</span> +354 888 8005</a>
     </div>
   </section>
 
@@ -975,6 +978,23 @@
       <p class="lejdis-ref" id="lref-en"><span aria-hidden="true">🔗</span> Every member gets a unique referral code. When someone books a service using your code, you both earn a stamp. Share it with friends, family, colleagues — the more the merrier.</p>
       <p class="lejdis-ref" id="lref-pl" lang="pl" style="display:none"><span aria-hidden="true">🔗</span> Każdy członek klubu otrzymuje unikalny kod polecenia. Gdy ktoś zarezerwuje wizytę używając Twojego kodu, oboje zdobywacie pieczątkę. Udostępniaj znajomym, rodzinie, kolegom z pracy — im więcej, tym lepiej.</p>
       <p class="lejdis-ref" id="lref-is" lang="is" style="display:none"><span aria-hidden="true">🔗</span> Sérhver meðlimur fær einstakan tilvísunarkóða. Þegar einhver bókar þjónustu með kóðanum þínum, fáið þið bæði stimpil. Deildu með vinum, fjölskyldu, vinnufélögum — því fleiri, því betra.</p>
+
+    </div>
+  </section>
+
+  <!-- Mountain Lejdis — ladies-only section -->
+  <section class="lejdis lejdis-ladies" id="lejdis" aria-labelledby="lejdis-heading">
+    <div class="lejdis-inner">
+
+      <span class="lejdis-tag" id="ltag2-en"><span aria-hidden="true">♀</span> For the Ladies</span>
+      <span class="lejdis-tag" id="ltag2-pl" lang="pl" style="display:none"><span aria-hidden="true">♀</span> Dla Pań</span>
+      <span class="lejdis-tag" id="ltag2-is" lang="is" style="display:none"><span aria-hidden="true">♀</span> Fyrir Konur</span>
+
+      <h2 class="lejdis-title" id="lejdis-heading">Mountain <span class="gold">Lejdis</span></h2>
+
+      <p class="lejdis-sub" id="lsub2-en">Exclusive partner discounts, just for women — Gosia's personal thank-you to the ladies of Mountain Car.</p>
+      <p class="lejdis-sub" id="lsub2-pl" lang="pl" style="display:none">Ekskluzywne zniżki u partnerów, tylko dla kobiet — osobiste podziękowanie Gosi dla pań z Mountain Car.</p>
+      <p class="lejdis-sub" id="lsub2-is" lang="is" style="display:none">Sérstök tilboð hjá samstarfsaðilum, aðeins fyrir konur — persónulegt þakklæti frá Gosiu til kvennanna í Mountain Car.</p>
 
       <!-- Gosia note — ladies' side of the Club -->
       <div class="lejdis-founder">
