@@ -17,6 +17,8 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="is_IS">
+  <meta property="og:locale:alternate" content="pl_PL">
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
@@ -29,6 +31,7 @@
 
   <!-- Preload LCP hero image so it is fetched during HTML parse, not after CSSOM -->
   <link rel="preload" as="image" href="./hero.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="./logo.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,11 +39,12 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:wght@400;500;600&display=swap"></noscript>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --orange: #F58220; --orange-dark: #B85C00; --gold: #D4AF37; --dark: #111827; --muted: rgba(255,255,255,0.62); }
+    :root { --orange: #F58220; --orange-dark: #B85C00; --gold: #D4AF37; --gold-dark: #C49D28; --dark: #111827; --muted: rgba(255,255,255,0.62); --nav-h: 56px; }
     html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
     html, body { font-family: 'Open Sans', sans-serif; background: var(--dark); color: white; min-height: 100%; overflow-x: hidden; }
-    section[id] { scroll-margin-top: 64px; }
+    section[id] { scroll-margin-top: var(--nav-h); }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    @media(max-width:560px){ :root { --nav-h: 50px; } }
 
     /* Accessibility: skip link + focus */
     .skip {
@@ -51,12 +55,14 @@
     :where(a, button):focus-visible {
       outline: 3px solid #fff; outline-offset: 2px; border-radius: 6px;
     }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+    main:focus { outline: none; }
 
     /* Top nav */
     .top-nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; gap: 0.6rem;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 1rem; min-height: var(--nav-h);
       background: rgba(17,24,39,0.82); backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
@@ -75,6 +81,7 @@
     }
     .nav-anchors::-webkit-scrollbar { display: none; }
     .nav-anchor {
+      display: inline-flex; align-items: center;
       flex-shrink: 0; text-decoration: none; white-space: nowrap;
       color: rgba(255,255,255,0.72); font-size: 0.76rem; font-weight: 600;
       padding: 0.35rem 0.7rem; border-radius: 999px; transition: all 0.15s;
@@ -92,12 +99,14 @@
       background: var(--orange); border-color: var(--orange); color: #111827;
     }
     @media(max-width:560px){
-      .top-nav { padding: 0.4rem 0.6rem; gap: 0.4rem; }
-      .back-btn { padding: 0.35rem 0.5rem; }
+      .top-nav { padding: 0.3rem 0.6rem; gap: 0.4rem; }
+      .back-btn, .nav-anchor, .lang-bar button { min-height: 40px; }
+      .back-btn { padding: 0.4rem 0.55rem; }
       .back-label { display: none; }
-      .nav-anchor { font-size: 0.72rem; padding: 0.3rem 0.55rem; }
+      .nav-anchors { justify-content: flex-start; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%); }
+      .nav-anchor { font-size: 0.74rem; padding: 0.4rem 0.6rem; }
       .lang-bar { gap: 0.25rem; }
-      .lang-bar button { padding: 0.3rem 0.5rem; font-size: 0.66rem; }
+      .lang-bar button { padding: 0.4rem 0.55rem; font-size: 0.68rem; }
     }
 
     /* Hero */
@@ -142,7 +151,7 @@
       padding: 0.5rem 1rem; border-radius: 999px; transition: all 0.2s;
     }
     .trust a:hover { border-color: var(--orange); background: rgba(245,130,32,0.1); }
-    .trust .stars { color: #D4AF37; letter-spacing: 0.05em; }
+    .trust .stars { color: var(--orange); letter-spacing: 0.05em; }
 
     /* Benefit chips */
     .chips { display: flex; flex-wrap: wrap; gap: 0.5rem 1.6rem; justify-content: center; margin-bottom: 2.25rem; }
@@ -153,6 +162,7 @@
     }
     .chip::before { content: '✓'; color: var(--orange); font-weight: 800; font-size: 0.95em; }
     .chip b { color: rgba(255,255,255,0.96); font-weight: 700; }
+    .chip.redirect::before { content: '→'; color: var(--orange); }
 
     /* Contact bar */
     .contact-bar { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 3rem; }
@@ -163,7 +173,7 @@
     }
     .contact-bar a:hover { border-color: var(--orange); background: rgba(245,130,32,0.12); }
     .contact-bar a.cta { background: var(--orange); border-color: var(--orange); color: #111827; }
-    .contact-bar a.cta:hover { background: #e0760f; }
+    .contact-bar a.cta:hover { background: var(--orange-dark); }
 
     /* Services */
     .services-section { padding: 4rem 1.5rem 4.5rem; text-align: center; }
@@ -171,7 +181,7 @@
     /* Creative section kicker — gradient accent rule above every heading */
     .services-heading::before {
       content: ''; display: block; width: 46px; height: 3px; margin: 0 auto 1.1rem;
-      background: linear-gradient(90deg, var(--orange), var(--gold)); border-radius: 2px;
+      background: linear-gradient(90deg, var(--orange-dark), var(--orange)); border-radius: 2px;
     }
     .services { width: 100%; max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
     @media(max-width:720px){ .services { grid-template-columns: 1fr; } }
@@ -202,7 +212,7 @@
     .price-card { background: rgba(245,130,32,0.06); border: 1px solid rgba(245,130,32,0.25); border-radius: 16px; padding: 1.75rem 1.25rem; }
     .price-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.6); margin-bottom: 0.7rem; }
     .price-now { font-family: 'Montserrat',sans-serif; font-size: 1.85rem; font-weight: 900; color: var(--orange); }
-    .price-old { font-size: 1.05rem; color: rgba(255,255,255,0.4); text-decoration: line-through; margin-right: 0.5rem; font-weight: 600; }
+    .price-old { font-size: 1.05rem; color: rgba(255,255,255,0.55); text-decoration: line-through; margin-right: 0.5rem; font-weight: 600; }
     .price-note { font-size: 0.8rem; color: var(--muted); margin-top: 0.55rem; line-height: 1.5; }
     .price-foot { font-size: 0.9rem; color: rgba(255,255,255,0.72); max-width: 460px; margin: 0 auto; line-height: 1.55; }
 
@@ -270,6 +280,10 @@
       font-size: clamp(2.2rem, 6vw, 3.8rem);
       font-weight: 900; line-height: 1.05; margin-bottom: 1rem; letter-spacing: -0.01em;
     }
+    .lejdis-title::before {
+      content: ''; display: block; width: 46px; height: 3px; margin: 0 auto 1.1rem;
+      background: linear-gradient(90deg, var(--gold), #f0d875); border-radius: 2px;
+    }
     .gold { color: var(--gold); }
     .lejdis-sub {
       color: rgba(255,255,255,0.7); font-size: 1rem;
@@ -310,12 +324,12 @@
     }
     .lejdis-cta {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      background: #D4AF37; color: #0a0a0a;
+      background: var(--gold); color: var(--dark);
       font-weight: 800; font-size: 0.92rem; text-decoration: none;
       padding: 0.8rem 2rem; border-radius: 999px; transition: all 0.2s;
       letter-spacing: 0.03em;
     }
-    .lejdis-cta:hover { background: #c49d28; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,175,55,0.3); }
+    .lejdis-cta:hover { background: var(--gold-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,175,55,0.3); }
     .lejdis-call {
       display: inline-block; margin: 1rem 0 0; color: rgba(255,255,255,0.75);
       text-decoration: none; font-weight: 600; font-size: 0.9rem;
@@ -364,22 +378,22 @@
     .partner-form { display: flex; flex-direction: column; gap: 0.6rem; max-width: 460px; margin: 0 auto; text-align: left; }
     .partner-form input {
       background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 10px; padding: 0.7rem 0.9rem; color: #fff; font-family: inherit; font-size: 0.88rem;
+      border-radius: 10px; padding: 0.7rem 0.9rem; color: #fff; font-family: inherit; font-size: 16px;
     }
-    .partner-form input::placeholder { color: rgba(255,255,255,0.42); }
+    .partner-form input::placeholder { color: rgba(255,255,255,0.6); }
     .partner-form input:focus { outline: none; border-color: #D4AF37; }
     .partner-btn {
-      background: #D4AF37; color: #0a0a0a; font-family: 'Montserrat', sans-serif;
+      background: var(--gold); color: var(--dark); font-family: 'Montserrat', sans-serif;
       font-weight: 800; font-size: 0.9rem; border: none; border-radius: 999px;
       padding: 0.85rem 1.5rem; cursor: pointer; transition: all 0.2s; margin-top: 0.3rem;
     }
-    .partner-btn:hover { background: #c49d28; transform: translateY(-1px); }
+    .partner-btn:hover { background: var(--gold-dark); transform: translateY(-1px); }
 
     /* Gosia founder block */
     .lejdis-founder {
-      display: flex; gap: 2rem; align-items: flex-start;
+      display: block; max-width: 600px; margin: 0 auto 2.5rem;
       background: rgba(212,175,55,0.05); border: 1px solid rgba(212,175,55,0.15);
-      border-radius: 20px; padding: 2rem; margin-bottom: 2.5rem; text-align: left;
+      border-radius: 20px; padding: 2rem; text-align: left;
     }
     .founder-img {
       width: 120px; height: 120px; border-radius: 50%; object-fit: cover; object-position: center;
@@ -413,6 +427,7 @@
 
     /* Larger tap targets + mobile polish on phones */
     @media(max-width:480px){
+      .hero { min-height: auto; justify-content: flex-start; padding-top: 5rem; padding-bottom: 2.5rem; }
       .logo-wrap { padding: 12px 18px; margin-bottom: 1.5rem; }
       .logo-wrap img { height: 88px; }
       .perk-desc, .ladies-perks-sub, .lejdis-ref { font-size: 0.86rem; }
@@ -445,9 +460,10 @@
 <body>
 
   <a href="#main" class="skip">Skip to content</a>
+  <p id="lang-status" class="sr-only" aria-live="polite"></p>
 
   <!-- Top nav: back + language switcher -->
-  <nav class="top-nav">
+  <nav class="top-nav" aria-label="Primary">
     <a href="https://mountaincar.is" class="back-btn"><span class="arrow" aria-hidden="true">←</span><span class="back-label"> mountaincar.is</span></a>
     <div class="nav-anchors" aria-label="Jump to section">
       <a href="#services" class="nav-anchor">
@@ -466,17 +482,17 @@
         <span id="navcl-is" lang="is" style="display:none">Klúbbur</span>
       </a>
     </div>
-    <div class="lang-bar" role="group" aria-label="Language">
-      <button type="button" onclick="setLang('en')" id="btn-en" class="active" lang="en" aria-pressed="true" title="English">EN</button>
-      <button type="button" onclick="setLang('pl')" id="btn-pl" lang="pl" aria-pressed="false" title="Polski">PL</button>
-      <button type="button" onclick="setLang('is')" id="btn-is" lang="is" aria-pressed="false" title="Íslenska">IS</button>
+    <div class="lang-bar" role="radiogroup" aria-label="Language">
+      <button type="button" onclick="setLang('en')" id="btn-en" class="active" lang="en" role="radio" aria-checked="true" aria-label="English" title="English">EN</button>
+      <button type="button" onclick="setLang('pl')" id="btn-pl" lang="pl" role="radio" aria-checked="false" aria-label="Polski" title="Polski">PL</button>
+      <button type="button" onclick="setLang('is')" id="btn-is" lang="is" role="radio" aria-checked="false" aria-label="Íslenska" title="Íslenska">IS</button>
     </div>
   </nav>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
   <section class="hero">
     <div class="logo-wrap">
-      <img src="./logo.jpg" alt="Mountain Car Garage" width="1100" height="740" decoding="async">
+      <img src="./logo.jpg" alt="Mountain Car Garage" width="600" height="404" fetchpriority="high" decoding="async">
     </div>
 
     <!-- Badge -->
@@ -513,18 +529,21 @@
       <span class="chip" id="chip2-pl" lang="pl" style="display:none"><b>Terminowo</b> · jesteśmy słowni</span>
       <span class="chip" id="chip2-is" lang="is" style="display:none"><b>Stundvís</b> · við stöndum við orð okkar</span>
       <span class="chip" id="chip3-en">Honest advice · <b>no upselling</b></span>
-      <span class="chip" id="chip3-pl" lang="pl" style="display:none">Uczciwa porada · <b>bez naciągania</b></span>
+      <span class="chip" id="chip3-pl" lang="pl" style="display:none">Uczciwa porada · <b>bez wciskania zbędnych usług</b></span>
       <span class="chip" id="chip3-is" lang="is" style="display:none">Heiðarleg ráð · <b>engin sölupressa</b></span>
+      <span class="chip redirect" id="chip4-en">Big engine or gearbox job? · <b>we'll point you the right way</b></span>
+      <span class="chip redirect" id="chip4-pl" lang="pl" style="display:none">Duży problem z silnikiem czy skrzynią? · <b>pokierujemy dalej</b></span>
+      <span class="chip redirect" id="chip4-is" lang="is" style="display:none">Stór vél- eða gírkassaviðgerð? · <b>við vísum þér áfram</b></span>
     </div>
 
     <!-- Contacts -->
     <div class="contact-bar">
-      <a href="tel:+3548888005"><span aria-hidden="true">📞</span> +354 888 8005</a>
-      <a href="https://www.google.com/maps/place/Mountain+car+ehf/@63.9729664,-22.5542144,13z/data=!4m6!3m5!1s0x48d6037e5226a501:0x3cc12a6ecfedeb8f!8m2!3d63.9714579!4d-22.5287403!16s%2Fg%2F11jz3n96h8" target="_blank" rel="noopener"><span aria-hidden="true">📍</span> Njarðarbraut 3i, Reykjanesbær</a>
-      <a href="mailto:mountainallservice@gmail.com"><span aria-hidden="true">✉️</span> mountainallservice@gmail.com</a>
       <a href="https://wa.me/3548888005?text=Hi%20Mountain%20Car%20Garage%21%20I%20would%20like%20to%20book%20a%20car%20service." target="_blank" rel="noopener" class="cta" id="cta-wa-en"><span aria-hidden="true">💬</span> Book on WhatsApp</a>
       <a href="https://wa.me/3548888005?text=Czesc%21%20Chce%20umowic%20moje%20auto%20na%20serwis%20w%20Mountain%20Car%20Garage." target="_blank" rel="noopener" class="cta" id="cta-wa-pl" lang="pl" style="display:none"><span aria-hidden="true">💬</span> Umów wizytę na WhatsApp</a>
       <a href="https://wa.me/3548888005?text=Hallo%21%20Eg%20vil%20boka%20tima%20fyrir%20bilathjonustu%20hja%20Mountain%20Car%20Garage." target="_blank" rel="noopener" class="cta" id="cta-wa-is" lang="is" style="display:none"><span aria-hidden="true">💬</span> Bókaðu á WhatsApp</a>
+      <a href="tel:+3548888005"><span aria-hidden="true">📞</span> +354 888 8005</a>
+      <a href="https://www.google.com/maps/place/Mountain+car+ehf/@63.9729664,-22.5542144,13z/data=!4m6!3m5!1s0x48d6037e5226a501:0x3cc12a6ecfedeb8f!8m2!3d63.9714579!4d-22.5287403!16s%2Fg%2F11jz3n96h8" target="_blank" rel="noopener"><span aria-hidden="true">📍</span> Njarðarbraut 3i, Reykjanesbær</a>
+      <a href="mailto:mountainallservice@gmail.com"><span aria-hidden="true">✉️</span> mountainallservice@gmail.com</a>
     </div>
 
   </section>
@@ -665,7 +684,7 @@
         </div>
       </div>
       <div class="pstep redirect">
-        <div class="pstep-num">→</div>
+        <div class="pstep-num">4</div>
         <div class="pstep-body">
           <h3 id="ps4t-en">Big job? Honest redirect.</h3>
           <h3 id="ps4t-pl" lang="pl" style="display:none">Trudne? Uczciwie kierujemy.</h3>
@@ -681,8 +700,8 @@
   <!-- Why Us -->
   <section class="why-section">
     <h2 class="services-heading" id="why-h-en">Why Mountain Car?</h2>
-    <h2 class="services-heading" id="why-h-pl" lang="pl" style="display:none">Dlaczego my?</h2>
-    <h2 class="services-heading" id="why-h-is" lang="is" style="display:none">Af hverju við?</h2>
+    <h2 class="services-heading" id="why-h-pl" lang="pl" style="display:none">Dlaczego Mountain Car?</h2>
+    <h2 class="services-heading" id="why-h-is" lang="is" style="display:none">Af hverju Mountain Car?</h2>
 
     <div class="why-grid">
       <div class="why-card feature">
@@ -724,14 +743,14 @@
   <!-- Pricing -->
   <section class="pricing-section" id="pricing">
     <h2 class="services-heading" id="pr-h-en">Clear, Honest Pricing</h2>
-    <h2 class="services-heading" id="pr-h-pl" lang="pl" style="display:none">Jasny cennik</h2>
-    <h2 class="services-heading" id="pr-h-is" lang="is" style="display:none">Skýrt verð</h2>
+    <h2 class="services-heading" id="pr-h-pl" lang="pl" style="display:none">Jasny, uczciwy cennik</h2>
+    <h2 class="services-heading" id="pr-h-is" lang="is" style="display:none">Skýrt og heiðarlegt verð</h2>
 
     <div class="price-cards">
       <div class="price-card">
         <div class="price-label" id="pr1l-en">Vehicle diagnosis</div>
         <div class="price-label" id="pr1l-pl" lang="pl" style="display:none">Diagnostyka auta</div>
-        <div class="price-label" id="pr1l-is" lang="is" style="display:none">Bílagreining</div>
+        <div class="price-label" id="pr1l-is" lang="is" style="display:none">Bilanagreining</div>
         <div class="price-now">10,000 ISK</div>
         <div class="price-note" id="pr1n-en">We start with a proper look, before any repair.</div>
         <div class="price-note" id="pr1n-pl" lang="pl" style="display:none">Zaczynamy od porządnego sprawdzenia, przed naprawą.</div>
@@ -741,7 +760,7 @@
         <div class="price-label" id="pr2l-en">Workshop labour / hour</div>
         <div class="price-label" id="pr2l-pl" lang="pl" style="display:none">Robocizna / godzina</div>
         <div class="price-label" id="pr2l-is" lang="is" style="display:none">Verkstæðisvinna / klst.</div>
-        <div><span class="price-old">17,999</span><span class="price-now">12,000 ISK</span></div>
+        <div><span class="price-old"><span class="sr-only">Was </span>17,999</span><span class="price-now"><span class="sr-only">Now </span>12,000 ISK</span></div>
         <div class="price-note" id="pr2n-en">Simple, fair — no padding the bill.</div>
         <div class="price-note" id="pr2n-pl" lang="pl" style="display:none">Prosto, uczciwie — bez dopisywania do rachunku.</div>
         <div class="price-note" id="pr2n-is" lang="is" style="display:none">Einfalt, sanngjarnt — engin uppskrúfun á reikningi.</div>
@@ -751,6 +770,23 @@
     <p class="price-foot" id="pr-foot-en">We agree the price before we start — and if extra costs come up, we tell you first and give you simple options to choose from.</p>
     <p class="price-foot" id="pr-foot-pl" lang="pl" style="display:none">Cenę ustalamy, zanim zaczniemy — a jeśli dochodzą koszty, najpierw Cię informujemy i dajemy proste opcje do wyboru.</p>
     <p class="price-foot" id="pr-foot-is" lang="is" style="display:none">Við semjum um verðið áður en við byrjum — og ef aukakostnaður kemur upp, látum við þig vita fyrst og bjóðum einfalda valkosti.</p>
+  </section>
+
+  <!-- Mid-page contact prompt (after Pricing) -->
+  <section class="inspect-section" aria-label="Get in touch" style="padding: 2.5rem 1.5rem 1rem;">
+    <div class="inspect-band" style="flex-direction: column; text-align: center; gap: 0.9rem;">
+      <div>
+        <div class="inspect-band-title" id="midc-t-en">Not sure what it is? Send us a message — we'll take a look.</div>
+        <div class="inspect-band-title" id="midc-t-pl" lang="pl" style="display:none">Nie wiesz, co to? Napisz — sprawdzimy.</div>
+        <div class="inspect-band-title" id="midc-t-is" lang="is" style="display:none">Veistu ekki hvað er að? Sendu okkur skilaboð — við kíkjum á það.</div>
+      </div>
+      <div class="contact-bar" style="margin-bottom: 0;">
+        <a href="https://wa.me/3548888005?text=Hi%20Mountain%20Car%20Garage%21%20I%20would%20like%20to%20book%20a%20car%20service." target="_blank" rel="noopener" class="cta" id="midc-wa-en"><span aria-hidden="true">💬</span> Book on WhatsApp</a>
+        <a href="https://wa.me/3548888005?text=Czesc%21%20Chce%20umowic%20moje%20auto%20na%20serwis%20w%20Mountain%20Car%20Garage." target="_blank" rel="noopener" class="cta" id="midc-wa-pl" lang="pl" style="display:none"><span aria-hidden="true">💬</span> Umów wizytę na WhatsApp</a>
+        <a href="https://wa.me/3548888005?text=Hallo%21%20Eg%20vil%20boka%20tima%20fyrir%20bilathjonustu%20hja%20Mountain%20Car%20Garage." target="_blank" rel="noopener" class="cta" id="midc-wa-is" lang="is" style="display:none"><span aria-hidden="true">💬</span> Bókaðu á WhatsApp</a>
+        <a href="tel:+3548888005"><span aria-hidden="true">📞</span> +354 888 8005</a>
+      </div>
+    </div>
   </section>
 
   <!-- Mountain Car Club Section -->
@@ -768,8 +804,8 @@
       <p class="lejdis-sub" id="lsub-is" lang="is" style="display:none">Opið fyrir alla. Safnaðu stimplum við hverja heimsókn, vinndu ókeypis vinnustundir og mæltu með okkur við vini með einstaka kóðanum þínum. Og fyrir konurnar — <strong class="gold">Mountain Lejdis</strong>, með sérstökum tilboðum hjá samstarfsaðilum, aðeins fyrir konur.</p>
 
       <div class="lejdis-cards">
-        <img src="./mountain_lejdis_side_A.jpg" alt="Mountain Lejdis members club card — front" class="card-img front" loading="lazy" decoding="async" width="2097" height="1377">
-        <img src="./mountain_lejdis_side_B.jpg" alt="Mountain Lejdis members club card — back" class="card-img back" loading="lazy" decoding="async" width="2097" height="1377">
+        <img src="./mountain_lejdis_side_A.jpg" alt="Mountain Lejdis members club card — front" class="card-img front" loading="lazy" decoding="async" width="700" height="460">
+        <img src="./mountain_lejdis_side_B.jpg" alt="Mountain Lejdis members club card — back" class="card-img back" loading="lazy" decoding="async" width="700" height="460">
       </div>
 
       <div class="lejdis-steps">
@@ -805,17 +841,17 @@
           <div class="founder-role" id="frole-pl" lang="pl" style="display:none">Właścicielka i kierownik warsztatu</div>
           <div class="founder-role" id="frole-is" lang="is" style="display:none">Eigandi og verkstæðisstjóri</div>
           <blockquote class="founder-quote" id="fq-en">
-            <p>And yes — a woman runs this workshop. In this trade that's still rare, and I'm proud of it. Across the industry, studies show 66% of women are charged more than men for the same repair — so I built the opposite: one honest price for everyone, man or woman.</p>
+            <p>And yes — a woman runs this workshop. In this trade that's still rare, and I'm proud of it. Too often women get quoted more than men for the same repair — so I built the opposite: one honest price for everyone, man or woman.</p>
             <p>The Club is open to all — but the women in Mountain Lejdis get a little extra from me: exclusive discounts at our partners. My personal thank-you to them.</p>
             <span class="founder-sign">See you soon — Gosia</span>
           </blockquote>
           <blockquote class="founder-quote" id="fq-pl" lang="pl" style="display:none">
-            <p>I tak — ten warsztat prowadzi kobieta. W tej branży to wciąż rzadkość i jestem z tego dumna. Badania pokazują, że 66% kobiet płaci za tę samą naprawę więcej niż mężczyźni — więc zrobiłam odwrotnie: jedna uczciwa cena dla każdego, faceta czy kobiety.</p>
+            <p>I tak — ten warsztat prowadzi kobieta. W tej branży to wciąż rzadkość i jestem z tego dumna. Zbyt często kobiety słyszą za tę samą naprawę wyższą cenę niż mężczyźni — więc zrobiłam odwrotnie: jedna uczciwa cena dla każdego, faceta czy kobiety.</p>
             <p>Klub jest dla wszystkich — a kobiety z Mountain Lejdis dostają ode mnie coś ekstra: zniżki u naszych partnerów. To moje osobiste podziękowanie.</p>
             <span class="founder-sign">Do zobaczenia — Gosia</span>
           </blockquote>
           <blockquote class="founder-quote" id="fq-is" lang="is" style="display:none">
-            <p>Og já — það er kona sem rekur þetta verkstæði. Það er enn sjaldgæft í þessari grein og ég er stolt af því. Rannsóknir sýna að 66% kvenna borga meira en karlar fyrir sömu viðgerð — svo ég gerði þetta öfugt: eitt sanngjarnt verð fyrir alla, karl eða konu.</p>
+            <p>Og já — það er kona sem rekur þetta verkstæði. Það er enn sjaldgæft í þessari grein og ég er stolt af því. Of oft borga konur hærra verð en karlar fyrir sömu viðgerð — svo ég gerði þetta öfugt: eitt sanngjarnt verð fyrir alla, karl eða konu.</p>
             <p>Klúbburinn er fyrir alla — en konurnar í Mountain Lejdis fá svolítið aukalega frá mér: sérstök tilboð hjá samstarfsaðilum okkar. Persónulegt þakklæti mitt til þeirra.</p>
             <span class="founder-sign">Sjáumst — Gosia</span>
           </blockquote>
@@ -828,9 +864,9 @@
           <span class="ladies-badge" id="lb-en"><span aria-hidden="true">♀</span> Mountain Lejdis — Ladies Only</span>
           <span class="ladies-badge" id="lb-pl" lang="pl" style="display:none"><span aria-hidden="true">♀</span> Mountain Lejdis — tylko dla pań</span>
           <span class="ladies-badge" id="lb-is" lang="is" style="display:none"><span aria-hidden="true">♀</span> Mountain Lejdis — aðeins fyrir konur</span>
-          <p class="ladies-perks-title" id="lpt-en">Exclusive Partner Discounts for Women</p>
-          <p class="ladies-perks-title" id="lpt-pl" lang="pl" style="display:none">Ekskluzywne zniżki dla kobiet</p>
-          <p class="ladies-perks-title" id="lpt-is" lang="is" style="display:none">Sérstök afsláttartilboð fyrir konur</p>
+          <h3 class="ladies-perks-title" id="lpt-en">Exclusive Partner Discounts for Women</h3>
+          <h3 class="ladies-perks-title" id="lpt-pl" lang="pl" style="display:none">Ekskluzywne zniżki dla kobiet</h3>
+          <h3 class="ladies-perks-title" id="lpt-is" lang="is" style="display:none">Sérstök afsláttartilboð fyrir konur</h3>
           <p class="ladies-perks-sub" id="lptsub-en">Show your club card at our partner locations and mention the club code <strong>MOUNTAINCAR</strong> to unlock your discount.</p>
           <p class="ladies-perks-sub" id="lptsub-pl" lang="pl" style="display:none">Pokaż kartę klubową u naszych partnerów i podaj kod klubowy <strong>MOUNTAINCAR</strong>, aby aktywować zniżkę.</p>
           <p class="ladies-perks-sub" id="lptsub-is" lang="is" style="display:none">Sýndu klúbbkortið þitt hjá samstarfsaðilum okkar og gefðu upp klúbbkóðann <strong>MOUNTAINCAR</strong> til að fá afsláttinn.</p>
@@ -871,9 +907,9 @@
 
         <!-- Partner sign-up module -->
         <div class="partner-cta">
-          <p class="partner-title" id="ptn-en">Run a business? Offer a discount to our lady members</p>
-          <p class="partner-title" id="ptn-pl" lang="pl" style="display:none">Masz firmę? Zaproponuj zniżkę naszym klubowiczkom</p>
-          <p class="partner-title" id="ptn-is" lang="is" style="display:none">Ertu með fyrirtæki? Bjóddu afslátt til kvenmeðlima okkar</p>
+          <h3 class="partner-title" id="ptn-en">Run a business? Offer a discount to our lady members</h3>
+          <h3 class="partner-title" id="ptn-pl" lang="pl" style="display:none">Masz firmę? Zaproponuj zniżkę naszym klubowiczkom</h3>
+          <h3 class="partner-title" id="ptn-is" lang="is" style="display:none">Ertu með fyrirtæki? Bjóddu afslátt til kvenmeðlima okkar</h3>
           <p class="partner-sub" id="ptns-en">Fill this in — it opens WhatsApp to Gosia with your offer. Free to join, and we'll add you to the list above.</p>
           <p class="partner-sub" id="ptns-pl" lang="pl" style="display:none">Wypełnij — otworzy się WhatsApp do Gosi z Twoją ofertą. Dołączenie jest darmowe, a my dodamy Cię do listy powyżej.</p>
           <p class="partner-sub" id="ptns-is" lang="is" style="display:none">Fylltu út — það opnar WhatsApp til Gosiu með tilboðinu þínu. Ókeypis að taka þátt og við bætum þér á listann að ofan.</p>
@@ -944,6 +980,7 @@
       "@type": "PostalAddress",
       "streetAddress": "Njarðarbraut 3i",
       "addressLocality": "Reykjanesbær",
+      "addressRegion": "Suðurnes",
       "postalCode": "260",
       "addressCountry": "IS"
     },
@@ -959,7 +996,7 @@
       "opens": "10:00",
       "closes": "18:00"
     }],
-    "areaServed": "Reykjanesbær, Keflavík, KEF Airport",
+    "areaServed": [{"@type":"City","name":"Reykjanesbær"},{"@type":"City","name":"Keflavík"},{"@type":"Place","name":"Keflavík International Airport (KEF)"}],
     "knowsLanguage": ["en","pl","is"]
   }
   </script>
@@ -970,7 +1007,7 @@
       langs.forEach(l => {
         const b = document.getElementById('btn-'+l);
         b.classList.toggle('active', l===lang);
-        b.setAttribute('aria-pressed', l===lang ? 'true' : 'false');
+        b.setAttribute('aria-checked', l===lang ? 'true' : 'false');
       });
       // Update document language for assistive tech / SEO
       document.documentElement.lang = lang;
@@ -978,10 +1015,13 @@
       // but skip the language switch buttons themselves.
       document.querySelectorAll('[id$="-en"],[id$="-pl"],[id$="-is"]').forEach(el => {
         if (el.closest('.lang-bar')) return;
-        const suffix = el.id.slice(-2);
-        el.style.display = suffix === lang ? '' : 'none';
+        const m = el.id.match(/-(en|pl|is)$/);
+        if (!m) return;
+        el.style.display = m[1] === lang ? '' : 'none';
       });
       applyPartnerPlaceholders(lang);
+      var st = document.getElementById('lang-status');
+      if (st) st.textContent = { en: 'Language set to English', pl: 'Język: polski', is: 'Tungumál: íslenska' }[lang];
     }
 
     // Partner sign-up form — placeholders per language + WhatsApp submission
@@ -1031,7 +1071,7 @@
     (function () {
       applyPartnerPlaceholders('en');
       var l = (navigator.language || 'en').slice(0, 2).toLowerCase();
-      if (l === 'pl' || l === 'is') setLang(l);
+      setLang((l === 'pl' || l === 'is') ? l : 'en');
     })();
   </script>
 
