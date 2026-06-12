@@ -234,6 +234,10 @@
     .pstep-body h3 { font-family: 'Montserrat',sans-serif; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; color: #fff; margin-bottom: 0.3rem; }
     .pstep-body p { font-size: 0.86rem; color: var(--muted); line-height: 1.55; }
     .pstep.redirect .pstep-num { color: var(--gold); background: rgba(212,175,55,0.1); box-shadow: inset 0 0 0 2px rgba(212,175,55,0.55); }
+    .pstep-head { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem; flex-wrap: wrap; }
+    .pstep-head h3 { margin-bottom: 0 !important; }
+    .pstep-ic { flex-shrink: 0; line-height: 0; }
+    .pstep-ic svg { display: block; }
 
     /* Pricing */
     .pricing-section { padding: 4rem 1.5rem 4.5rem; text-align: center; background: linear-gradient(180deg, rgba(245,130,32,0.05) 0%, rgba(255,255,255,0.022) 16%, rgba(255,255,255,0.022) 100%); border-top: 1px solid rgba(245,130,32,0.14); border-bottom: 1px solid rgba(255,255,255,0.06); }
@@ -804,7 +808,7 @@
         <blockquote class="intro-quote" id="introq-pl" lang="pl" style="display:none">
           <p>Cześć, jestem Gosia — to mój warsztat i prowadzę go po swojemu. Miałam dość tego, jak warsztaty traktują ludzi — a zwłaszcza kobiety: tłumaczenie z góry, żargon, rachunek, który magicznie wychodzi wyższy niż wycena. Więc zrobiłam coś odwrotnego.</p>
           <p>Tak to u mnie wygląda: uczciwie sprawdzamy, mówimy wprost, w czym rzecz, i ustalamy cenę, zanim dotkniemy auta. Coś wyjdzie w trakcie? Dzwonimy — decyzja Twoja. A ja szczerze powiem, co ma sens, a co odpuścić, żebyś nie wyrzucał kasy. Bieżące rzeczy ogarniamy szybko. Duża robota przy silniku czy skrzyni? Nie ściemniam — kieruję Cię do właściwego specjalisty.</p>
-          <p class="filter">Nie jestem najtańsza i nie robię cudów — i nigdy tego nie obiecywałam. Za to jestem uczciwa, terminowa i na dłużej. Trafiłeś na swój warsztat? To witaj u siebie. A panie — czeka na Was coś ekstra. 😉</p>
+          <p class="filter">Nie jestem najtańsza i nie robię cudów — i nigdy tego nie obiecywałam. Za to jestem uczciwa, terminowa i zostaję na dłużej. Trafiłeś na swój warsztat? To witaj u siebie. A panie — czeka na Was coś ekstra. 😉</p>
           <span class="intro-sign">— Gosia<span class="kw-inline kw-float"><svg width="19" height="19" viewBox="0 0 40 40" aria-hidden="true"><g fill="#F4A9C2"><circle cx="20" cy="8" r="6.5"/><circle cx="32" cy="16" r="6.5"/><circle cx="27.5" cy="30" r="6.5"/><circle cx="12.5" cy="30" r="6.5"/><circle cx="8" cy="16" r="6.5"/></g><circle cx="20" cy="20" r="7" fill="#FFE08A"/><circle cx="17.6" cy="19.5" r="1" fill="#7A5C3E"/><circle cx="22.4" cy="19.5" r="1" fill="#7A5C3E"/><path d="M17.6 22 q2.4 2 4.8 0" stroke="#7A5C3E" stroke-width="1" fill="none" stroke-linecap="round"/></svg></span></span>
         </blockquote>
         <blockquote class="intro-quote" id="introq-is" lang="is" style="display:none">
@@ -823,9 +827,9 @@
     <h2 class="services-heading" id="svc-h-pl" lang="pl" style="display:none">Nasze usługi</h2>
     <h2 class="services-heading" id="svc-h-is" lang="is" style="display:none">Þjónustan okkar</h2>
 
-    <p class="process-sub" id="svc-sub-en">Everyday care and honest diagnosis. The simple jobs we aim to sort quickly — and when it's a big engine or gearbox job, we tell you straight and point you to the right specialist.</p>
-    <p class="process-sub" id="svc-sub-pl" lang="pl" style="display:none">Bieżąca obsługa i uczciwa diagnoza. Proste rzeczy staramy się ogarnąć szybko — a gdy to duża robota przy silniku czy skrzyni, mówimy wprost i kierujemy do właściwego specjalisty.</p>
-    <p class="process-sub" id="svc-sub-is" lang="is" style="display:none">Dagleg umhirða og heiðarleg greining. Einföldu verkin reynum við að klára fljótt — og þegar um stóra vél- eða gírkassaviðgerð er að ræða segjum við það hreint út og vísum þér á réttan sérfræðing.</p>
+    <p class="process-sub" id="svc-sub-en">Everyday care and honest diagnosis — the simple jobs sorted quickly.</p>
+    <p class="process-sub" id="svc-sub-pl" lang="pl" style="display:none">Bieżąca obsługa i uczciwa diagnoza — proste rzeczy ogarniamy szybko.</p>
+    <p class="process-sub" id="svc-sub-is" lang="is" style="display:none">Dagleg umhirða og heiðarleg greining — einföldu verkin klárum við fljótt.</p>
 
     <div class="services">
 
@@ -886,9 +890,12 @@
       <div class="pstep">
         <div class="pstep-num">1</div>
         <div class="pstep-body">
-          <h3 id="ps1t-en">Book a visit</h3>
-          <h3 id="ps1t-pl" lang="pl" style="display:none">Umów wizytę</h3>
-          <h3 id="ps1t-is" lang="is" style="display:none">Bókaðu tíma</h3>
+          <div class="pstep-head">
+            <span class="pstep-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F58220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></span>
+            <h3 id="ps1t-en">Book a visit</h3>
+            <h3 id="ps1t-pl" lang="pl" style="display:none">Umów wizytę</h3>
+            <h3 id="ps1t-is" lang="is" style="display:none">Bókaðu tíma</h3>
+          </div>
           <p id="ps1d-en">You get in touch and we'll try to book you in as soon as we can. We start with a look at the car — we won't take it apart blind.</p>
           <p id="ps1d-pl" lang="pl" style="display:none">Kontaktujesz się z nami, a my staramy się dać termin jak najszybciej. Zaczynamy od sprawdzenia auta — nie ruszamy go na ślepo.</p>
           <p id="ps1d-is" lang="is" style="display:none">Þú hefur samband og við reynum að bóka þig sem fyrst. Við byrjum á að athuga bílinn — við opnum hann ekki í blindni.</p>
@@ -897,9 +904,12 @@
       <div class="pstep">
         <div class="pstep-num">2</div>
         <div class="pstep-body">
-          <h3 id="ps2t-en">We take a look</h3>
-          <h3 id="ps2t-pl" lang="pl" style="display:none">Sprawdzamy auto</h3>
-          <h3 id="ps2t-is" lang="is" style="display:none">Við athugum bílinn</h3>
+          <div class="pstep-head">
+            <span class="pstep-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F58220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.3.3 0 1 0 .2.3"/><path d="M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg></span>
+            <h3 id="ps2t-en">We take a look</h3>
+            <h3 id="ps2t-pl" lang="pl" style="display:none">Sprawdzamy auto</h3>
+            <h3 id="ps2t-is" lang="is" style="display:none">Við athugum bílinn</h3>
+          </div>
           <p id="ps2d-en">We take a proper look and explain, in plain words, what we're seeing and the likely cause.</p>
           <p id="ps2d-pl" lang="pl" style="display:none">Dokładnie sprawdzamy i tłumaczymy po ludzku, co widzimy i co prawdopodobnie jest przyczyną.</p>
           <p id="ps2d-is" lang="is" style="display:none">Við athugum bílinn vel og útskýrum á mannamáli hvað við sjáum og líklega orsök.</p>
@@ -908,9 +918,12 @@
       <div class="pstep">
         <div class="pstep-num">3</div>
         <div class="pstep-body">
-          <h3 id="ps3t-en">Simple job? We plan it.</h3>
-          <h3 id="ps3t-pl" lang="pl" style="display:none">Proste? Planujemy i robimy.</h3>
-          <h3 id="ps3t-is" lang="is" style="display:none">Einfalt? Við skipuleggjum.</h3>
+          <div class="pstep-head">
+            <span class="pstep-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F58220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6M9 16h4"/></svg></span>
+            <h3 id="ps3t-en">Simple job? We plan it.</h3>
+            <h3 id="ps3t-pl" lang="pl" style="display:none">Proste? Planujemy i robimy.</h3>
+            <h3 id="ps3t-is" lang="is" style="display:none">Einfalt? Við skipuleggjum.</h3>
+          </div>
           <p id="ps3d-en">If it's something we can handle, we plan it out — price, parts and time agreed up front — and aim to keep the wait short.</p>
           <p id="ps3d-pl" lang="pl" style="display:none">Jeśli to coś, co ogarniamy, planujemy całość — cena, części i czas z góry — i staramy się nie przeciągać.</p>
           <p id="ps3d-is" lang="is" style="display:none">Ef það er eitthvað sem við ráðum við, skipuleggjum við allt — verð, varahluti og tíma fyrirfram — og reynum að hafa biðina stutta.</p>
@@ -919,12 +932,15 @@
       <div class="pstep redirect">
         <div class="pstep-num">4</div>
         <div class="pstep-body">
-          <h3 id="ps4t-en">Big job? Honest redirect.</h3>
-          <h3 id="ps4t-pl" lang="pl" style="display:none">Trudne? Uczciwie kierujemy.</h3>
-          <h3 id="ps4t-is" lang="is" style="display:none">Stórt mál? Heiðarleg tilvísun.</h3>
-          <p id="ps4d-en">Engine, gearbox, major work isn't us. We tell you honestly and send you to a trusted partner — no wasted time or money.</p>
-          <p id="ps4d-pl" lang="pl" style="display:none">Silnik, skrzynia, duże naprawy to nie my. Mówimy uczciwie i kierujemy do zaufanego partnera — bez traconego czasu i pieniędzy.</p>
-          <p id="ps4d-is" lang="is" style="display:none">Vél, gírkassi, stórar viðgerðir eru ekki okkar. Við segjum þér heiðarlega og vísum þér á traustan samstarfsaðila — engin sóun á tíma eða peningum.</p>
+          <div class="pstep-head">
+            <span class="pstep-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C49D28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/></svg></span>
+            <h3 id="ps4t-en">Big job? We've got you.</h3>
+            <h3 id="ps4t-pl" lang="pl" style="display:none">Trudne? Nie zostawiamy Cię.</h3>
+            <h3 id="ps4t-is" lang="is" style="display:none">Stórt mál? Við sleppum þér ekki.</h3>
+          </div>
+          <p id="ps4d-en">Engine, gearbox or major work isn't our lane — but we don't just wave you off. We'll look after it and help you get to a specialist we trust, so your car lands in safe hands.</p>
+          <p id="ps4d-pl" lang="pl" style="display:none">Silnik, skrzynia czy duża naprawa to nie nasza działka — ale nie zostawiamy Cię z tym samego. Zaopiekujemy się sprawą i pomożemy Ci dotrzeć do sprawdzonego specjalisty, żeby Twoje auto trafiło w dobre ręce.</p>
+          <p id="ps4d-is" lang="is" style="display:none">Vél, gírkassi eða stór viðgerð er ekki okkar svið — en við skiljum þig ekki eftir. Við tökum málið að okkur og hjálpum þér að komast til sérfræðings sem við treystum, svo bíllinn þinn lendi í góðum höndum.</p>
         </div>
       </div>
     </div>
