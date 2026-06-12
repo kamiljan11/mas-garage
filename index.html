@@ -301,6 +301,7 @@
       border-bottom: 1px solid rgba(212,175,55,0.18);
       padding: 5rem 1.5rem;
       text-align: center;
+      position: relative; overflow: hidden;
     }
     .lejdis-inner { max-width: 860px; margin: 0 auto; }
     .lejdis-tag {
@@ -639,6 +640,44 @@
     .visit-row a:hover { text-decoration: underline; }
     .visit-map { border-radius: 16px; overflow: hidden; border: 1px solid var(--line); min-height: 300px; box-shadow: 0 8px 24px rgba(38,35,32,0.08); }
     .visit-map iframe { width: 100%; height: 100%; min-height: 300px; border: 0; display: block; }
+
+    /* ---- Kawaii accents — "a girl runs this" brand touch (Gosia / Club / Lejdis / footer only) ---- */
+    .kw-decos { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .lejdis > .lejdis-inner { position: relative; z-index: 1; }
+    .kw { position: absolute; display: block; line-height: 0; }
+    .kw svg { display: block; }
+    .kw-float { animation: kwFloat 6s ease-in-out infinite; }
+    @keyframes kwFloat { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-9px) rotate(4deg); } }
+    .kw-spin { animation: kwSpin 9s ease-in-out infinite; }
+    @keyframes kwSpin { 0%,100% { transform: rotate(-7deg) scale(1); } 50% { transform: rotate(9deg) scale(1.08); } }
+    .kw-bob { animation: kwBob 4.5s ease-in-out infinite; }
+    @keyframes kwBob { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-7px) rotate(2deg); } }
+    @media (prefers-reduced-motion: reduce) { .kw-float, .kw-spin, .kw-bob { animation: none; } }
+
+    /* placements — Club (cream) */
+    #club .kw-1 { top: 8%; left: 4%; opacity: .55; }
+    #club .kw-2 { top: 15%; right: 5%; opacity: .5; }
+    #club .kw-3 { bottom: 9%; left: 7%; opacity: .45; }
+    /* placements — Lejdis (rose-cream, the girliest section) */
+    #lejdis .kw-1 { top: 6%; right: 5%; opacity: .6; }
+    #lejdis .kw-2 { top: 20%; left: 4%; opacity: .5; }
+    #lejdis .kw-3 { bottom: 5%; right: 6%; opacity: .92; }   /* the car mascot sticker */
+    #lejdis .kw-4 { bottom: 13%; left: 5%; opacity: .5; }
+
+    /* inline accents next to name / badge */
+    .kw-inline { display: inline-block; vertical-align: middle; margin-left: .35rem; }
+    .kw-badge-flower { display: inline-block; vertical-align: -0.4em; margin-right: .35rem; }
+    .intro-sign .kw-inline { margin-left: .25rem; vertical-align: -0.15em; }
+
+    /* footer kawaii sign-off */
+    .kw-footer { display: block; width: 100%; margin-top: .7rem; font-size: .82rem; color: var(--muted); }
+    .kw-footer svg { vertical-align: -0.28em; margin: 0 .15rem; }
+
+    @media (max-width: 600px) {
+      #club .kw-3, #lejdis .kw-2, #lejdis .kw-4 { display: none; }   /* declutter on small screens */
+      #club .kw-1 svg, #club .kw-2 svg, #lejdis .kw-1 svg { width: 28px !important; height: 28px !important; }
+      #lejdis .kw-3 svg { width: 84px !important; height: auto !important; }
+    }
   </style>
 </head>
 <body>
@@ -738,7 +777,7 @@
     <div class="intro-founder">
       <img src="./gosia.jpg" alt="Gosia, owner of Mountain Car Garage" class="founder-img" loading="lazy" decoding="async" width="120" height="120">
       <div>
-        <div class="intro-name">Gosia</div>
+        <div class="intro-name">Gosia<span class="kw-inline kw-spin"><svg width="22" height="22" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3 C21.5 13 27 18.5 37 20 C27 21.5 21.5 27 20 37 C18.5 27 13 21.5 3 20 C13 18.5 18.5 13 20 3 Z" fill="#F4A9C2"/><circle cx="33" cy="8" r="2.2" fill="#D4AF37"/><circle cx="8" cy="31" r="1.7" fill="#B79CE6"/></svg></span></div>
         <div class="intro-role" id="introle-en">Owner &amp; Workshop Manager</div>
         <div class="intro-role" id="introle-pl" lang="pl" style="display:none">Właścicielka i kierownik warsztatu</div>
         <div class="intro-role" id="introle-is" lang="is" style="display:none">Eigandi og verkstæðisstjóri</div>
@@ -746,19 +785,19 @@
           <p>Hi, I'm Gosia — I own this garage and I run it my way. I'd had it with how garages treat people: the talking-down, the jargon, the bill that magically beats the quote. So I built the opposite.</p>
           <p>Here's how I run it: we take an honest look, tell you straight what's going on, and lock the price before we touch your car. Something extra shows up? We call — your call. And I'll tell you honestly what's worth doing and what to skip, so you're not throwing money away. Everyday stuff we sort fast. Big engine or gearbox job? I won't bluff you — I send you to the right specialist.</p>
           <p class="filter">I'm not the cheapest and I don't do miracles — never claimed to. What I am: honest, on time, and here for the long run. Found your kind of garage? Then welcome home. And ladies — there's a little something extra waiting for you. 😉</p>
-          <span class="intro-sign">— Gosia</span>
+          <span class="intro-sign">— Gosia<span class="kw-inline kw-float"><svg width="19" height="19" viewBox="0 0 40 40" aria-hidden="true"><g fill="#F4A9C2"><circle cx="20" cy="8" r="6.5"/><circle cx="32" cy="16" r="6.5"/><circle cx="27.5" cy="30" r="6.5"/><circle cx="12.5" cy="30" r="6.5"/><circle cx="8" cy="16" r="6.5"/></g><circle cx="20" cy="20" r="7" fill="#FFE08A"/><circle cx="17.6" cy="19.5" r="1" fill="#7A5C3E"/><circle cx="22.4" cy="19.5" r="1" fill="#7A5C3E"/><path d="M17.6 22 q2.4 2 4.8 0" stroke="#7A5C3E" stroke-width="1" fill="none" stroke-linecap="round"/></svg></span></span>
         </blockquote>
         <blockquote class="intro-quote" id="introq-pl" lang="pl" style="display:none">
           <p>Cześć, jestem Gosia — to mój warsztat i prowadzę go po swojemu. Miałam dość tego, jak warsztaty traktują ludzi: tłumaczenie z góry, żargon, rachunek, który magicznie wychodzi wyższy niż wycena. Więc zrobiłam coś odwrotnego.</p>
           <p>Tak to u mnie wygląda: uczciwie sprawdzamy, mówimy wprost, w czym rzecz, i ustalamy cenę, zanim dotkniemy auta. Coś wyjdzie w trakcie? Dzwonimy — decyzja Twoja. A ja szczerze powiem, co ma sens, a co odpuścić, żebyś nie wyrzucał kasy. Bieżące rzeczy ogarniamy szybko. Duża robota przy silniku czy skrzyni? Nie ściemniam — kieruję Cię do właściwego specjalisty.</p>
           <p class="filter">Nie jestem najtańsza i nie robię cudów — i nigdy tego nie obiecywałam. Za to jestem uczciwa, terminowa i na dłużej. Trafiłeś na swój warsztat? To witaj u siebie. A panie — czeka na Was coś ekstra. 😉</p>
-          <span class="intro-sign">— Gosia</span>
+          <span class="intro-sign">— Gosia<span class="kw-inline kw-float"><svg width="19" height="19" viewBox="0 0 40 40" aria-hidden="true"><g fill="#F4A9C2"><circle cx="20" cy="8" r="6.5"/><circle cx="32" cy="16" r="6.5"/><circle cx="27.5" cy="30" r="6.5"/><circle cx="12.5" cy="30" r="6.5"/><circle cx="8" cy="16" r="6.5"/></g><circle cx="20" cy="20" r="7" fill="#FFE08A"/><circle cx="17.6" cy="19.5" r="1" fill="#7A5C3E"/><circle cx="22.4" cy="19.5" r="1" fill="#7A5C3E"/><path d="M17.6 22 q2.4 2 4.8 0" stroke="#7A5C3E" stroke-width="1" fill="none" stroke-linecap="round"/></svg></span></span>
         </blockquote>
         <blockquote class="intro-quote" id="introq-is" lang="is" style="display:none">
           <p>Hæ, ég heiti Gosia — ég á þetta verkstæði og rek það á minn hátt. Ég var búin að fá nóg af því hvernig verkstæði koma fram við fólk: talað niður til þín, fagmál, reikningur sem einhvern veginn fer fram úr tilboðinu. Svo ég gerði þetta öfugt.</p>
           <p>Svona geri ég þetta: við kíkjum heiðarlega á bílinn, segjum þér hreint út hvað er í gangi og festum verðið áður en við snertum hann. Kemur eitthvað óvænt upp? Við hringjum — þín ákvörðun. Og ég segi þér heiðarlega hvað borgar sig og hvað má sleppa, svo þú hendir ekki peningum. Daglegu verkin klárum við hratt. Stór vél- eða gírkassaviðgerð? Ég blekki þig ekki — ég vísa þér á réttan sérfræðing.</p>
           <p class="filter">Ég er ekki ódýrust og ég geri ekki kraftaverk — lofaði því aldrei. En ég er heiðarleg, stundvís og hér til langframa. Fannstu verkstæðið þitt? Þá ertu kominn heim. Og dömur — það bíður ykkar svolítið aukalega. 😉</p>
-          <span class="intro-sign">— Gosia</span>
+          <span class="intro-sign">— Gosia<span class="kw-inline kw-float"><svg width="19" height="19" viewBox="0 0 40 40" aria-hidden="true"><g fill="#F4A9C2"><circle cx="20" cy="8" r="6.5"/><circle cx="32" cy="16" r="6.5"/><circle cx="27.5" cy="30" r="6.5"/><circle cx="12.5" cy="30" r="6.5"/><circle cx="8" cy="16" r="6.5"/></g><circle cx="20" cy="20" r="7" fill="#FFE08A"/><circle cx="17.6" cy="19.5" r="1" fill="#7A5C3E"/><circle cx="22.4" cy="19.5" r="1" fill="#7A5C3E"/><path d="M17.6 22 q2.4 2 4.8 0" stroke="#7A5C3E" stroke-width="1" fill="none" stroke-linecap="round"/></svg></span></span>
         </blockquote>
       </div>
     </div>
@@ -1028,6 +1067,11 @@
 
   <!-- Mountain Car Club Section -->
   <section class="lejdis" id="club" aria-labelledby="club-heading">
+    <div class="kw-decos" aria-hidden="true">
+      <span class="kw kw-1 kw-spin"><svg width="42" height="42" viewBox="0 0 40 40"><path d="M20 2 C21.6 13 27 18.4 38 20 C27 21.6 21.6 27 20 38 C18.4 27 13 21.6 2 20 C13 18.4 18.4 13 20 2 Z" fill="#D4AF37"/><circle cx="34" cy="7" r="2.4" fill="#F4A9C2"/></svg></span>
+      <span class="kw kw-2 kw-float"><svg width="40" height="40" viewBox="0 0 40 40"><g fill="#F4A9C2"><circle cx="20" cy="8" r="6.6"/><circle cx="32" cy="16" r="6.6"/><circle cx="27.5" cy="30" r="6.6"/><circle cx="12.5" cy="30" r="6.6"/><circle cx="8" cy="16" r="6.6"/></g><circle cx="20" cy="20" r="7" fill="#FFE08A"/><circle cx="17.6" cy="19.5" r="1.1" fill="#7A5C3E"/><circle cx="22.4" cy="19.5" r="1.1" fill="#7A5C3E"/><path d="M17.6 22 q2.4 2 4.8 0" stroke="#7A5C3E" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg></span>
+      <span class="kw kw-3 kw-float"><svg width="30" height="30" viewBox="0 0 40 40"><path d="M20 5 C21.2 13.5 26.5 18.8 35 20 C26.5 21.2 21.2 26.5 20 35 C18.8 26.5 13.5 21.2 5 20 C13.5 18.8 18.8 13.5 20 5 Z" fill="#B79CE6"/></svg></span>
+    </div>
     <div class="lejdis-inner">
 
       <span class="lejdis-tag" id="ltag-en">Open to Everyone</span>
@@ -1075,6 +1119,12 @@
 
   <!-- Mountain Lejdis — ladies-only section -->
   <section class="lejdis lejdis-ladies" id="lejdis" aria-labelledby="lejdis-heading">
+    <div class="kw-decos" aria-hidden="true">
+      <span class="kw kw-1 kw-float"><svg width="40" height="40" viewBox="0 0 40 40"><g fill="#E89AB4"><circle cx="20" cy="8" r="6.6"/><circle cx="32" cy="16" r="6.6"/><circle cx="27.5" cy="30" r="6.6"/><circle cx="12.5" cy="30" r="6.6"/><circle cx="8" cy="16" r="6.6"/></g><circle cx="20" cy="20" r="7" fill="#FFE08A"/><circle cx="17.6" cy="19.5" r="1.1" fill="#7A5C3E"/><circle cx="22.4" cy="19.5" r="1.1" fill="#7A5C3E"/><path d="M17.6 22 q2.4 2 4.8 0" stroke="#7A5C3E" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg></span>
+      <span class="kw kw-2 kw-spin"><svg width="38" height="38" viewBox="0 0 40 40"><path d="M20 2 C21.6 13 27 18.4 38 20 C27 21.6 21.6 27 20 38 C18.4 27 13 21.6 2 20 C13 18.4 18.4 13 20 2 Z" fill="#D4AF37"/><circle cx="34" cy="7" r="2.4" fill="#E89AB4"/></svg></span>
+      <span class="kw kw-3 kw-bob"><svg width="116" height="93" viewBox="0 0 150 120"><ellipse cx="75" cy="111" rx="54" ry="6.5" fill="rgba(120,80,40,0.16)"/><circle cx="42" cy="99" r="13" fill="#3a3a3a"/><circle cx="42" cy="99" r="5.5" fill="#d8d8d8"/><circle cx="108" cy="99" r="13" fill="#3a3a3a"/><circle cx="108" cy="99" r="5.5" fill="#d8d8d8"/><path d="M19 92 Q15 60 31 53 Q41 28 75 28 Q109 28 119 53 Q135 60 131 92 Q131 99 123 99 L27 99 Q19 99 19 92 Z" fill="#F58220"/><path d="M45 53 Q51 38 75 38 Q99 38 105 53 Z" fill="#FDF6E9"/><circle cx="63" cy="47" r="3" fill="#4a3b2a"/><circle cx="87" cy="47" r="3" fill="#4a3b2a"/><circle cx="56.5" cy="51" r="3.4" fill="#F4A9C2"/><circle cx="93.5" cy="51" r="3.4" fill="#F4A9C2"/><path d="M69 50 q6 5 12 0" stroke="#4a3b2a" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="35" cy="79" r="6.5" fill="#FFE08A"/><circle cx="115" cy="79" r="6.5" fill="#FFE08A"/><path d="M75 16 c-2.6 -4 -8 -2.6 -8 1.6 c0 3 4 5.4 8 9 c4 -3.6 8 -6 8 -9 c0 -4.2 -5.4 -5.6 -8 -1.6 z" fill="#E89AB4"/></svg></span>
+      <span class="kw kw-4 kw-float"><svg width="30" height="28" viewBox="0 0 34 32"><path d="M17 29 C2 18 2 7 10 7 C14 7 16 10 17 12 C18 10 20 7 24 7 C32 7 32 18 17 29 Z" fill="#DBC9F6" stroke="#9D80D6" stroke-width="2"/></svg></span>
+    </div>
     <div class="lejdis-inner">
 
       <span class="lejdis-tag" id="ltag2-en"><span aria-hidden="true">♀</span> For the Ladies</span>
@@ -1242,6 +1292,12 @@
     </span>
     <span class="sep">&nbsp;·&nbsp;</span>
     <span class="fitem">© 2025 Mountain All Service ehf</span>
+    <span class="kw-footer">
+      <svg width="16" height="16" viewBox="0 0 40 40" aria-hidden="true"><g fill="#E89AB4"><circle cx="20" cy="8" r="6.6"/><circle cx="32" cy="16" r="6.6"/><circle cx="27.5" cy="30" r="6.6"/><circle cx="12.5" cy="30" r="6.6"/><circle cx="8" cy="16" r="6.6"/></g><circle cx="20" cy="20" r="7" fill="#FFE08A"/><circle cx="17.6" cy="19.5" r="1.1" fill="#7A5C3E"/><circle cx="22.4" cy="19.5" r="1.1" fill="#7A5C3E"/></svg>
+      <span id="kwf-en">Run with <svg width="15" height="14" viewBox="0 0 34 32" aria-hidden="true"><path d="M17 29 C2 18 2 7 10 7 C14 7 16 10 17 12 C18 10 20 7 24 7 C32 7 32 18 17 29 Z" fill="#E89AB4"/></svg> by Gosia &amp; the team</span>
+      <span id="kwf-pl" lang="pl" style="display:none">Prowadzone z <svg width="15" height="14" viewBox="0 0 34 32" aria-hidden="true"><path d="M17 29 C2 18 2 7 10 7 C14 7 16 10 17 12 C18 10 20 7 24 7 C32 7 32 18 17 29 Z" fill="#E89AB4"/></svg> przez Gosię i zespół</span>
+      <span id="kwf-is" lang="is" style="display:none">Rekið með <svg width="15" height="14" viewBox="0 0 34 32" aria-hidden="true"><path d="M17 29 C2 18 2 7 10 7 C14 7 16 10 17 12 C18 10 20 7 24 7 C32 7 32 18 17 29 Z" fill="#E89AB4"/></svg> af Gosiu og teyminu</span>
+    </span>
   </footer>
 
   <script type="application/ld+json">
