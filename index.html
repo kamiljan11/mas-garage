@@ -99,13 +99,40 @@
     .lang-bar button.active, .lang-bar button:hover {
       background: var(--orange); border-color: var(--orange); color: #111827;
     }
+    /* Hamburger toggle — mobile only */
+    .nav-toggle { display: none; }
+    @media(max-width:720px){
+      .nav-toggle {
+        display: inline-flex; align-items: center; justify-content: center; order: 3;
+        min-width: 44px; min-height: 44px; flex-shrink: 0; cursor: pointer;
+        background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+        color: #fff; border-radius: 10px; font-size: 1.15rem; line-height: 1; font-family: inherit;
+      }
+      .lang-bar { margin-left: auto; }
+      /* nav-anchors becomes a drop-down panel under the bar */
+      .nav-anchors {
+        position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 99;
+        flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 0;
+        padding: 0.25rem 1rem 0.75rem;
+        background: rgba(17,24,39,0.98); backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        -webkit-mask-image: none; mask-image: none;
+        max-height: 0; overflow: hidden; opacity: 0; visibility: hidden;
+        transition: max-height 0.25s ease, opacity 0.2s ease, visibility 0.25s;
+      }
+      .top-nav.menu-open .nav-anchors { max-height: 80vh; overflow-y: auto; opacity: 1; visibility: visible; }
+      .nav-anchor {
+        width: 100%; min-height: 50px; justify-content: flex-start; border-radius: 0;
+        padding: 0.6rem 0.4rem; font-size: 1rem; color: rgba(255,255,255,0.88);
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+      }
+      .nav-anchor:last-child { border-bottom: none; }
+    }
     @media(max-width:560px){
       .top-nav { padding: 0.3rem 0.6rem; gap: 0.4rem; }
-      .back-btn, .nav-anchor, .lang-bar button { min-height: 44px; }
+      .back-btn, .lang-bar button { min-height: 44px; }
       .back-btn { padding: 0.4rem 0.6rem; min-width: 44px; justify-content: center; }
       .back-label { display: none; }
-      .nav-anchors { justify-content: flex-start; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%); }
-      .nav-anchor { font-size: 0.74rem; padding: 0.4rem 0.65rem; }
       .lang-bar { gap: 0.3rem; }
       .lang-bar button { padding: 0.4rem 0.55rem; min-width: 44px; font-size: 0.68rem; }
     }
@@ -476,11 +503,21 @@
   <!-- Top nav: back + language switcher -->
   <nav class="top-nav" aria-label="Primary">
     <a href="https://mountaincar.is" class="back-btn"><span class="arrow" aria-hidden="true">←</span><span class="back-label"> mountaincar.is</span></a>
-    <div class="nav-anchors" aria-label="Jump to section">
+    <div class="nav-anchors" id="navmenu" aria-label="Jump to section">
       <a href="#services" class="nav-anchor">
         <span id="navsvc-en">Services</span>
         <span id="navsvc-pl" lang="pl" style="display:none">Usługi</span>
         <span id="navsvc-is" lang="is" style="display:none">Þjónusta</span>
+      </a>
+      <a href="#how" class="nav-anchor">
+        <span id="navhow-en">How it works</span>
+        <span id="navhow-pl" lang="pl" style="display:none">Jak działamy</span>
+        <span id="navhow-is" lang="is" style="display:none">Ferlið</span>
+      </a>
+      <a href="#why" class="nav-anchor">
+        <span id="navwhy-en">Why us</span>
+        <span id="navwhy-pl" lang="pl" style="display:none">Dlaczego my</span>
+        <span id="navwhy-is" lang="is" style="display:none">Kostir</span>
       </a>
       <a href="#pricing" class="nav-anchor">
         <span id="navpr-en">Pricing</span>
@@ -498,6 +535,7 @@
       <button type="button" onclick="setLang('pl')" id="btn-pl" lang="pl" role="radio" aria-checked="false" aria-label="Polski" title="Polski">PL</button>
       <button type="button" onclick="setLang('is')" id="btn-is" lang="is" role="radio" aria-checked="false" aria-label="Íslenska" title="Íslenska">IS</button>
     </div>
+    <button type="button" class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="navmenu" onclick="toggleMenu()">☰</button>
   </nav>
 
   <main id="main" tabindex="-1">
@@ -648,7 +686,7 @@
   </section>
 
   <!-- How We Work -->
-  <section class="process-section">
+  <section class="process-section" id="how">
     <h2 class="services-heading" id="hww-h-en">How We Work</h2>
     <h2 class="services-heading" id="hww-h-pl" lang="pl" style="display:none">Jak działamy</h2>
     <h2 class="services-heading" id="hww-h-is" lang="is" style="display:none">Hvernig við vinnum</h2>
@@ -706,7 +744,7 @@
   </section>
 
   <!-- Why Us -->
-  <section class="why-section">
+  <section class="why-section" id="why">
     <h2 class="services-heading" id="why-h-en">Why Mountain Car?</h2>
     <h2 class="services-heading" id="why-h-pl" lang="pl" style="display:none">Dlaczego Mountain Car?</h2>
     <h2 class="services-heading" id="why-h-is" lang="is" style="display:none">Af hverju Mountain Car?</h2>
@@ -1013,6 +1051,13 @@
   </script>
 
   <script>
+    function toggleMenu() {
+      var nav = document.querySelector('.top-nav');
+      var open = nav.classList.toggle('menu-open');
+      var btn = document.querySelector('.nav-toggle');
+      if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
     function setLang(lang) {
       const langs = ['en','pl','is'];
       langs.forEach(l => {
@@ -1083,6 +1128,14 @@
       applyPartnerPlaceholders('en');
       var l = (navigator.language || 'en').slice(0, 2).toLowerCase();
       setLang((l === 'pl' || l === 'is') ? l : 'en');
+      // Close the mobile menu after tapping a section link
+      document.querySelectorAll('.nav-anchor').forEach(function (a) {
+        a.addEventListener('click', function () {
+          document.querySelector('.top-nav').classList.remove('menu-open');
+          var b = document.querySelector('.nav-toggle');
+          if (b) b.setAttribute('aria-expanded', 'false');
+        });
+      });
     })();
   </script>
 
