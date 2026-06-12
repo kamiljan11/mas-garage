@@ -37,7 +37,10 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --orange: #F58220; --orange-dark: #B85C00; --gold: #D4AF37; --dark: #111827; --muted: rgba(255,255,255,0.62); }
+    html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
     html, body { font-family: 'Open Sans', sans-serif; background: var(--dark); color: white; min-height: 100%; overflow-x: hidden; }
+    section[id] { scroll-margin-top: 64px; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
     /* Accessibility: skip link + focus */
     .skip {
@@ -52,28 +55,49 @@
     /* Top nav */
     .top-nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0.75rem 1.25rem;
-      background: rgba(17,24,39,0.85); backdrop-filter: blur(8px);
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.5rem 1rem;
+      background: rgba(17,24,39,0.82); backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .back-btn {
-      display: inline-flex; align-items: center; gap: 0.4rem;
+      display: inline-flex; align-items: center; gap: 0.4rem; flex-shrink: 0;
       color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 600;
-      padding: 0.3rem 0.8rem; border: 1px solid rgba(255,255,255,0.12); border-radius: 999px;
+      padding: 0.35rem 0.8rem; border: 1px solid rgba(255,255,255,0.12); border-radius: 999px;
       transition: all 0.15s;
     }
     .back-btn:hover { color: white; border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.06); }
-    .lang-bar { display: flex; gap: 0.4rem; }
+    /* Anchor jump links — scrollable on mobile, no wrap */
+    .nav-anchors {
+      display: flex; align-items: center; gap: 0.25rem; flex: 1 1 auto;
+      justify-content: center; overflow-x: auto; scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .nav-anchors::-webkit-scrollbar { display: none; }
+    .nav-anchor {
+      flex-shrink: 0; text-decoration: none; white-space: nowrap;
+      color: rgba(255,255,255,0.72); font-size: 0.76rem; font-weight: 600;
+      padding: 0.35rem 0.7rem; border-radius: 999px; transition: all 0.15s;
+    }
+    .nav-anchor:hover { color: #fff; background: rgba(245,130,32,0.14); }
+    .lang-bar { display: flex; gap: 0.35rem; flex-shrink: 0; }
     .lang-bar button {
       display: inline-flex; align-items: center; justify-content: center;
       background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.75); font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.08em; padding: 0.3rem 0.7rem; border-radius: 999px;
+      color: rgba(255,255,255,0.75); font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.06em; padding: 0.3rem 0.6rem; border-radius: 999px;
       cursor: pointer; transition: all 0.15s; font-family: inherit;
     }
     .lang-bar button.active, .lang-bar button:hover {
       background: var(--orange); border-color: var(--orange); color: #111827;
+    }
+    @media(max-width:560px){
+      .top-nav { padding: 0.4rem 0.6rem; gap: 0.4rem; }
+      .back-btn { padding: 0.35rem 0.5rem; }
+      .back-label { display: none; }
+      .nav-anchor { font-size: 0.72rem; padding: 0.3rem 0.55rem; }
+      .lang-bar { gap: 0.25rem; }
+      .lang-bar button { padding: 0.3rem 0.5rem; font-size: 0.66rem; }
     }
 
     /* Hero */
@@ -143,12 +167,22 @@
 
     /* Services */
     .services-section { padding: 4rem 1.5rem 4.5rem; text-align: center; }
-    .services-heading { font-family: 'Montserrat', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; margin-bottom: 2.25rem; }
+    .services-heading { position: relative; font-family: 'Montserrat', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; margin-bottom: 2.25rem; }
+    /* Creative section kicker — gradient accent rule above every heading */
+    .services-heading::before {
+      content: ''; display: block; width: 46px; height: 3px; margin: 0 auto 1.1rem;
+      background: linear-gradient(90deg, var(--orange), var(--gold)); border-radius: 2px;
+    }
     .services { width: 100%; max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
     @media(max-width:720px){ .services { grid-template-columns: 1fr; } }
+    /* Mobile: tighter vertical rhythm between sections */
+    @media(max-width:560px){
+      .services-section, .why-section, .process-section, .pricing-section { padding-top: 2.75rem; padding-bottom: 3rem; }
+      .intro-section { padding-top: 2.25rem; }
+    }
 
     /* How We Work */
-    .process-section { padding: 4rem 1.5rem 4.5rem; text-align: center; }
+    .process-section { padding: 4rem 1.5rem 4.5rem; text-align: center; background: linear-gradient(180deg, rgba(245,130,32,0.05) 0%, rgba(255,255,255,0.022) 16%, rgba(255,255,255,0.022) 100%); border-top: 1px solid rgba(245,130,32,0.14); border-bottom: 1px solid rgba(255,255,255,0.06); }
     .process-sub { color: rgba(255,255,255,0.65); max-width: 540px; margin: -1.25rem auto 2.5rem; line-height: 1.6; font-size: 0.95rem; }
     .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; max-width: 940px; margin: 0 auto; }
     @media(max-width:760px){ .process-steps { grid-template-columns: 1fr 1fr; } }
@@ -162,7 +196,7 @@
     @media(max-width:440px){ .pstep { display: flex; gap: 0.9rem; align-items: flex-start; } .pstep-num { margin-bottom: 0; flex-shrink: 0; } }
 
     /* Pricing */
-    .pricing-section { padding: 4rem 1.5rem 4.5rem; text-align: center; background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .pricing-section { padding: 4rem 1.5rem 4.5rem; text-align: center; background: linear-gradient(180deg, rgba(245,130,32,0.05) 0%, rgba(255,255,255,0.022) 16%, rgba(255,255,255,0.022) 100%); border-top: 1px solid rgba(245,130,32,0.14); border-bottom: 1px solid rgba(255,255,255,0.06); }
     .price-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; max-width: 600px; margin: 0 auto 1.5rem; }
     @media(max-width:520px){ .price-cards { grid-template-columns: 1fr; } }
     .price-card { background: rgba(245,130,32,0.06); border: 1px solid rgba(245,130,32,0.25); border-radius: 16px; padding: 1.75rem 1.25rem; }
@@ -190,6 +224,18 @@
     .why-body h3 { font-family: 'Montserrat',sans-serif; font-size: 1.02rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; }
     .why-body p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
     @media(max-width:700px){ .why-card { display: flex; gap: 1rem; align-items: flex-start; padding: 1.4rem 1.25rem; } .why-icon { margin-bottom: 0; flex-shrink: 0; } }
+
+    /* Founder intro band (top-of-page: values + who we're for) */
+    .intro-section { padding: 3.5rem 1.5rem 1rem; }
+    .intro-founder { max-width: 760px; margin: 0 auto; display: flex; gap: 2rem; align-items: flex-start; background: rgba(245,130,32,0.05); border: 1px solid rgba(245,130,32,0.22); border-radius: 20px; padding: 2rem; text-align: left; }
+    .intro-founder .founder-img { border-color: rgba(245,130,32,0.45); }
+    .intro-name { font-family: 'Montserrat',sans-serif; font-size: 1.05rem; font-weight: 800; color: var(--orange); margin-bottom: 0.15rem; }
+    .intro-role { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 0.85rem; }
+    .intro-quote { font-size: 0.92rem; color: rgba(255,255,255,0.82); line-height: 1.7; margin: 0; border-left: 2px solid rgba(245,130,32,0.35); padding-left: 0.9rem; }
+    .intro-quote p { margin: 0 0 0.8rem; }
+    .intro-quote .filter { color: #fff; font-weight: 600; }
+    .intro-sign { display: block; font-family: 'Montserrat',sans-serif; font-weight: 800; color: var(--orange); font-size: 0.95rem; margin-top: 0.3rem; }
+    @media(max-width:580px){ .intro-founder { flex-direction: column; align-items: center; text-align: center; padding: 1.5rem; } .intro-quote { border-left: none; padding-left: 0; border-top: 2px solid rgba(245,130,32,0.3); padding-top: 0.75rem; } }
     .service-card {
       background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
       border-radius: 14px; padding: 1.4rem 1.2rem; text-align: left;
@@ -363,28 +409,10 @@
     }
     .cta-sub { margin-top: 1rem; font-size: 0.85rem; color: rgba(255,255,255,0.62); }
 
-    /* Mobile sticky call/WhatsApp bar */
-    .mobile-cta-bar { display: none; }
-    @media(max-width:760px){
-      .mobile-cta-bar {
-        display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 200;
-        box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
-      }
-      .mobile-cta-bar a {
-        flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.4rem;
-        padding: 0.95rem 0.5rem; font-family: 'Montserrat', sans-serif; font-weight: 800;
-        font-size: 0.92rem; text-decoration: none;
-      }
-      .mobile-cta-bar .mcta-call { background: var(--orange); color: #111827; }
-      .mobile-cta-bar .mcta-wa { background: #25D366; color: #07321a; }
-      body { padding-bottom: 58px; }
-    }
+    /* (mobile sticky call/WhatsApp bar removed per request) */
 
     /* Larger tap targets + mobile polish on phones */
     @media(max-width:480px){
-      .top-nav { padding: 0.4rem 0.85rem; }
-      .back-btn { padding: 0.4rem 0.7rem; font-size: 0.76rem; min-height: 38px; }
-      .lang-bar button { padding: 0.4rem 0.65rem; font-size: 0.78rem; min-width: 40px; min-height: 38px; }
       .logo-wrap { padding: 12px 18px; margin-bottom: 1.5rem; }
       .logo-wrap img { height: 88px; }
       .perk-desc, .ladies-perks-sub, .lejdis-ref { font-size: 0.86rem; }
@@ -420,7 +448,24 @@
 
   <!-- Top nav: back + language switcher -->
   <nav class="top-nav">
-    <a href="https://mountaincar.is" class="back-btn"><span aria-hidden="true">←</span> mountaincar.is</a>
+    <a href="https://mountaincar.is" class="back-btn"><span class="arrow" aria-hidden="true">←</span><span class="back-label"> mountaincar.is</span></a>
+    <div class="nav-anchors" aria-label="Jump to section">
+      <a href="#services" class="nav-anchor">
+        <span id="navsvc-en">Services</span>
+        <span id="navsvc-pl" lang="pl" style="display:none">Usługi</span>
+        <span id="navsvc-is" lang="is" style="display:none">Þjónusta</span>
+      </a>
+      <a href="#pricing" class="nav-anchor">
+        <span id="navpr-en">Pricing</span>
+        <span id="navpr-pl" lang="pl" style="display:none">Cennik</span>
+        <span id="navpr-is" lang="is" style="display:none">Verð</span>
+      </a>
+      <a href="#club" class="nav-anchor">
+        <span id="navcl-en">Club</span>
+        <span id="navcl-pl" lang="pl" style="display:none">Klub</span>
+        <span id="navcl-is" lang="is" style="display:none">Klúbbur</span>
+      </a>
+    </div>
     <div class="lang-bar" role="group" aria-label="Language">
       <button type="button" onclick="setLang('en')" id="btn-en" class="active" lang="en" aria-pressed="true" title="English">EN</button>
       <button type="button" onclick="setLang('pl')" id="btn-pl" lang="pl" aria-pressed="false" title="Polski">PL</button>
@@ -484,8 +529,39 @@
 
   </section>
 
+  <!-- Meet Gosia — values & who we're for (top-of-page filter) -->
+  <section class="intro-section">
+    <div class="intro-founder">
+      <img src="./gosia.jpg" alt="Gosia, owner of Mountain Car Garage" class="founder-img" loading="lazy" decoding="async" width="120" height="120">
+      <div>
+        <div class="intro-name">Gosia</div>
+        <div class="intro-role" id="introle-en">Owner &amp; Workshop Manager</div>
+        <div class="intro-role" id="introle-pl" lang="pl" style="display:none">Właścicielka i kierownik warsztatu</div>
+        <div class="intro-role" id="introle-is" lang="is" style="display:none">Eigandi og verkstæðisstjóri</div>
+        <blockquote class="intro-quote" id="introq-en">
+          <p>Hi, I'm Gosia and I run Mountain Car. I started it because I was tired of how garages treat people — the talking-down, the jargon, the bill that somehow beats the quote.</p>
+          <p>So here it's simple: we take an honest look, tell you in plain words what's going on, and agree the price before we touch your car. The everyday stuff we aim to sort fast. If it's a big engine or gearbox job, we won't pretend — we tell you straight and point you to the right specialist.</p>
+          <p class="filter">We're not the cheapest, and we don't do miracles. We're honest, on time, and here for the long run — we get to know you and your car. If that's the garage you're after, you'll feel at home here.</p>
+          <span class="intro-sign">— Gosia</span>
+        </blockquote>
+        <blockquote class="intro-quote" id="introq-pl" lang="pl" style="display:none">
+          <p>Cześć, jestem Gosia i prowadzę Mountain Car. Zaczęłam, bo miałam dość tego, jak warsztaty traktują ludzi — tłumaczenie z góry, żargon, rachunek, który jakimś cudem wychodzi wyższy niż wycena.</p>
+          <p>Więc u nas jest prosto: uczciwie sprawdzamy, mówimy po ludzku, w czym rzecz, i ustalamy cenę, zanim dotkniemy auta. Bieżące rzeczy staramy się ogarnąć szybko. A jeśli to duża robota przy silniku czy skrzyni — nie udajemy, mówimy wprost i kierujemy do właściwego specjalisty.</p>
+          <p class="filter">Nie jesteśmy najtańsi i nie robimy cudów. Jesteśmy uczciwi, terminowi i na dłużej — poznajemy Ciebie i Twoje auto. Jeśli takiego warsztatu szukasz, będziesz u nas u siebie.</p>
+          <span class="intro-sign">— Gosia</span>
+        </blockquote>
+        <blockquote class="intro-quote" id="introq-is" lang="is" style="display:none">
+          <p>Hæ, ég heiti Gosia og ég rek Mountain Car. Ég byrjaði af því að ég var orðin þreytt á því hvernig verkstæði koma fram við fólk — talað niður til þín, fagmál, reikningur sem einhvern veginn fer fram úr tilboðinu.</p>
+          <p>Þannig að hér er þetta einfalt: við kíkjum heiðarlega á bílinn, segjum þér á mannamáli hvað er í gangi og semjum um verðið áður en við snertum hann. Daglegu verkin reynum við að klára fljótt. Og ef um stóra vél- eða gírkassaviðgerð er að ræða segjum við það hreint út og vísum þér á réttan sérfræðing.</p>
+          <p class="filter">Við erum ekki ódýrust og við gerum ekki kraftaverk. Við erum heiðarleg, stundvís og hér til lengri tíma — við kynnumst þér og bílnum þínum. Ef það er verkstæðið sem þú ert að leita að, þá áttu heima hjá okkur.</p>
+          <span class="intro-sign">— Gosia</span>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
   <!-- Services -->
-  <section class="services-section">
+  <section class="services-section" id="services">
     <h2 class="services-heading" id="svc-h-en">Our Services</h2>
     <h2 class="services-heading" id="svc-h-pl" lang="pl" style="display:none">Nasze usługi</h2>
     <h2 class="services-heading" id="svc-h-is" lang="is" style="display:none">Þjónustan okkar</h2>
@@ -646,7 +722,7 @@
   </section>
 
   <!-- Pricing -->
-  <section class="pricing-section">
+  <section class="pricing-section" id="pricing">
     <h2 class="services-heading" id="pr-h-en">Clear, Honest Pricing</h2>
     <h2 class="services-heading" id="pr-h-pl" lang="pl" style="display:none">Jasny cennik</h2>
     <h2 class="services-heading" id="pr-h-is" lang="is" style="display:none">Skýrt verð</h2>
@@ -678,7 +754,7 @@
   </section>
 
   <!-- Mountain Car Club Section -->
-  <section class="lejdis" aria-labelledby="club-heading">
+  <section class="lejdis" id="club" aria-labelledby="club-heading">
     <div class="lejdis-inner">
 
       <span class="lejdis-tag" id="ltag-en">Open to Everyone</span>
@@ -721,27 +797,26 @@
       <p class="lejdis-ref" id="lref-pl" lang="pl" style="display:none"><span aria-hidden="true">🔗</span> Każdy członek klubu otrzymuje unikalny kod polecenia. Gdy ktoś zarezerwuje wizytę używając Twojego kodu, oboje zdobywacie pieczątkę. Udostępniaj znajomym, rodzinie, kolegom z pracy — im więcej, tym lepiej.</p>
       <p class="lejdis-ref" id="lref-is" lang="is" style="display:none"><span aria-hidden="true">🔗</span> Sérhver meðlimur fær einstakan tilvísunarkóða. Þegar einhver bókar þjónustu með kóðanum þínum, fáið þið bæði stimpil. Deildu með vinum, fjölskyldu, vinnufélögum — því fleiri, því betra.</p>
 
-      <!-- Gosia founder block -->
+      <!-- Gosia note — ladies' side of the Club -->
       <div class="lejdis-founder">
-        <img src="./gosia.jpg" alt="Gosia, owner of Mountain Car Garage" class="founder-img" loading="lazy" decoding="async" width="120" height="120">
         <div>
           <div class="founder-name">Gosia</div>
           <div class="founder-role" id="frole-en">Owner &amp; Workshop Manager</div>
           <div class="founder-role" id="frole-pl" lang="pl" style="display:none">Właścicielka i kierownik warsztatu</div>
           <div class="founder-role" id="frole-is" lang="is" style="display:none">Eigandi og verkstæðisstjóri</div>
           <blockquote class="founder-quote" id="fq-en">
-            <p>Hi, I'm Gosia — and yes, a woman runs this workshop. In this trade that's still rare, and I'm proud of it. I started Mountain Car because I was tired of how garages treat people: the talking-down, the jargon, the bill that somehow beats the quote. Across the industry, studies show 66% of women are charged more than men for the same repair — so I built the opposite.</p>
-            <p>Here it's one honest price for everyone, man or woman: you get the quote before we touch your car, we show you the old parts, and we explain it all in plain words. No upselling, no surprises. The Club is open to all — and the women in Mountain Lejdis get a little extra from me: exclusive discounts at our partners. My personal thank-you to them.</p>
+            <p>And yes — a woman runs this workshop. In this trade that's still rare, and I'm proud of it. Across the industry, studies show 66% of women are charged more than men for the same repair — so I built the opposite: one honest price for everyone, man or woman.</p>
+            <p>The Club is open to all — but the women in Mountain Lejdis get a little extra from me: exclusive discounts at our partners. My personal thank-you to them.</p>
             <span class="founder-sign">See you soon — Gosia</span>
           </blockquote>
           <blockquote class="founder-quote" id="fq-pl" lang="pl" style="display:none">
-            <p>Cześć, jestem Gosia — i tak, ten warsztat prowadzi kobieta. W tej branży to wciąż rzadkość i jestem z tego dumna. Założyłam Mountain Car, bo miałam dość tego, jak warsztaty traktują ludzi: tłumaczenie z góry, żargon, rachunek który jakimś cudem przebija wycenę. W całej branży badania pokazują, że 66% kobiet płaci za tę samą naprawę więcej niż mężczyźni — więc zrobiłam odwrotnie.</p>
-            <p>U nas jest jedna uczciwa cena dla każdego, faceta czy kobiety: wycenę znasz, zanim dotkniemy auta, pokazujemy stare części i tłumaczymy wszystko po ludzku. Bez naciągania, bez niespodzianek. Klub jest dla wszystkich — a kobiety z Mountain Lejdis dostają ode mnie coś ekstra: zniżki u naszych partnerów. To moje osobiste podziękowanie.</p>
+            <p>I tak — ten warsztat prowadzi kobieta. W tej branży to wciąż rzadkość i jestem z tego dumna. Badania pokazują, że 66% kobiet płaci za tę samą naprawę więcej niż mężczyźni — więc zrobiłam odwrotnie: jedna uczciwa cena dla każdego, faceta czy kobiety.</p>
+            <p>Klub jest dla wszystkich — a kobiety z Mountain Lejdis dostają ode mnie coś ekstra: zniżki u naszych partnerów. To moje osobiste podziękowanie.</p>
             <span class="founder-sign">Do zobaczenia — Gosia</span>
           </blockquote>
           <blockquote class="founder-quote" id="fq-is" lang="is" style="display:none">
-            <p>Hæ, ég heiti Gosia — og já, það er kona sem rekur þetta verkstæði. Það er enn sjaldgæft í þessari grein og ég er stolt af því. Ég stofnaði Mountain Car því ég var orðin þreytt á því hvernig verkstæði koma fram við fólk: talað niður til þín, fagmál, reikningur sem einhvern veginn fer fram úr tilboðinu. Í greininni sýna rannsóknir að 66% kvenna borga meira en karlar fyrir sömu viðgerð — svo ég gerði þetta öfugt.</p>
-            <p>Hér er eitt sanngjarnt verð fyrir alla, karl eða konu: þú færð verðið áður en við snertum bílinn, við sýnum þér gömlu hlutina og útskýrum allt á mannamáli. Engin oftroðsla, engin óvænt útgjöld. Klúbburinn er fyrir alla — og konurnar í Mountain Lejdis fá svolítið aukalega frá mér: sérstök tilboð hjá samstarfsaðilum okkar. Persónulegt þakklæti mitt til þeirra.</p>
+            <p>Og já — það er kona sem rekur þetta verkstæði. Það er enn sjaldgæft í þessari grein og ég er stolt af því. Rannsóknir sýna að 66% kvenna borga meira en karlar fyrir sömu viðgerð — svo ég gerði þetta öfugt: eitt sanngjarnt verð fyrir alla, karl eða konu.</p>
+            <p>Klúbburinn er fyrir alla — en konurnar í Mountain Lejdis fá svolítið aukalega frá mér: sérstök tilboð hjá samstarfsaðilum okkar. Persónulegt þakklæti mitt til þeirra.</p>
             <span class="founder-sign">Sjáumst — Gosia</span>
           </blockquote>
         </div>
@@ -852,20 +927,6 @@
     <span class="sep">&nbsp;·&nbsp;</span>
     <span class="fitem">© 2025 Mountain All Service ehf</span>
   </footer>
-
-  <!-- Mobile sticky call / WhatsApp bar -->
-  <nav class="mobile-cta-bar" aria-label="Quick contact">
-    <a href="tel:+3548888005" class="mcta-call"><span aria-hidden="true">📞</span>
-      <span id="mcall-en">Call</span>
-      <span id="mcall-pl" lang="pl" style="display:none">Zadzwoń</span>
-      <span id="mcall-is" lang="is" style="display:none">Hringja</span>
-    </a>
-    <a href="https://wa.me/3548888005?text=Hi%20Mountain%20Car%20Garage%21%20I%20would%20like%20to%20book%20a%20car%20service." target="_blank" rel="noopener" class="mcta-wa"><span aria-hidden="true">💬</span>
-      <span id="mwa-en">WhatsApp</span>
-      <span id="mwa-pl" lang="pl" style="display:none">WhatsApp</span>
-      <span id="mwa-is" lang="is" style="display:none">WhatsApp</span>
-    </a>
-  </nav>
 
   <script type="application/ld+json">
   {
