@@ -1469,6 +1469,18 @@
   </script>
 
   <script>
+    // Meta Pixel conversion events: WhatsApp click -> Lead, phone click -> Contact
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a');
+      if (!a || typeof fbq === 'undefined') return;
+      var href = a.getAttribute('href') || '';
+      if (href.indexOf('wa.me') !== -1 || href.indexOf('whatsapp') !== -1) {
+        fbq('track', 'Lead', { content_name: 'WhatsApp' });
+      } else if (href.indexOf('tel:') === 0) {
+        fbq('track', 'Contact', { content_name: 'Phone call' });
+      }
+    });
+
     function toggleMenu() {
       var nav = document.querySelector('.top-nav');
       var open = nav.classList.toggle('menu-open');
