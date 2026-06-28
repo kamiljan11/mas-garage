@@ -391,20 +391,22 @@
       color: white; margin-bottom: 0.4rem;
     }
     .ladies-perks-sub { font-size: 0.86rem; color: rgba(255,255,255,0.62); line-height: 1.6; max-width: 480px; margin: 0 auto; }
-    .perks-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    .perks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 300px)); gap: 1rem; justify-content: center; }
     @media(max-width:600px){
       .perks-grid { grid-template-columns: 1fr; }
       .ladies-perks { padding: 1.5rem 1.25rem 1.25rem; }
     }
     .perk-card {
       background: rgba(255,255,255,0.04); border: 1px solid rgba(212,175,55,0.12);
-      border-radius: 14px; padding: 1.2rem; text-align: center;
+      border-radius: 14px; padding: 1.5rem 1.2rem; text-align: center;
     }
-    .perk-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
-    .perk-name { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 700; color: white; margin-bottom: 0.35rem; }
+    .perk-icon { font-size: 1.8rem; margin-bottom: 0.5rem; line-height: 1; }
+    .perk-icon img { width: 62px; height: 62px; border-radius: 50%; object-fit: cover; display: inline-block; box-shadow: 0 4px 14px rgba(38,35,32,0.18); }
+    .perk-name { font-family: 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 800; color: white; margin: 0.55rem 0 0.35rem; }
     .perk-discount { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 900; color: #D4AF37; margin-bottom: 0.3rem; }
     .perk-desc { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
-    .perk-loc { font-size: 0.74rem; color: rgba(255,255,255,0.5); margin-top: 0.45rem; }
+    .perk-loc { display: inline-block; font-size: 0.74rem; color: rgba(255,255,255,0.5); margin-top: 0.6rem; text-decoration: none; }
+    a.perk-loc:hover { color: var(--orange); text-decoration: underline; }
     .perks-note {
       font-size: 0.82rem; color: rgba(255,255,255,0.55);
       margin: -0.5rem auto 1.4rem; max-width: 500px; line-height: 1.55;
@@ -1277,64 +1279,19 @@
           <p class="ladies-perks-sub" id="lptsub-is" lang="is" style="display:none">Sérstök tilboð hjá samstarfsfyrirtækjum okkar, aðeins fyrir konurnar í Mountain Lejdis. Sýndu klúbbkortið og segðu <strong>MOUNTAINCAR</strong>.</p>
         </div>
 
-        <p class="perks-note" id="pnote-en"><span aria-hidden="true">🚀</span> Just launching — the offers below are examples of what's coming. Real local partners are being added now. Show your card &amp; say <strong>MOUNTAINCAR</strong> to redeem.</p>
-        <p class="perks-note" id="pnote-pl" lang="pl" style="display:none"><span aria-hidden="true">🚀</span> Dopiero startujemy — oferty poniżej to przykłady tego, co nadchodzi. Prawdziwi lokalni partnerzy właśnie dochodzą. Pokaż kartę i podaj <strong>MOUNTAINCAR</strong>, aby skorzystać.</p>
-        <p class="perks-note" id="pnote-is" lang="is" style="display:none"><span aria-hidden="true">🚀</span> Að fara af stað — tilboðin hér að neðan eru sýnishorn af því sem er að koma. Raunverulegir samstarfsaðilar bætast við núna. Sýndu kortið og segðu <strong>MOUNTAINCAR</strong>.</p>
+        <p class="perks-note" id="pnote-en"><span aria-hidden="true">🎉</span> Our first partner is live — more local businesses are joining the club soon. Show your card &amp; say <strong>MOUNTAINCAR</strong> to redeem.</p>
+        <p class="perks-note" id="pnote-pl" lang="pl" style="display:none"><span aria-hidden="true">🎉</span> Pierwszy partner już działa — kolejne lokalne firmy wkrótce dołączą do klubu. Pokaż kartę i podaj <strong>MOUNTAINCAR</strong>, aby skorzystać.</p>
+        <p class="perks-note" id="pnote-is" lang="is" style="display:none"><span aria-hidden="true">🎉</span> Fyrsti samstarfsaðilinn okkar er kominn — fleiri staðbundin fyrirtæki bætast við klúbbinn fljótlega. Sýndu kortið og segðu <strong>MOUNTAINCAR</strong> til að fá afsláttinn.</p>
 
         <div class="perks-grid">
-          <div class="perk-card">
-            <div class="perk-icon" aria-hidden="true">🧘</div>
-            <div class="perk-name">Yoga Studio Iceland</div>
-            <div class="perk-discount">20% OFF</div>
-            <div class="perk-desc" id="p1d-en">First month membership or single class</div>
-            <div class="perk-desc" id="p1d-pl" lang="pl" style="display:none">Pierwszy miesiąc członkostwa lub pojedyncze zajęcia</div>
-            <div class="perk-desc" id="p1d-is" lang="is" style="display:none">Fyrsti mánuður aðildar eða einstaka tími</div>
-            <div class="perk-loc"><span aria-hidden="true">📍</span> Reykjanesbær</div>
-          </div>
-          <div class="perk-card">
-            <div class="perk-icon" aria-hidden="true">🏋️</div>
-            <div class="perk-name">Pilates Reykjanes</div>
-            <div class="perk-discount">15% OFF</div>
-            <div class="perk-desc" id="p2d-en">Any group class or personal training session</div>
-            <div class="perk-desc" id="p2d-pl" lang="pl" style="display:none">Dowolne zajęcia grupowe lub trening personalny</div>
-            <div class="perk-desc" id="p2d-is" lang="is" style="display:none">Hópstund eða einkatímar</div>
-            <div class="perk-loc"><span aria-hidden="true">📍</span> Keflavík</div>
-          </div>
-          <div class="perk-card">
-            <div class="perk-icon" aria-hidden="true">✂️</div>
-            <div class="perk-name">Hair Salon Keflavík</div>
+          <div class="perk-card perk-real">
+            <div class="perk-icon" aria-hidden="true"><img src="./partner-tynda.png" alt="Týnda Bakaríið" width="62" height="62" loading="lazy" decoding="async"></div>
+            <div class="perk-name">Týnda Bakaríið</div>
             <div class="perk-discount">10% OFF</div>
-            <div class="perk-desc" id="p3d-en">Cut, colour, or any treatment</div>
-            <div class="perk-desc" id="p3d-pl" lang="pl" style="display:none">Strzyżenie, koloryzacja lub dowolny zabieg</div>
-            <div class="perk-desc" id="p3d-is" lang="is" style="display:none">Klipping, litun eða önnur meðferð</div>
-            <div class="perk-loc"><span aria-hidden="true">📍</span> Keflavík</div>
-          </div>
-          <div class="perk-card">
-            <div class="perk-icon" aria-hidden="true">💅</div>
-            <div class="perk-name">Nail &amp; Brow Bar</div>
-            <div class="perk-discount">15% OFF</div>
-            <div class="perk-desc" id="p4d-en">Manicure, pedicure, brows &amp; lashes</div>
-            <div class="perk-desc" id="p4d-pl" lang="pl" style="display:none">Manicure, pedicure, brwi i rzęsy</div>
-            <div class="perk-desc" id="p4d-is" lang="is" style="display:none">Handsnyrting, fótsnyrting, augabrúnir og augnhár</div>
-            <div class="perk-loc"><span aria-hidden="true">📍</span> Keflavík</div>
-          </div>
-          <div class="perk-card">
-            <div class="perk-icon" aria-hidden="true">💆</div>
-            <div class="perk-name">Spa &amp; Massage</div>
-            <div class="perk-discount">15% OFF</div>
-            <div class="perk-desc" id="p5d-en">A facial or a relaxing massage</div>
-            <div class="perk-desc" id="p5d-pl" lang="pl" style="display:none">Zabieg na twarz lub relaksujący masaż</div>
-            <div class="perk-desc" id="p5d-is" lang="is" style="display:none">Andlitsmeðferð eða afslappandi nudd</div>
-            <div class="perk-loc"><span aria-hidden="true">📍</span> Reykjanesbær</div>
-          </div>
-          <div class="perk-card">
-            <div class="perk-icon" aria-hidden="true">☕</div>
-            <div class="perk-name">Café &amp; Brunch</div>
-            <div class="perk-discount">10% OFF</div>
-            <div class="perk-desc" id="p6d-en">Coffee &amp; weekend brunch</div>
-            <div class="perk-desc" id="p6d-pl" lang="pl" style="display:none">Kawa i weekendowy brunch</div>
-            <div class="perk-desc" id="p6d-is" lang="is" style="display:none">Kaffi og helgarbrunch</div>
-            <div class="perk-loc"><span aria-hidden="true">📍</span> Reykjanesbær</div>
+            <div class="perk-desc" id="p1d-en">Fresh bread, pastries &amp; cakes — baked daily</div>
+            <div class="perk-desc" id="p1d-pl" lang="pl" style="display:none">Świeże pieczywo, ciastka i wypieki — pieczone codziennie</div>
+            <div class="perk-desc" id="p1d-is" lang="is" style="display:none">Ferskt brauð, kökur og bakkelsi — bakað daglega</div>
+            <a class="perk-loc" href="https://www.google.com/maps/search/?api=1&amp;query=T%C3%BDnda+Bakar%C3%AD%C3%B0%2C+Hafnargata+90%2C+230+Keflav%C3%ADk" target="_blank" rel="noopener"><span aria-hidden="true">📍</span> Hafnargata 90, Keflavík</a>
           </div>
         </div>
 
