@@ -393,8 +393,20 @@
     .ladies-perks-sub { font-size: 0.86rem; color: rgba(255,255,255,0.62); line-height: 1.6; max-width: 480px; margin: 0 auto; }
     .perks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(195px, 245px)); gap: 1rem; justify-content: center; }
     @media(max-width:600px){
-      .perks-grid { grid-template-columns: 1fr; }
       .ladies-perks { padding: 1.5rem 1.25rem 1.25rem; }
+      /* horizontal swipe carousel on mobile */
+      .perks-grid {
+        display: flex; grid-template-columns: none; flex-wrap: nowrap;
+        justify-content: flex-start; gap: 0.85rem;
+        overflow-x: auto; -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory; scroll-padding: 0 1.25rem;
+        margin: 0 -1.25rem; padding: 0 1.25rem 0.85rem;
+        scrollbar-width: none;
+      }
+      .perks-grid::-webkit-scrollbar { display: none; }
+      .perks-grid .perk-card {
+        flex: 0 0 80%; max-width: 300px; scroll-snap-align: center;
+      }
     }
     .perk-card {
       background: rgba(255,255,255,0.04); border: 1px solid rgba(212,175,55,0.12);
