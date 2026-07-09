@@ -95,14 +95,17 @@
       padding: 0.35rem 0.7rem; border-radius: 999px; transition: all 0.15s;
     }
     .nav-anchor:hover { color: #fff; background: rgba(245,130,32,0.14); }
-    /* Install-app button — highlighted pill in the menu */
-    .nav-anchors .install-btn {
-      gap: 0.35rem; cursor: pointer; font-family: inherit;
-      color: #111827; background: var(--orange);
-      border: 1px solid var(--orange);
+    /* Install-app button — highlighted pill on the left of the top bar */
+    .install-btn {
+      display: inline-flex; align-items: center; gap: 0.35rem; flex-shrink: 0;
+      cursor: pointer; font-family: inherit; white-space: nowrap;
+      font-size: 0.78rem; font-weight: 600; line-height: 1;
+      padding: 0.35rem 0.8rem; border-radius: 999px;
+      color: #111827; background: var(--orange); border: 1px solid var(--orange);
+      transition: all 0.15s;
     }
-    .nav-anchors .install-btn:hover { color: #111827; background: var(--orange-dark); border-color: var(--orange-dark); }
-    .install-btn .install-ic { font-size: 0.9em; line-height: 1; }
+    .install-btn:hover { color: #111827; background: var(--orange-dark); border-color: var(--orange-dark); }
+    .install-btn .install-ic { font-size: 0.95em; line-height: 1; }
     .install-btn[hidden] { display: none; }
     .lang-bar { display: flex; gap: 0.35rem; flex-shrink: 0; }
     .lang-bar button {
@@ -146,11 +149,18 @@
     }
     @media(max-width:560px){
       .top-nav { padding: 0.3rem 0.6rem; gap: 0.4rem; }
-      .back-btn, .lang-bar button { min-height: 44px; }
+      .back-btn, .lang-bar button, .install-btn { min-height: 44px; }
       .back-btn { padding: 0.4rem 0.6rem; min-width: 44px; justify-content: center; }
       .back-label { display: none; }
       .lang-bar { gap: 0.3rem; }
       .lang-bar button { padding: 0.4rem 0.55rem; min-width: 44px; font-size: 0.68rem; }
+    }
+    /* Very narrow screens: collapse the install button to just its icon
+       (accessible name is preserved via aria-label) so the bar never overflows. */
+    @media(max-width:340px){
+      .install-btn { padding: 0.4rem 0.7rem; min-width: 44px; justify-content: center; }
+      .install-btn .install-txt { display: none; }
+      .install-btn .install-ic { font-size: 1.15em; }
     }
 
     /* Hero */
@@ -786,13 +796,15 @@
   <!-- Top nav: back + language switcher -->
   <nav class="top-nav" aria-label="Primary">
     <a href="https://mountaincar.is" class="back-btn"><span class="arrow" aria-hidden="true">←</span><span class="back-label"> mountaincar.is</span></a>
-    <div class="nav-anchors" id="navmenu" aria-label="Jump to section">
-      <button type="button" id="installBtn" class="nav-anchor install-btn" hidden onclick="installApp()">
-        <span class="install-ic" aria-hidden="true">⬇</span>
+    <button type="button" id="installBtn" class="install-btn" hidden onclick="installApp()" aria-label="Install app">
+      <span class="install-ic" aria-hidden="true">⬇</span>
+      <span class="install-txt">
         <span id="navinstall-en">Install app</span>
         <span id="navinstall-pl" lang="pl" style="display:none">Zainstaluj aplikację</span>
         <span id="navinstall-is" lang="is" style="display:none">Setja upp app</span>
-      </button>
+      </span>
+    </button>
+    <div class="nav-anchors" id="navmenu" aria-label="Jump to section">
       <a href="#services" class="nav-anchor">
         <span id="navsvc-en">Services</span>
         <span id="navsvc-pl" lang="pl" style="display:none">Usługi</span>
