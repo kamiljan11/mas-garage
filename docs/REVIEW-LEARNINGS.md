@@ -1,6 +1,6 @@
 # REVIEW-LEARNINGS — pamiec recenzenta (wzor: CodeRabbit Learnings)
 
-Regly wyniesione z korekt Kamila w PR-ach i z incydentow. KAZDY recenzent
+Regly wyniesione z korekt wlasciciela w PR-ach i z incydentow. KAZDY recenzent
 (claude-review na PR, code-reviewer w sesji, petla auto-improve) MUSI je czytac
 i stosowac przed ocena kodu. Petla auto-improve dopisuje wpisy automatycznie
 z dyskusji PR; mozna tez dopisywac recznie.
