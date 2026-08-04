@@ -32,5 +32,5 @@ git revert <sha-zlego-commita> && git push   # -> redeploy automatyczny
 | Domena/DNS | panel ISNIC / rejestratora |
 
 ## Kontakty
-- Wlasciciel: Kamil Jan, mountainallservice@gmail.com
+- Wlasciciel: MAS Group, mountainallservice@gmail.com
 - Klient: [imie, kontakt, SLA jesli jest]
