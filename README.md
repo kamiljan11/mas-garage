@@ -46,4 +46,4 @@ docs/RUNBOOK.md # operacje: deploy, rollback, awarie
 - Zmiany: `CHANGELOG.md` (Keep a Changelog) — aktualizuj sekcje [Unreleased] w kazdym PR
 
 ## Wlasciciel
-MAS Group / Kamil Jan — mountainallservice@gmail.com
+MAS Group — mountainallservice@gmail.com
