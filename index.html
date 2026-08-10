@@ -783,12 +783,15 @@
   fbq('init', '2231294474290132');
   fbq('track', 'PageView');
   </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=2231294474290132&ev=PageView&noscript=1"
-  /></noscript>
   <!-- End Meta Pixel Code -->
 </head>
 <body>
+
+  <!-- Meta Pixel <noscript> — musi byc w <body>, nie w <head>: wewnatrz <head>
+       dozwolone sa tylko link/style/meta, wiec <img> tam bylo niepoprawne i
+       przegladarka i tak przenosila go do body przy parsowaniu. -->
+  <noscript><img height="1" width="1" alt="" style="display:none"
+  src="https://www.facebook.com/tr?id=2231294474290132&ev=PageView&noscript=1"></noscript>
 
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
   <a href="#main" class="skip">Skip to content</a>
@@ -805,7 +808,9 @@
         <span id="navinstall-is" lang="is" style="display:none">Setja upp app</span>
       </span>
     </button>
-    <div class="nav-anchors" id="navmenu" aria-label="Jump to section">
+    <!-- role="navigation": bez roli aria-label na zwyklym <div> jest ignorowane
+         przez czytniki ekranu, wiec ta etykieta nie docierala do nikogo. -->
+    <div class="nav-anchors" id="navmenu" role="navigation" aria-label="Jump to section">
       <a href="#services" class="nav-anchor">
         <span id="navsvc-en">Services</span>
         <span id="navsvc-pl" lang="pl" style="display:none">Usługi</span>
