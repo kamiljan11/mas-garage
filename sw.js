@@ -40,7 +40,9 @@ self.addEventListener('fetch', function (event) {
       fetch(req).then(function (res) {
         // Cache'ujemy tylko realnie poprawna odpowiedz z naszego originu —
         // inaczej strona bledu zwrocona z kodem 200 wyladowalaby w cache jako shell.
-        if (res && res.ok && res.type === 'basic') {
+        // `!res.redirected` jest tu krytyczne: odpowiedz po przekierowaniu (np. normalizacja
+        // slasha przez hosting) zapisana jako shell wywala pozniejsza nawigacje z cache.
+        if (res && res.ok && !res.redirected && res.type === 'basic') {
           var copy = res.clone();
           event.waitUntil(caches.open(CACHE).then(function (c) { return c.put('./index.html', copy); }));
         }
@@ -62,7 +64,7 @@ self.addEventListener('fetch', function (event) {
   event.respondWith(
     caches.match(req).then(function (cached) {
       var network = fetch(req).then(function (res) {
-        if (res && res.status === 200 && res.type === 'basic') {
+        if (res && res.status === 200 && !res.redirected && res.type === 'basic') {
           var copy = res.clone();
           event.waitUntil(caches.open(CACHE).then(function (c) { return c.put(req, copy); }));
         }
