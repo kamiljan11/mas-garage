@@ -1,0 +1,16 @@
+{
+  "// uwaga": "Strona to czysty HTML/JS — TypeScript jest tu wylacznie w playwright.config.ts i e2e/. Bez tego pliku krok 'Typecheck' w quality.yml pomijal sie (if: hashFiles('tsconfig.json')), wiec bledy typow w testach lapalby dopiero runtime Playwrighta.",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "types": ["node"],
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["e2e/**/*.ts", "playwright.config.ts"]
+}

@@ -29,7 +29,14 @@
   <meta name="twitter:image" content="https://garage.mountaincar.is/og-image.jpg">
 
   <link rel="icon" href="./logo.jpg">
-  <link rel="apple-touch-icon" href="./logo.jpg">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+
+  <!-- PWA: installable app -->
+  <link rel="manifest" href="./manifest.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MC Garage">
 
   <!-- Preload LCP hero image so it is fetched during HTML parse, not after CSSOM -->
   <link rel="preload" as="image" href="./hero3.webp" fetchpriority="high">
@@ -89,6 +96,18 @@
       padding: 0.35rem 0.7rem; border-radius: 999px; transition: all 0.15s;
     }
     .nav-anchor:hover { color: #fff; background: rgba(245,130,32,0.14); }
+    /* Install-app button — highlighted pill on the left of the top bar */
+    .install-btn {
+      display: inline-flex; align-items: center; gap: 0.35rem; flex-shrink: 0;
+      cursor: pointer; font-family: inherit; white-space: nowrap;
+      font-size: 0.78rem; font-weight: 600; line-height: 1;
+      padding: 0.35rem 0.8rem; border-radius: 999px;
+      color: #111827; background: var(--orange); border: 1px solid var(--orange);
+      transition: all 0.15s;
+    }
+    .install-btn:hover { color: #111827; background: var(--orange-dark); border-color: var(--orange-dark); }
+    .install-btn .install-ic { font-size: 0.95em; line-height: 1; }
+    .install-btn[hidden] { display: none; }
     .lang-bar { display: flex; gap: 0.35rem; flex-shrink: 0; }
     .lang-bar button {
       display: inline-flex; align-items: center; justify-content: center;
@@ -131,11 +150,18 @@
     }
     @media(max-width:560px){
       .top-nav { padding: 0.3rem 0.6rem; gap: 0.4rem; }
-      .back-btn, .lang-bar button { min-height: 44px; }
+      .back-btn, .lang-bar button, .install-btn { min-height: 44px; }
       .back-btn { padding: 0.4rem 0.6rem; min-width: 44px; justify-content: center; }
       .back-label { display: none; }
       .lang-bar { gap: 0.3rem; }
       .lang-bar button { padding: 0.4rem 0.55rem; min-width: 44px; font-size: 0.68rem; }
+    }
+    /* Very narrow screens: collapse the install button to just its icon
+       (accessible name is preserved via aria-label) so the bar never overflows. */
+    @media(max-width:340px){
+      .install-btn { padding: 0.4rem 0.7rem; min-width: 44px; justify-content: center; }
+      .install-btn .install-txt { display: none; }
+      .install-btn .install-ic { font-size: 1.15em; }
     }
 
     /* Hero */
@@ -757,12 +783,15 @@
   fbq('init', '2231294474290132');
   fbq('track', 'PageView');
   </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=2231294474290132&ev=PageView&noscript=1"
-  /></noscript>
   <!-- End Meta Pixel Code -->
 </head>
 <body>
+
+  <!-- Meta Pixel <noscript> — musi byc w <body>, nie w <head>: wewnatrz <head>
+       dozwolone sa tylko link/style/meta, wiec <img> tam bylo niepoprawne i
+       przegladarka i tak przenosila go do body przy parsowaniu. -->
+  <noscript><img height="1" width="1" alt="" style="display:none"
+  src="https://www.facebook.com/tr?id=2231294474290132&ev=PageView&noscript=1"></noscript>
 
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
   <a href="#main" class="skip">Skip to content</a>
@@ -771,7 +800,17 @@
   <!-- Top nav: back + language switcher -->
   <nav class="top-nav" aria-label="Primary">
     <a href="https://mountaincar.is" class="back-btn"><span class="arrow" aria-hidden="true">←</span><span class="back-label"> mountaincar.is</span></a>
-    <div class="nav-anchors" id="navmenu" aria-label="Jump to section">
+    <button type="button" id="installBtn" class="install-btn" hidden onclick="installApp()" aria-label="Install app">
+      <span class="install-ic" aria-hidden="true">⬇</span>
+      <span class="install-txt">
+        <span id="navinstall-en">Install app</span>
+        <span id="navinstall-pl" lang="pl" style="display:none">Zainstaluj aplikację</span>
+        <span id="navinstall-is" lang="is" style="display:none">Setja upp app</span>
+      </span>
+    </button>
+    <!-- role="navigation": bez roli aria-label na zwyklym <div> jest ignorowane
+         przez czytniki ekranu, wiec ta etykieta nie docierala do nikogo. -->
+    <div class="nav-anchors" id="navmenu" role="navigation" aria-label="Jump to section">
       <a href="#services" class="nav-anchor">
         <span id="navsvc-en">Services</span>
         <span id="navsvc-pl" lang="pl" style="display:none">Usługi</span>
@@ -1540,6 +1579,91 @@
       if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
 
+    // ---- PWA: install app ----------------------------------------------------
+    var deferredInstallPrompt = null;
+
+    function isStandalone() {
+      return window.matchMedia('(display-mode: standalone)').matches ||
+        window.navigator.standalone === true;
+    }
+
+    // iOS Safari has no beforeinstallprompt — detect so we can show instructions.
+    function isIosSafari() {
+      var ua = window.navigator.userAgent || '';
+      var iOS = /iPad|iPhone|iPod/.test(ua) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      var webkit = /WebKit/.test(ua);
+      var notChrome = !/CriOS|FxiOS|EdgiOS|OPiOS/.test(ua);
+      return iOS && webkit && notChrome;
+    }
+
+    function showInstallBtn() {
+      var btn = document.getElementById('installBtn');
+      if (btn) btn.hidden = false;
+    }
+    function hideInstallBtn() {
+      var btn = document.getElementById('installBtn');
+      if (btn) btn.hidden = true;
+    }
+
+    function installApp() {
+      // Native prompt available (Chrome, Edge, Android) — use it.
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        deferredInstallPrompt.userChoice.then(function (choice) {
+          if (typeof fbq !== 'undefined') {
+            fbq('trackCustom', 'InstallPrompt', { outcome: choice.outcome });
+          }
+          // Chowamy przycisk NIEZALEZNIE od wyniku: zdarzenie beforeinstallprompt
+          // mozna skonsumowac tylko raz, wiec po 'dismissed' kolejny klik nie mial
+          // juz czego pokazac -> martwy przycisk. Chrome wyemituje prompt ponownie
+          // przy nastepnej wizycie i przycisk wroci.
+          hideInstallBtn();
+          deferredInstallPrompt = null;
+        });
+        return;
+      }
+      // iOS Safari — no programmatic prompt; guide the user.
+      if (isIosSafari()) {
+        var lang = document.documentElement.lang || 'en';
+        var msg = {
+          en: 'To install: tap the Share button, then "Add to Home Screen".',
+          pl: 'Aby zainstalować: dotknij ikony Udostępnij, a następnie „Do ekranu początkowego”.',
+          is: 'Til að setja upp: ýttu á Deila-hnappinn og svo „Bæta á heimaskjá“.'
+        };
+        alert(msg[lang] || msg.en);
+      }
+    }
+
+    (function () {
+      // Rejestracja SW MUSI byc przed guardem isStandalone(): guard dotyczy tylko
+      // widocznosci przycisku UI, a nie warstwy offline. Wczesniej zainstalowana apka
+      // (tryb standalone) nigdy nie rejestrowala SW — po wyczyszczeniu danych offline
+      // przestawal dzialac po cichu, bez zadnego sygnalu.
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('./sw.js').catch(function () { /* offline support is best-effort */ });
+        });
+      }
+
+      if (isStandalone()) return; // already installed — nothing more to offer in UI
+
+      window.addEventListener('beforeinstallprompt', function (e) {
+        e.preventDefault();
+        deferredInstallPrompt = e;
+        showInstallBtn();
+      });
+
+      window.addEventListener('appinstalled', function () {
+        deferredInstallPrompt = null;
+        hideInstallBtn();
+        if (typeof fbq !== 'undefined') fbq('trackCustom', 'AppInstalled');
+      });
+
+      // iOS can't fire beforeinstallprompt, so surface the button there directly.
+      if (isIosSafari()) showInstallBtn();
+    })();
+
     // Rotating hero background (real workshop photos)
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -1642,6 +1766,13 @@
       applyPartnerPlaceholders(lang);
       var st = document.getElementById('lang-status');
       if (st) st.textContent = { en: 'Language set to English', pl: 'Język: polski', is: 'Tungumál: íslenska' }[lang];
+      // aria-label przycisku instalacji: przy <340px tekst jest ukryty i to jedyny
+      // opis dla czytnika ekranu — musi isc za jezykiem strony.
+      var ib = document.getElementById('installBtn');
+      if (ib) {
+        ib.setAttribute('aria-label',
+          { en: 'Install app', pl: 'Zainstaluj aplikację', is: 'Setja upp forrit' }[lang] || 'Install app');
+      }
     }
 
     // Partner sign-up form — placeholders per language + WhatsApp submission
