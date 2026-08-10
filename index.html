@@ -1618,7 +1618,11 @@
           if (typeof fbq !== 'undefined') {
             fbq('trackCustom', 'InstallPrompt', { outcome: choice.outcome });
           }
-          if (choice.outcome === 'accepted') hideInstallBtn();
+          // Chowamy przycisk NIEZALEZNIE od wyniku: zdarzenie beforeinstallprompt
+          // mozna skonsumowac tylko raz, wiec po 'dismissed' kolejny klik nie mial
+          // juz czego pokazac -> martwy przycisk. Chrome wyemituje prompt ponownie
+          // przy nastepnej wizycie i przycisk wroci.
+          hideInstallBtn();
           deferredInstallPrompt = null;
         });
         return;
@@ -1636,7 +1640,17 @@
     }
 
     (function () {
-      if (isStandalone()) return; // already installed — nothing to offer
+      // Rejestracja SW MUSI byc przed guardem isStandalone(): guard dotyczy tylko
+      // widocznosci przycisku UI, a nie warstwy offline. Wczesniej zainstalowana apka
+      // (tryb standalone) nigdy nie rejestrowala SW — po wyczyszczeniu danych offline
+      // przestawal dzialac po cichu, bez zadnego sygnalu.
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('./sw.js').catch(function () { /* offline support is best-effort */ });
+        });
+      }
+
+      if (isStandalone()) return; // already installed — nothing more to offer in UI
 
       window.addEventListener('beforeinstallprompt', function (e) {
         e.preventDefault();
@@ -1652,12 +1666,6 @@
 
       // iOS can't fire beforeinstallprompt, so surface the button there directly.
       if (isIosSafari()) showInstallBtn();
-
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-          navigator.serviceWorker.register('./sw.js').catch(function () { /* offline support is best-effort */ });
-        });
-      }
     })();
 
     // Rotating hero background (real workshop photos)
@@ -1762,6 +1770,13 @@
       applyPartnerPlaceholders(lang);
       var st = document.getElementById('lang-status');
       if (st) st.textContent = { en: 'Language set to English', pl: 'Język: polski', is: 'Tungumál: íslenska' }[lang];
+      // aria-label przycisku instalacji: przy <340px tekst jest ukryty i to jedyny
+      // opis dla czytnika ekranu — musi isc za jezykiem strony.
+      var ib = document.getElementById('installBtn');
+      if (ib) {
+        ib.setAttribute('aria-label',
+          { en: 'Install app', pl: 'Zainstaluj aplikację', is: 'Setja upp forrit' }[lang] || 'Install app');
+      }
     }
 
     // Partner sign-up form — placeholders per language + WhatsApp submission
