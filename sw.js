@@ -38,8 +38,12 @@ self.addEventListener('fetch', function (event) {
   if (req.mode === 'navigate') {
     event.respondWith(
       fetch(req).then(function (res) {
-        var copy = res.clone();
-        caches.open(CACHE).then(function (c) { c.put('./index.html', copy); });
+        // Cache'ujemy tylko realnie poprawna odpowiedz z naszego originu —
+        // inaczej strona bledu zwrocona z kodem 200 wyladowalaby w cache jako shell.
+        if (res && res.ok && res.type === 'basic') {
+          var copy = res.clone();
+          event.waitUntil(caches.open(CACHE).then(function (c) { return c.put('./index.html', copy); }));
+        }
         return res;
       }).catch(function () {
         return caches.match('./index.html').then(function (r) { return r || caches.match('./'); });
@@ -48,18 +52,24 @@ self.addEventListener('fetch', function (event) {
     return;
   }
 
-  // Cache-first for same-origin static assets.
+  // Stale-while-revalidate dla statykow z tego samego originu.
+  // NIE cache-first: przy cache-first podmiana pliku w miejscu (np. nowe hero3.webp
+  // pod ta sama nazwa) nigdy nie dotarlaby do uzytkownika z zainstalowanym SW,
+  // dopoki recznie nie zmienimy nazwy CACHE. Tutaj: cache leci natychmiast,
+  // a w tle pobieramy swieza wersje i nadpisujemy — poprawka widoczna przy kolejnej wizycie.
   var url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
   event.respondWith(
     caches.match(req).then(function (cached) {
-      return cached || fetch(req).then(function (res) {
+      var network = fetch(req).then(function (res) {
         if (res && res.status === 200 && res.type === 'basic') {
           var copy = res.clone();
-          caches.open(CACHE).then(function (c) { c.put(req, copy); });
+          event.waitUntil(caches.open(CACHE).then(function (c) { return c.put(req, copy); }));
         }
         return res;
       }).catch(function () { return cached; });
+      if (cached) event.waitUntil(network);   // rewalidacja przezyje zamkniecie strony
+      return cached || network;
     })
   );
 });
